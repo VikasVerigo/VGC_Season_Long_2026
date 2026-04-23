@@ -412,7 +412,66 @@
     gap: 0;
     border-bottom: 1px solid rgba(201,168,76,0.2);
     margin-bottom: 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--vgc-dark);
   }
+
+  /* ── SORTABLE HEADERS ── */
+  th.sortable {
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  th.sortable:hover { color: var(--vgc-gold); }
+  th.sortable .sort-arrow {
+    display: inline-block;
+    margin-left: 0.3em;
+    opacity: 0.35;
+    font-size: 0.6em;
+    vertical-align: middle;
+  }
+  th.sortable.sort-active { color: var(--vgc-gold); }
+  th.sortable.sort-active .sort-arrow { opacity: 1; }
+
+  /* ── MODAL SORT CONTROLS ── */
+  .modal-sort-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+  .modal-sort-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+    margin-right: 0.3rem;
+  }
+  .modal-sort-btn {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: none;
+    border: 1px solid rgba(201,168,76,0.2);
+    color: rgba(245,240,232,0.5);
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .modal-sort-btn:hover { border-color: rgba(201,168,76,0.5); color: var(--vgc-gold-light); }
+  .modal-sort-btn.active { border-color: var(--vgc-gold); color: var(--vgc-gold); background: rgba(201,168,76,0.08); }
+
+  /* ── HEATMAP ── */
+  .hm-best   { background: rgba(76,175,130,0.35) !important; color: #a8f0d0 !important; font-weight:600; }
+  .hm-good   { background: rgba(76,175,100,0.20) !important; }
+  .hm-mid    { background: rgba(200,160,50,0.18) !important; }
+  .hm-poor   { background: rgba(220,100,60,0.20) !important; }
+  .hm-worst  { background: rgba(200,60,60,0.35)  !important; color: #ffb0a0 !important; font-weight:600; }
 
   .tab-btn {
     font-family: 'Montserrat', sans-serif;
@@ -1322,25 +1381,21 @@
       </div>
 
       <div class="tab-nav">
-        <button class="tab-btn active" onclick="showTab('standings')">Season Standings</button>
-        <button class="tab-btn" onclick="showTab('weekly')">Weekly Results</button>
+        <button class="tab-btn active" onclick="showTab('weekly')">Current Week Results</button>
+        <button class="tab-btn" onclick="showTab('standings')">Season Standings</button>
       </div>
 
       <!-- Season Standings Tab -->
-      <div id="tab-standings" class="tab-panel active">
+      <div id="tab-standings" class="tab-panel">
         <div class="table-wrapper">
           <table>
             <thead>
               <tr>
-                <th style="width:40px"></th>
+                <th style="width:50px">Rank</th>
                 <th style="text-align:left; padding-left:1.5rem">Player</th>
                 <th>HCP</th>
-                <th>Apr 21</th>
+                <th>Apr 15</th>
                 <th>Apr 22</th>
-                <th style="opacity:0.4">Apr 29</th>
-                <th style="opacity:0.4">May 6</th>
-                <th style="opacity:0.4">May 13</th>
-                <th style="opacity:0.4">May 20</th>
                 <th>Best 10</th>
                 <th>Rounds</th>
               </tr>
@@ -1351,17 +1406,17 @@
       </div>
 
       <!-- Weekly Results Tab -->
-      <div id="tab-weekly" class="tab-panel">
+      <div id="tab-weekly" class="tab-panel active">
         <div class="table-wrapper">
           <table>
             <thead>
               <tr>
-                <th style="width:40px"></th>
-                <th style="text-align:left; padding-left:1.5rem">Player</th>
-                <th>HCP</th>
-                <th>Gross</th>
-                <th>Net</th>
-                <th>Stableford</th>
+                <th style="width:50px">Rank</th>
+                <th class="sortable" data-col="name" data-dir="asc" style="text-align:left; padding-left:1.5rem">Player <span class="sort-arrow">▼</span></th>
+                <th class="sortable" data-col="hcp" data-dir="asc">HCP <span class="sort-arrow">▼</span></th>
+                <th class="sortable" data-col="gross" data-dir="asc">Gross <span class="sort-arrow">▼</span></th>
+                <th class="sortable" data-col="net" data-dir="asc">Net <span class="sort-arrow">▼</span></th>
+                <th class="sortable sort-active" data-col="stableford" data-dir="desc">Stableford <span class="sort-arrow">▼</span></th>
               </tr>
             </thead>
             <tbody id="weekly-body"></tbody>
@@ -1427,6 +1482,12 @@
         </div>
       </div>
       <div class="modal-rounds-title">Round by Round</div>
+      <div class="modal-sort-bar">
+        <span class="modal-sort-label">Sort:</span>
+        <button class="modal-sort-btn active" id="modalSortDate" onclick="setModalSort('date')">Date</button>
+        <button class="modal-sort-btn" id="modalSortPts" onclick="setModalSort('pts')">Stableford</button>
+        <button class="modal-sort-btn" id="modalSortCounting" onclick="setModalSort('counting')">Counting First</button>
+      </div>
       <div id="modalRoundsList"></div>
     </div>
   </div>
@@ -1510,7 +1571,7 @@ const prevRankings = {
 // Gallery photos — add objects {src, caption} to populate gallery
 const galleryPhotos = [];
 
-const roundDates = ["Apr 21", "Apr 22"];
+const roundDates = ["Apr 15", "Apr 22"];
 const BEST_N = 10;
 const TOTAL_ROUNDS = 18;
 // Next round date (Tuesday night = next Wednesday morning)
@@ -1607,30 +1668,119 @@ function renderStandings() {
 }
 
 // ── WEEKLY TABLE ──
+// ── WEEKLY TABLE ──
+let weeklySortCol = 'stableford';
+let weeklySortDir = 'desc';
+const roundIdx = roundDates.length - 1; // always latest round
+
 function renderWeekly() {
   const tbody = document.getElementById('weekly-body');
-  const weekSorted = [...players].sort((a,b) => (b.scores[1]||0) - (a.scores[1]||0));
-  tbody.innerHTML = weekSorted.map((p, i) => {
-    const pts = p.scores[1] || 0;
-    const gross = p.gross[1] || 0;
-    const net = gross - p.hcp;
-    const move = movementHtml(p.name, i+1);
+
+  let data = players.map(p => ({
+    p,
+    name: p.name,
+    hcp: p.hcp,
+    pts: p.scores[roundIdx] || 0,
+    gross: p.gross[roundIdx] || 0,
+  }));
+
+  // Sort: absent always last
+  data.sort((a, b) => {
+    const aAbsent = a.gross === 0;
+    const bAbsent = b.gross === 0;
+    if (aAbsent && !bAbsent) return 1;
+    if (!aAbsent && bAbsent) return -1;
+    let av, bv;
+    if (weeklySortCol === 'name')       { av = a.name; bv = b.name; }
+    else if (weeklySortCol === 'hcp')   { av = a.hcp;  bv = b.hcp; }
+    else if (weeklySortCol === 'gross') { av = a.gross; bv = b.gross; }
+    else if (weeklySortCol === 'net')   { av = a.gross - a.hcp; bv = b.gross - b.hcp; }
+    else                                { av = a.pts;   bv = b.pts; }
+    if (weeklySortDir === 'asc') return av > bv ? 1 : av < bv ? -1 : 0;
+    else                         return av < bv ? 1 : av > bv ? -1 : 0;
+  });
+
+  // Assign T-ranks based on Stableford (always, regardless of sort)
+  const played = data.filter(d => d.gross > 0);
+  // Sort played by pts desc to assign ranks, then restore display order
+  const byPts = [...played].sort((a,b) => b.pts - a.pts);
+  let r = 1;
+  byPts.forEach((item, i) => {
+    if (i === 0) { item.rankDisplay = '1'; r = 1; return; }
+    if (item.pts === byPts[i-1].pts) {
+      item.rankDisplay = `T${r}`;
+      byPts[i-1].rankDisplay = `T${r}`;
+    } else {
+      r = i + 1;
+      item.rankDisplay = `${r}`;
+    }
+  });
+  data.filter(d => d.gross === 0).forEach(d => d.rankDisplay = '—');
+
+  tbody.innerHTML = data.map(({p, pts, gross, rankDisplay}) => {
+    const netDisplay = gross > 0 ? (gross - p.hcp) : '—';
+    const grossDisplay = gross > 0 ? gross : '—';
     return `<tr>
-      <td class="rank-col">${i+1}</td>
-      <td><div class="player-cell">${avatarHtml(p.name)}<span class="player-link" onclick="openModal('${p.name}')">${p.name}</span>${move}</div></td>
+      <td class="rank-col">${rankDisplay}</td>
+      <td><div class="player-cell">${avatarHtml(p.name)}<span class="player-link" onclick="openModal('${p.name}')">${p.name}</span></div></td>
       <td style="color:rgba(245,240,232,0.5);font-family:'Montserrat',sans-serif;font-size:0.8rem">${p.hcp}</td>
-      <td class="score-cell">${gross}</td>
-      <td class="score-cell">${net}</td>
-      <td class="total-col">${pts}</td>
+      <td class="score-cell">${grossDisplay}</td>
+      <td class="score-cell">${netDisplay}</td>
+      <td class="total-col">${pts > 0 ? pts : '—'}</td>
     </tr>`;
   }).join('');
 }
+
+// ── WEEKLY SORT CLICK HANDLER ──
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#tab-weekly th.sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = th.dataset.col;
+      if (weeklySortCol === col) {
+        weeklySortDir = weeklySortDir === 'asc' ? 'desc' : 'asc';
+      } else {
+        weeklySortCol = col;
+        weeklySortDir = (col === 'stableford') ? 'desc' : 'asc';
+      }
+      document.querySelectorAll('#tab-weekly th.sortable').forEach(t => {
+        t.classList.remove('sort-active');
+        t.querySelector('.sort-arrow').textContent = '▼';
+      });
+      th.classList.add('sort-active');
+      th.querySelector('.sort-arrow').textContent = weeklySortDir === 'asc' ? '▲' : '▼';
+      renderWeekly();
+    });
+  });
+});
 
 function showTab(tab) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-'+tab).classList.add('active');
   event.target.classList.add('active');
+}
+
+// ── HEATMAP ──
+function applyHeatmap() {
+  // Collect all non-zero scores across all played rounds
+  const allScores = [];
+  players.forEach(p => p.scores.forEach(s => { if (s > 0) allScores.push(s); }));
+  if (!allScores.length) return;
+  const mn = Math.min(...allScores), mx = Math.max(...allScores);
+  const range = mx - mn || 1;
+  // Apply to every .hm-score cell
+  document.querySelectorAll('td[data-score]').forEach(td => {
+    const s = parseInt(td.dataset.score);
+    if (!s) return;
+    td.className = td.className.replace(/\bhm-\S+/g, '');
+    const pct = (s - mn) / range; // 0=worst, 1=best (high stableford = good)
+    // Stableford: higher = better
+    if (pct >= 0.80)      td.classList.add('hm-best');
+    else if (pct >= 0.55) td.classList.add('hm-good');
+    else if (pct >= 0.35) td.classList.add('hm-mid');
+    else if (pct >= 0.15) td.classList.add('hm-poor');
+    else                   td.classList.add('hm-worst');
+  });
 }
 
 // ── GALLERY ──
@@ -1699,38 +1849,55 @@ function stablefordPts(gross, par, strokes) {
   return Math.max(0, par - (gross - strokes) + 2);
 }
 
-function openModal(playerName) {
-  const p = players.find(x => x.name === playerName);
-  if (!p) return;
+let currentModalPlayer = null;
+let modalSortMode = 'date';
 
-  const playedScores = p.scores.filter(s => s > 0);
-  const b10 = best10(p.scores);
-  const bestRound = playedScores.length ? Math.max(...playedScores) : 0;
-  const avg = playedScores.length ? (playedScores.reduce((a,b)=>a+b,0)/playedScores.length).toFixed(1) : '—';
+function setModalSort(mode) {
+  modalSortMode = mode;
+  document.querySelectorAll('.modal-sort-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('modalSort' + mode.charAt(0).toUpperCase() + mode.slice(1)).classList.add('active');
+  if (currentModalPlayer) renderModalRounds(currentModalPlayer);
+}
+
+function renderModalRounds(p) {
   const sortedScores = [...p.scores].sort((a,b) => b-a);
   const countingScores = sortedScores.slice(0, BEST_N).filter(s => s > 0);
 
-  // Photo
-  document.getElementById('modalPhotoEl').innerHTML = avatarHtml(p.name, 'lg');
-  document.getElementById('modalName').textContent = p.name;
-  document.getElementById('modalHcp').textContent = `Course Handicap: ${p.hcp}`;
-  document.getElementById('modalBest10').textContent = b10;
-  document.getElementById('modalBest').textContent = bestRound || '—';
-  document.getElementById('modalAvg').textContent = avg;
-  document.getElementById('modalRounds').textContent = `${playedScores.length} / ${TOTAL_ROUNDS}`;
-
+  // Build round items
   const usedCounting = [];
+  let items = roundDates.map((date, i) => {
+    const pts = p.scores[i] || 0;
+    const gross = p.gross[i] || 0;
+    const net = gross > 0 ? gross - p.hcp : null;
+    let isCounting = false;
+    if (pts > 0) {
+      const idx = countingScores.indexOf(pts);
+      if (idx !== -1 && !usedCounting.includes(i)) { isCounting = true; usedCounting.push(i); }
+    }
+    return { date, i, pts, gross, net, isCounting };
+  });
+
+  // Sort
+  if (modalSortMode === 'pts') {
+    items.sort((a, b) => {
+      if (a.gross === 0 && b.gross > 0) return 1;
+      if (b.gross === 0 && a.gross > 0) return -1;
+      return b.pts - a.pts;
+    });
+  } else if (modalSortMode === 'counting') {
+    items.sort((a, b) => {
+      if (a.gross === 0 && b.gross > 0) return 1;
+      if (b.gross === 0 && a.gross > 0) return -1;
+      if (a.isCounting && !b.isCounting) return -1;
+      if (!a.isCounting && b.isCounting) return 1;
+      return b.pts - a.pts;
+    });
+  }
+  // else: date order (default, as-is)
+
   const roundsHtml = p.scores.length === 0 || p.scores.every(s => s === 0)
     ? '<div class="no-rounds">No rounds played yet</div>'
-    : roundDates.map((date, i) => {
-        const pts = p.scores[i] || 0;
-        const gross = p.gross[i] || 0;
-        const net = gross > 0 ? gross - p.hcp : '—';
-        let isCounting = false;
-        if (pts > 0) {
-          const idx = countingScores.indexOf(pts);
-          if (idx !== -1 && !usedCounting.includes(i)) { isCounting = true; usedCounting.push(i); }
-        }
+    : items.map(({date, i, pts, gross, net, isCounting}) => {
         const ptsClass = pts === 0 ? 'not-counting' : isCounting ? 'counting' : 'not-counting';
         const badge = isCounting ? '<span class="round-badge">counting</span>' : '';
         const hasHoles = p.holeScores && p.holeScores[i] && p.holeScores[i].length === 18;
@@ -1749,6 +1916,30 @@ function openModal(playerName) {
       }).join('');
 
   document.getElementById('modalRoundsList').innerHTML = roundsHtml;
+}
+
+function openModal(playerName) {
+  const p = players.find(x => x.name === playerName);
+  if (!p) return;
+  currentModalPlayer = p;
+  modalSortMode = 'date';
+  document.querySelectorAll('.modal-sort-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('modalSortDate').classList.add('active');
+
+  const playedScores = p.scores.filter(s => s > 0);
+  const b10 = best10(p.scores);
+  const bestRound = playedScores.length ? Math.max(...playedScores) : 0;
+  const avg = playedScores.length ? (playedScores.reduce((a,b)=>a+b,0)/playedScores.length).toFixed(1) : '—';
+
+  document.getElementById('modalPhotoEl').innerHTML = avatarHtml(p.name, 'lg');
+  document.getElementById('modalName').textContent = p.name;
+  document.getElementById('modalHcp').textContent = `Course Handicap: ${p.hcp}`;
+  document.getElementById('modalBest10').textContent = b10;
+  document.getElementById('modalBest').textContent = bestRound || '—';
+  document.getElementById('modalAvg').textContent = avg;
+  document.getElementById('modalRounds').textContent = `${playedScores.length} / ${TOTAL_ROUNDS}`;
+
+  renderModalRounds(p);
   document.getElementById('playerModal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
