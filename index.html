@@ -467,11 +467,11 @@
   .modal-sort-btn.active { border-color: var(--vgc-gold); color: var(--vgc-gold); background: rgba(201,168,76,0.08); }
 
   /* ── HEATMAP ── */
-  .hm-best   { background: rgba(76,175,130,0.35) !important; color: #a8f0d0 !important; font-weight:600; }
-  .hm-good   { background: rgba(76,175,100,0.20) !important; }
-  .hm-mid    { background: rgba(200,160,50,0.18) !important; }
-  .hm-poor   { background: rgba(220,100,60,0.20) !important; }
-  .hm-worst  { background: rgba(200,60,60,0.35)  !important; color: #ffb0a0 !important; font-weight:600; }
+  .hm-best   { background: rgba(46,160,110,0.85) !important; color: #fff !important; font-weight:700; border-radius:4px; }
+  .hm-good   { background: rgba(80,185,120,0.60) !important; color: #e8fff2 !important; font-weight:600; border-radius:4px; }
+  .hm-mid    { background: rgba(210,170,40,0.55)  !important; color: #fff8e0 !important; border-radius:4px; }
+  .hm-poor   { background: rgba(220,110,50,0.60)  !important; color: #ffe8d8 !important; border-radius:4px; }
+  .hm-worst  { background: rgba(200,50,50,0.80)   !important; color: #fff !important; font-weight:700; border-radius:4px; }
 
   .tab-btn {
     font-family: 'Montserrat', sans-serif;
@@ -1388,16 +1388,10 @@
       <!-- Season Standings Tab -->
       <div id="tab-standings" class="tab-panel">
         <div class="table-wrapper">
-          <table>
+          <table id="standings-table">
             <thead>
-              <tr>
-                <th style="width:50px">Rank</th>
-                <th style="text-align:left; padding-left:1.5rem">Player</th>
-                <th>HCP</th>
-                <th>Apr 15</th>
-                <th>Apr 22</th>
-                <th>Best 10</th>
-                <th>Rounds</th>
+              <tr id="standings-thead-row">
+                <!-- Headers injected by renderStandingsHeader() -->
               </tr>
             </thead>
             <tbody id="standings-body"></tbody>
@@ -1642,29 +1636,95 @@ function renderPodium() {
   }).join('');
 }
 
-// ── STANDINGS TABLE ──
-function renderStandings() {
+// ── STANDINGS SORT STATE ──
+let standingsSortCol = 'best10';
+let standingsSortDir = 'desc';
+
+function renderStandingsHeader() {
+  const tr = document.getElementById('standings-thead-row');
+  // Build columns: rank, player, hcp, one per played round, best10, rounds
+  const cols = [
+    { key:'rank',   label:'Rank',   style:'width:50px', align:'left', paddingLeft:'1.5rem' },
+    { key:'player', label:'Player', align:'left', paddingLeft:'1.5rem' },
+    { key:'hcp',    label:'HCP' },
+    ...roundDates.map(d => ({ key: d, label: d })),
+    { key:'best10', label:'Best 10' },
+    { key:'rounds', label:'Rounds' },
+  ];
+  tr.innerHTML = cols.map(c => {
+    const isActive = standingsSortCol === c.key;
+    const arrow = isActive ? (standingsSortDir === 'asc' ? '▲' : '▼') : '▼';
+    const activeClass = isActive ? ' sort-active' : '';
+    const style = [c.style||'', c.align==='left'?`text-align:left`:'', c.paddingLeft?`padding-left:${c.paddingLeft}`:''].filter(Boolean).join(';');
+    return `<th class="sortable${activeClass}" data-col="${c.key}" style="${style}">${c.label} <span class="sort-arrow">${arrow}</span></th>`;
+  }).join('');
+
+  tr.querySelectorAll('th.sortable').forEach(th => {
+    th.addEventListener('click', () => {
+      const col = th.dataset.col;
+      if (standingsSortCol === col) {
+        standingsSortDir = standingsSortDir === 'asc' ? 'desc' : 'asc';
+      } else {
+        standingsSortCol = col;
+        standingsSortDir = (col === 'player') ? 'asc' : 'desc';
+      }
+      renderStandingsHeader();
+      renderStandingsBody();
+    });
+  });
+}
+
+function renderStandingsBody() {
+  // Sort players
+  const data = [...players].map(p => ({ p, best10: best10(p.scores), rounds: p.scores.filter(s=>s>0).length }));
+  data.sort((a, b) => {
+    let av, bv;
+    const col = standingsSortCol;
+    if (col === 'player')     { av = a.p.name; bv = b.p.name; }
+    else if (col === 'hcp')   { av = a.p.hcp;  bv = b.p.hcp; }
+    else if (col === 'best10'){ av = a.best10;  bv = b.best10; }
+    else if (col === 'rounds'){ av = a.rounds;  bv = b.rounds; }
+    else if (col === 'rank')  { av = a.best10;  bv = b.best10; } // rank = sort by best10
+    else {
+      // round date column
+      const ri = roundDates.indexOf(col);
+      av = ri >= 0 ? (a.p.scores[ri] || 0) : 0;
+      bv = ri >= 0 ? (b.p.scores[ri] || 0) : 0;
+    }
+    if (standingsSortDir === 'asc') return av > bv ? 1 : av < bv ? -1 : 0;
+    else                            return av < bv ? 1 : av > bv ? -1 : 0;
+  });
+
   const tbody = document.getElementById('standings-body');
-  tbody.innerHTML = sorted.map((p, i) => {
-    const b10 = best10(p.scores);
-    const rounds = p.scores.filter(s => s > 0).length;
-    const scoreCells = p.scores.map((s) => {
-      const isTop = [...p.scores].sort((a,b)=>b-a).slice(0,BEST_N).includes(s) && s > 0;
-      const cls = s === 0 ? 'score-zero' : isTop ? 'score-best' : 'score-cell';
-      return `<td class="${cls}">${s === 0 ? '—' : s}</td>`;
+  // Compute overall rank based on best10 (always by best10 desc for the rank number)
+  const byBest10 = [...data].sort((a,b) => b.best10 - a.best10);
+  const rankMap = {};
+  byBest10.forEach((d, i) => { rankMap[d.p.name] = i + 1; });
+
+  tbody.innerHTML = data.map(({ p, best10: b10, rounds }) => {
+    const scoreCells = roundDates.map((_, ri) => {
+      const s = p.scores[ri] || 0;
+      const cls = s === 0 ? 'score-zero' : 'score-cell';
+      return `<td class="${cls}" data-score="${s}" style="padding:0.4rem 0.75rem">${s === 0 ? '—' : s}</td>`;
     }).join('');
-    const futureRounds = TOTAL_ROUNDS - roundDates.length;
-    const futureCells = Array(Math.min(5, futureRounds)).fill('<td class="score-absent">·</td>').join('');
-    const move = movementHtml(p.name, i+1);
+    const move = movementHtml(p.name, rankMap[p.name]);
     return `<tr>
-      <td class="rank-col">${i+1}</td>
+      <td class="rank-col" style="padding-left:1.5rem">${rankMap[p.name]}</td>
       <td><div class="player-cell">${avatarHtml(p.name)}<span class="player-link" onclick="openModal('${p.name}')">${p.name}</span>${move}</div></td>
       <td style="color:rgba(245,240,232,0.5);font-family:'Montserrat',sans-serif;font-size:0.8rem">${p.hcp}</td>
-      ${scoreCells}${futureCells}
+      ${scoreCells}
       <td class="total-col">${b10}</td>
       <td class="rounds-col">${rounds}/${TOTAL_ROUNDS}</td>
     </tr>`;
   }).join('');
+
+  applyHeatmap();
+}
+
+// ── STANDINGS TABLE ──
+function renderStandings() {
+  renderStandingsHeader();
+  renderStandingsBody();
 }
 
 // ── WEEKLY TABLE ──
@@ -1758,6 +1818,7 @@ function showTab(tab) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-'+tab).classList.add('active');
   event.target.classList.add('active');
+  if (tab === 'standings') applyHeatmap();
 }
 
 // ── HEATMAP ──
