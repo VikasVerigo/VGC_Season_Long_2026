@@ -1337,19 +1337,19 @@
     <section class="section" style="padding-bottom: 0">
       <div class="info-bar">
         <div class="info-item">
-          <div class="info-value">1</div>
+          <div class="info-value" id="statRoundsPlayed"></div>
           <div class="info-label">Rounds Played</div>
         </div>
         <div class="info-item">
-          <div class="info-value">17</div>
+          <div class="info-value" id="statRoundsRemaining"></div>
           <div class="info-label">Rounds Remaining</div>
         </div>
         <div class="info-item">
-          <div class="info-value">40</div>
+          <div class="info-value" id="statPlayers"></div>
           <div class="info-label">Players</div>
         </div>
         <div class="info-item">
-          <div class="info-value">Apr 21</div>
+          <div class="info-value" id="statLastRound"></div>
           <div class="info-label">Last Round</div>
         </div>
       </div>
@@ -1398,6 +1398,26 @@
         </div>
       </div>
     </div>
+
+    <!-- ── COMPETITION INSTRUCTIONS ── -->
+    <section class="section" id="how-it-works">
+      <div class="section-header">
+        <p class="section-label">How It Works</p>
+        <h2 class="section-title">Season <em>Competition</em></h2>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(201,160,32,0.18);border-radius:1.2rem;padding:2rem 2.4rem;max-width:820px;margin:0 auto;color:var(--vgc-cream);font-family:'Crimson Pro',Georgia,serif;font-size:1.08rem;line-height:1.8;">
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:1rem;">
+          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">1.</span><span>Season-long competition based on your <strong>best 10 out of 18 rounds</strong> — drop your worst scores or simply skip a week.</span></li>
+          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">2.</span><span>Similar to the <strong>FedEx Cup</strong> format — accumulate points all summer.</span></li>
+          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">3.</span><span>Wednesday scores count from <strong>April 29 – August 26, 2026</strong>.</span></li>
+          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">4.</span><span>Scores are converted to <strong>Stableford points</strong>; standings are based on cumulative points over the summer.</span></li>
+          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">5.</span><span>Leaderboard is <strong>automatically updated</strong> from hole-by-hole scores via Golf Genius.</span></li>
+          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">6.</span><span>Entry fee: <strong>$100</strong> (essentially $10 per round).</span></li>
+          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">7.</span><span>The <strong>top 25% of players</strong> get paid at season end.</span></li>
+          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">8.</span><span>The current leaderboard uses <strong>test data from Apr 15</strong> and <strong>actual scores from Apr 22</strong>. The official competition begins April 29.</span></li>
+        </ul>
+      </div>
+    </section>
 
     <!-- Top 5 -->
     <section class="section">
@@ -1920,25 +1940,45 @@ function showTab(tab) {
 }
 
 // ── HEATMAP ──
+// Highlights only the top 5 scores within each round column.
 function applyHeatmap() {
-  // Collect all non-zero scores across all played rounds
-  const allScores = [];
-  players.forEach(p => p.scores.forEach(s => { if (s > 0) allScores.push(s); }));
-  if (!allScores.length) return;
-  const mn = Math.min(...allScores), mx = Math.max(...allScores);
-  const range = mx - mn || 1;
-  // Apply to every .hm-score cell
+  // First, clear all existing heatmap classes
   document.querySelectorAll('td[data-score]').forEach(td => {
-    const s = parseInt(td.dataset.score);
-    if (!s) return;
     td.className = td.className.replace(/\bhm-\S+/g, '');
-    const pct = (s - mn) / range; // 0=worst, 1=best (high stableford = good)
-    // Stableford: higher = better
-    if (pct >= 0.80)      td.classList.add('hm-best');
-    else if (pct >= 0.55) td.classList.add('hm-good');
-    else if (pct >= 0.35) td.classList.add('hm-mid');
-    else if (pct >= 0.15) td.classList.add('hm-poor');
-    else                   td.classList.add('hm-worst');
+  });
+
+  // For each round column, find top-5 scores and highlight them
+  roundDates.forEach((date, ri) => {
+    // Collect all cells for this round (column index = roundDates.length - 1 - ri since cols are reversed)
+    const colCells = [];
+    document.querySelectorAll('tbody#standings-body tr').forEach(row => {
+      // Each row has: rank, player, hcp, then score cols (newest first), then total, rounds
+      // Score cells are at index 3 .. (3 + roundDates.length - 1), newest first
+      const scoreCells = row.querySelectorAll('td[data-score]');
+      // Reversed: index 0 = latest round, index (len-1) = earliest
+      const colIndex = roundDates.length - 1 - ri;
+      if (scoreCells[colIndex]) colCells.push(scoreCells[colIndex]);
+    });
+
+    // Gather scores, sort descending, pick top 5 threshold
+    const scores = colCells.map(td => parseInt(td.dataset.score)).filter(s => s > 0);
+    if (!scores.length) return;
+    const sorted = [...scores].sort((a, b) => b - a);
+    const top5Scores = new Set(sorted.slice(0, 5));
+
+    // Apply classes
+    const mn = Math.min(...scores), mx = Math.max(...scores);
+    const range = mx - mn || 1;
+    colCells.forEach(td => {
+      const s = parseInt(td.dataset.score);
+      if (!s) return;
+      if (top5Scores.has(s)) {
+        const pct = (s - mn) / range;
+        if (pct >= 0.80)      td.classList.add('hm-best');
+        else if (pct >= 0.55) td.classList.add('hm-good');
+        else                   td.classList.add('hm-mid');
+      }
+    });
   });
 }
 
@@ -2198,6 +2238,17 @@ function goToTickerSlide(n) {
 setInterval(() => {
   goToTickerSlide((_tickerIdx + 1) % (_tickerItems.length || 1));
 }, 5000);
+
+// ── STAT BAR (driven from data) ──
+(function() {
+  const played = roundDates.length;
+  // Total competition rounds = nextRoundDates.length + 1 (for Apr 15) = 18
+  const remaining = TOTAL_ROUNDS - played;
+  document.getElementById('statRoundsPlayed').textContent = played;
+  document.getElementById('statRoundsRemaining').textContent = remaining;
+  document.getElementById('statPlayers').textContent = players.length;
+  document.getElementById('statLastRound').textContent = roundDates[roundDates.length - 1];
+})();
 
 renderPodium();
 renderStandings();
