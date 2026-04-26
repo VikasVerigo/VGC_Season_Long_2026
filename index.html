@@ -1515,15 +1515,11 @@
                 <th style="text-align:left; padding-left:1.5rem">Player</th>
                 <th style="text-align:center">Entry Paid</th>
                 <th style="text-align:center">Entry Date</th>
-                <th style="text-align:center">Eligible Rounds</th>
               </tr>
             </thead>
             <tbody id="entry-body"></tbody>
           </table>
         </div>
-        <p style="text-align:center; margin-top:1.5rem; font-style:italic; color:rgba(245,240,232,0.35); font-size:0.85rem">
-          Only rounds played on or after the Entry Date count towards standings. Update <code style="font-size:0.8rem; color:rgba(201,160,32,0.8)">entryPaid</code> and <code style="font-size:0.8rem; color:rgba(201,160,32,0.8)">entryDate</code> in the players array.
-        </p>
       </div>
 
       <!-- Weekly Results Tab -->
@@ -1633,68 +1629,39 @@ const playerPhotos = {};
 
 // holeScores: array of arrays — one per round, 18 holes each. Empty array = absent.
 const players = [
-  {name:"Tom Kenny",            hcp:0,  entryPaid:false, entryDate:null, scores:[39,34], gross:[69,74], holeScores:[[4,4,3,3,4,4,3,4,4,5,4,3,4,4,4,4,4,4],[4,5,3,5,4,4,3,4,4,5,4,3,4,4,4,4,5,5]]},
-  {name:"Giovanni Guzzo",       hcp:0,  entryPaid:false, entryDate:null, scores:[36,39], gross:[72,69], holeScores:[[4,3,3,4,4,5,3,4,4,5,3,3,5,4,4,5,5,4],[4,4,3,4,4,5,3,4,4,5,3,3,4,4,4,4,3,4]]},
-  {name:"Claude Nobauer",       hcp:3,  entryPaid:false, entryDate:null, scores:[33,31], gross:[78,80], holeScores:[[4,5,3,4,4,6,4,4,4,5,4,5,5,4,4,3,4,6],[4,4,5,4,5,6,4,3,4,6,4,4,5,5,5,4,4,4]]},
-  {name:"Jamie Jung",           hcp:4,  entryPaid:false, entryDate:null, scores:[32,0],  gross:[80,0],  holeScores:[[4,5,3,5,5,4,3,4,5,5,4,2,6,4,7,4,5,5],[]]},
-  {name:"Mike Marino",          hcp:4,  entryPaid:false, entryDate:null, scores:[36,0],  gross:[76,0],  holeScores:[[5,4,3,4,4,5,3,4,5,4,4,3,5,4,5,5,4,5],[]]},
-  {name:"Randy Smith",          hcp:5,  entryPaid:false, entryDate:null, scores:[33,0],  gross:[80,0],  holeScores:[[4,5,3,6,4,5,4,4,4,5,4,4,5,5,4,4,6,4],[]]},
-  {name:"Tom Englemier",        hcp:5,  entryPaid:false, entryDate:null, scores:[34,0],  gross:[79,0],  holeScores:[[4,5,3,6,5,4,3,5,5,5,4,3,4,4,5,5,4,5],[]]},
-  {name:"Jason Macaulay",       hcp:6,  entryPaid:false, entryDate:null, scores:[34,0],  gross:[80,0],  holeScores:[[3,4,3,4,5,5,4,5,6,5,4,3,5,5,5,4,4,6],[]]},
-  {name:"Brian Graham",         hcp:6,  entryPaid:false, entryDate:null, scores:[31,34], gross:[83,80], holeScores:[[4,6,3,5,4,5,4,4,5,5,4,5,5,4,4,6,4,6],[5,3,2,5,4,6,4,4,4,6,5,4,5,4,5,5,4,5]]},
-  {name:"Anthony Mauro",        hcp:6,  entryPaid:false, entryDate:null, scores:[34,0],  gross:[80,0],  holeScores:[[5,5,3,4,5,5,4,4,4,7,4,2,5,5,4,4,5,5],[]]},
-  {name:"Johnny Nardi",         hcp:7,  entryPaid:false, entryDate:null, scores:[35,38], gross:[80,77], holeScores:[[4,4,4,4,4,6,3,5,4,5,5,3,5,6,5,4,5,4],[4,4,5,4,4,5,3,6,5,5,4,3,4,5,3,5,3,5]]},
-  {name:"Lindsay Brooks",       hcp:7,  entryPaid:false, entryDate:null, scores:[36,31], gross:[79,84], holeScores:[[5,4,3,5,4,6,3,4,4,5,5,3,5,4,5,5,4,5],[4,5,3,6,4,7,3,6,5,6,5,4,5,5,3,5,3,5]]},
-  {name:"Alessandro Carnovale", hcp:7,  entryPaid:false, entryDate:null, scores:[33,0],  gross:[82,0],  holeScores:[[4,4,5,4,4,6,3,4,6,5,5,3,5,6,4,4,6,4],[]]},
-  {name:"Paul Aucoin",          hcp:8,  entryPaid:false, entryDate:null, scores:[33,33], gross:[83,83], holeScores:[[6,4,5,4,6,5,3,4,5,5,5,3,5,4,4,5,5,5],[5,5,3,5,5,5,4,4,5,5,6,4,6,4,4,3,5,5]]},
-  {name:"Dean Collier",         hcp:8,  entryPaid:false, entryDate:null, scores:[41,27], gross:[75,89], holeScores:[[4,4,3,4,4,5,3,4,4,5,5,3,5,4,5,4,5,4],[5,6,5,4,4,7,5,5,5,5,4,4,4,5,5,5,4,7]]},
-  {name:"Mandeep Ghag",         hcp:8,  entryPaid:false, entryDate:null, scores:[34,0],  gross:[82,0],  holeScores:[[5,5,3,4,5,5,3,6,4,5,6,3,4,4,4,4,6,6],[]]},
-  {name:"Russ Davidson",        hcp:9,  entryPaid:false, entryDate:null, scores:[37,32], gross:[80,85], holeScores:[[4,5,2,5,4,6,3,4,6,5,6,3,4,4,4,5,6,4],[5,6,3,5,5,6,4,6,5,5,4,4,5,5,5,4,3,5]]},
-  {name:"Paul Dusanj",          hcp:9,  entryPaid:false, entryDate:null, scores:[45,0],  gross:[72,0],  holeScores:[[4,4,3,4,4,5,3,4,4,5,4,3,5,4,4,4,4,4],[]]},
-  {name:"Martin Cordeiro",      hcp:9,  entryPaid:false, entryDate:null, scores:[30,0],  gross:[87,0],  holeScores:[[5,5,4,4,5,5,4,5,5,6,5,4,5,5,5,5,5,5],[]]},
-  {name:"Mark Halverson",       hcp:10, entryPaid:false, entryDate:null, scores:[28,0],  gross:[90,0],  holeScores:[[5,4,4,5,5,6,4,5,5,6,4,4,6,5,5,6,6,5],[]]},
-  {name:"Vikas Patel",          hcp:10, entryPaid:false, entryDate:null, scores:[23,37], gross:[96,81], holeScores:[[5,6,4,5,5,7,5,5,5,6,5,6,6,5,5,4,5,7],[5,5,3,5,5,5,3,5,3,6,4,4,5,5,5,3,4,6]]},
-  {name:"Joe Guzzo",            hcp:10, entryPaid:false, entryDate:null, scores:[21,0],  gross:[98,0],  holeScores:[[5,6,4,6,6,5,4,5,6,6,5,3,7,5,8,5,6,6],[]]},
-  {name:"Ken Atkinson",         hcp:11, entryPaid:false, entryDate:null, scores:[25,42], gross:[94,77], holeScores:[[6,5,4,5,5,6,4,5,6,5,5,4,6,5,6,6,5,6],[4,4,3,4,5,5,4,5,5,5,4,3,4,5,4,4,4,5]]},
-  {name:"Wayne Davidson",       hcp:10, entryPaid:false, entryDate:null, scores:[21,0],  gross:[98,0],  holeScores:[[5,6,4,7,5,6,5,5,5,6,5,5,6,6,5,5,7,5],[]]},
-  {name:"Don Peterson",         hcp:11, entryPaid:false, entryDate:null, scores:[22,30], gross:[97,89], holeScores:[[5,6,4,7,6,5,4,6,6,6,5,4,5,5,6,6,5,6],[4,5,3,6,6,6,4,6,5,5,4,4,6,5,5,4,5,6]]},
-  {name:"Karim Esmail",         hcp:12, entryPaid:false, entryDate:null, scores:[23,32], gross:[98,88], holeScores:[[4,5,4,5,6,6,5,6,7,6,5,4,6,6,6,5,5,7],[6,4,5,5,5,7,4,5,4,6,5,3,5,5,4,5,5,5]]},
-  {name:"Jim Hopkins",          hcp:12, entryPaid:false, entryDate:null, scores:[21,33], gross:[101,87],holeScores:[[5,7,4,6,5,6,5,5,6,6,5,6,6,5,5,7,5,7],[6,4,4,5,4,6,6,4,5,5,5,5,5,4,4,5,5,5]]},
-  {name:"David Aikens",         hcp:12, entryPaid:false, entryDate:null, scores:[22,27], gross:[98,93], holeScores:[[6,6,4,5,6,6,5,5,5,8,5,3,6,6,5,5,6,6],[6,6,4,5,5,6,6,4,6,6,5,4,5,4,5,6,5,5]]},
-  {name:"Edwin Margawang",      hcp:12, entryPaid:false, entryDate:null, scores:[23,34], gross:[98,86], holeScores:[[5,5,5,5,5,7,4,6,5,6,6,4,6,7,6,5,6,5],[5,5,3,5,5,6,4,5,4,6,5,4,6,4,5,5,4,5]]},
-  {name:"Sam Mann",             hcp:12, entryPaid:false, entryDate:null, scores:[23,33], gross:[97,87], holeScores:[[6,5,4,6,5,7,4,5,5,6,6,4,6,5,6,6,5,6],[4,4,3,5,5,6,4,5,5,7,5,3,6,5,5,5,4,6]]},
-  {name:"Mike Cordoba",         hcp:12, entryPaid:false, entryDate:null, scores:[24,0],  gross:[100,0], holeScores:[[5,5,6,5,5,7,4,5,7,6,6,4,6,7,5,5,7,5],[]]},
-  {name:"Fady Hayek",           hcp:13, entryPaid:false, entryDate:null, scores:[21,34], gross:[101,87],holeScores:[[7,5,6,5,7,6,4,5,6,6,6,4,6,5,5,6,6,6],[6,6,3,5,4,5,4,5,5,6,5,3,6,5,7,4,4,4]]},
-  {name:"Robert Lee",           hcp:13, entryPaid:false, entryDate:null, scores:[28,35], gross:[93,86], holeScores:[[5,5,4,5,5,6,4,5,5,6,6,4,6,5,6,5,6,5],[4,5,4,5,4,6,4,5,5,5,4,5,5,4,5,5,5,6]]},
-  {name:"Raj Kalhon",           hcp:14, entryPaid:false, entryDate:null, scores:[22,0],  gross:[100,0], holeScores:[[6,6,4,5,6,6,4,7,5,6,7,4,5,5,5,5,7,7],[]]},
-  {name:"Ernie Ma",             hcp:14, entryPaid:false, entryDate:null, scores:[25,0],  gross:[98,0],  holeScores:[[5,6,3,6,5,7,4,5,7,6,7,4,5,5,5,6,7,5],[]]},
-  {name:"Mike Kirilenko",       hcp:16, entryPaid:false, entryDate:null, scores:[34,32], gross:[90,92], holeScores:[[5,5,4,5,5,6,4,5,5,6,5,4,6,5,5,5,5,5],[7,4,3,4,6,5,5,6,4,6,5,3,7,6,5,5,6,5]]},
-  {name:"Lyle Pidzarko",        hcp:16, entryPaid:false, entryDate:null, scores:[19,33], gross:[105,91],holeScores:[[6,6,5,5,6,6,5,6,6,7,6,5,6,6,6,6,6,6],[5,5,5,5,5,5,5,5,5,7,4,4,5,7,4,5,5,5]]},
-  {name:"Frank Bruno",          hcp:17, entryPaid:false, entryDate:null, scores:[17,29], gross:[108,96],holeScores:[[6,5,5,6,6,7,5,6,6,7,5,5,7,6,6,7,7,6],[7,6,4,5,5,5,4,5,5,7,6,5,6,5,6,6,4,5]]},
-  {name:"Enrique Quiroga",      hcp:19, entryPaid:false, entryDate:null, scores:[15,34], gross:[114,93],holeScores:[[6,7,5,6,6,8,6,6,6,7,6,7,7,6,6,5,6,8],[6,7,3,5,5,8,5,5,5,5,4,4,5,4,5,6,5,6]]},
-  {name:"Ken Ghag",             hcp:19, entryPaid:false, entryDate:null, scores:[13,0],  gross:[116,0], holeScores:[[6,7,5,7,7,6,5,6,7,7,6,4,8,6,9,6,7,7],[]]},
+  {name:"Claude Nobauer",       hcp:3,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[null,3],  scores:[0,31],  gross:[0,80],  holeScores:[[],[4,4,5,4,5,6,4,3,4,6,4,4,5,5,5,4,4,4]]},
+  {name:"Mike Marino",          hcp:4,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[null,null], scores:[0,0],  gross:[0,0],   holeScores:[[],[]]},
+  {name:"Anthony Mauro",        hcp:6,  entryPaid:true,  entryDate:"Apr 22", weekHcp:[5,null],  scores:[29,0],  gross:[85,0],  holeScores:[[4,5,6,4,6,6,3,5,4,5,4,4,6,4,6,4,4,5],[]]},
+  {name:"Peter Bogdanich",      hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,null], scores:[0,0],  gross:[0,0],   holeScores:[[],[]]},
+  {name:"Mark Halverson",       hcp:10, entryPaid:true,  entryDate:"Apr 25", weekHcp:[null,null], scores:[0,0],  gross:[0,0],   holeScores:[[],[]]},
+  {name:"Vikas Patel",          hcp:10, entryPaid:true,  entryDate:"Apr 22", weekHcp:[10,10],   scores:[33,37], gross:[85,81], holeScores:[[5,5,5,5,5,6,4,5,4,5,6,3,5,4,4,5,4,5],[5,5,3,5,5,5,3,5,3,6,4,4,5,5,5,3,4,6]]},
+  {name:"Karim Esmail",         hcp:12, entryPaid:true,  entryDate:"Apr 24", weekHcp:[10,10],   scores:[27,30], gross:[92,88], holeScores:[[4,5,3,5,4,6,4,6,6,6,4,6,6,6,6,5,5,5],[6,4,5,5,5,7,4,5,4,6,5,3,5,5,4,5,5,5]]},
+  {name:"David Akins",          hcp:12, entryPaid:true,  entryDate:"Apr 22", weekHcp:[null,11],  scores:[0,26],  gross:[0,93],  holeScores:[[],[6,6,4,5,5,6,6,4,6,6,5,4,5,4,5,6,5,5]]},
+  {name:"Robert Lee",           hcp:13, entryPaid:true,  entryDate:"Apr 26", weekHcp:[12,12],   scores:[32,34], gross:[88,86], holeScores:[[4,4,3,5,4,6,4,5,5,8,6,3,6,5,5,5,5,5],[4,5,4,5,4,6,4,5,5,5,4,5,5,4,5,5,5,6]]},
+  {name:"Raj Kalhon",           hcp:14, entryPaid:true,  entryDate:"Apr 24", weekHcp:[null,null], scores:[0,0],  gross:[0,0],   holeScores:[[],[]]},
+  {name:"Lyle Pidzarko",        hcp:16, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,15],  scores:[0,33],  gross:[0,91],  holeScores:[[],[5,5,5,5,5,5,5,5,5,7,4,4,5,7,4,5,5,5]]},
 ];
 
 // Previous week rankings for movement arrows
 const prevRankings = {
-  "Paul Dusanj": 1, "Dean Collier": 2, "Tom Kenny": 3, "Russ Davidson": 4,
-  "Lindsay Brooks": 5, "Giovanni Guzzo": 6, "Mike Marino": 7, "Johnny Nardi": 8,
-  "Mike Kirilenko": 9, "Jason Macaulay": 10, "Tom Englemier": 11, "Anthony Mauro": 12,
-  "Vikas Patel": 13, "Mandeep Ghag": 14, "Robert Lee": 15, "Claude Nobauer": 16,
-  "Randy Smith": 17, "Alessandro Carnovale": 18, "Paul Aucoin": 19, "Sam Mann": 20,
-  "Edwin Margawang": 21, "Brian Graham": 22, "Ernie Ma": 23, "Mike Cordoba": 24,
-  "Ken Atkinson": 25, "Jamie Jung": 26, "Mark Halverson": 27, "Don Peterson": 28,
-  "Raj Kalhon": 29, "Martin Cordeiro": 30, "David Aikens": 31, "Karim Esmail": 32,
-  "Fady Hayek": 33, "Jim Hopkins": 34, "Joe Guzzo": 35, "Wayne Davidson": 36,
-  "Lyle Pidzarko": 37, "Frank Bruno": 38, "Enrique Quiroga": 39, "Ken Ghag": 40,
+  "Mike Marino": 7, "Anthony Mauro": 12, "Vikas Patel": 13,
+  "Robert Lee": 15, "Claude Nobauer": 16, "Mark Halverson": 27,
+  "Raj Kalhon": 29, "David Akins": 31, "Karim Esmail": 32,
+  "Lyle Pidzarko": 37,
 };
 
 // Gallery photos — add objects {src, caption} to populate gallery
 const galleryPhotos = [];
 
-const roundDates = ["Apr 15", "Apr 22"];
+const roundDates = ["Apr 8", "Apr 22"];
 const BEST_N = 10;
 const TOTAL_ROUNDS = 18;
+
+// ── COURSE DATA (VGC) ──
+// Stroke index for holes 1–18
+const holeStrokeIndex = [7,13,17,3,9,1,11,5,15,8,12,18,2,16,4,10,14,6];
+// Par for holes 1–18
+const holePar = [4,4,3,4,4,5,3,4,4,5,4,3,5,4,4,4,4,4];
 // Next round date (Tuesday night = next Wednesday morning)
 const nextRoundDates = [
   "2026-04-29T07:00:00",
@@ -1705,17 +1672,17 @@ const nextRoundDates = [
 ];
 
 // Returns eligible scores for a player.
-// If entryPaid + entryDate set, only rounds on/after entryDate count.
-// Otherwise all scores are shown (payment doesn't hide scores from standings).
+// All scores count for paid players — entryDate records when they paid, not a score cutoff.
+function parseRoundDate(d) {
+  return new Date(d + ' 2026');
+}
 function eligibleScores(p) {
-  if (p.entryPaid && p.entryDate) {
-    return p.scores.filter((s, i) => roundDates[i] >= p.entryDate);
-  }
-  return p.scores;
+  if (p.entryPaid) return p.scores;
+  return [];
 }
 
 function best10(p) {
-  const eligible = eligibleScores(p);
+  const eligible = eligibleScores(p).filter(s => s > 0);
   const s = [...eligible].sort((a,b) => b-a).slice(0, BEST_N);
   return s.reduce((a,b) => a+b, 0);
 }
@@ -1786,8 +1753,8 @@ function renderStandingsHeader() {
     { key:'player', label:'Player', align:'left', paddingLeft:'1.5rem' },
     { key:'hcp',    label:'Current HCP' },
     ...[...roundDates].slice().reverse().map(d => ({ key: d, label: d })),
-    { key:'best10', label:'Best 10' },
-    { key:'rounds', label:'Rounds' },
+    { key:'best10', label:'Top 10' },
+    { key:'rounds', label:'Eligible Rounds' },
   ];
   tr.innerHTML = cols.map(c => {
     const isActive = standingsSortCol === c.key;
@@ -1865,8 +1832,8 @@ function renderStandingsBody() {
       <td><div class="player-cell">${avatarHtml(p.name)}<span class="player-link" onclick="openModal('${p.name}')">${p.name}</span>${move}${enteredBadge}</div></td>
       <td style="color:rgba(245,240,232,0.5);font-family:'Montserrat',sans-serif;font-size:0.8rem">${p.hcp}</td>
       ${scoreCells}
-      <td class="total-col">${p.entryPaid ? b10 : '—'}</td>
-      <td class="rounds-col">${p.entryPaid ? rounds + '/' + TOTAL_ROUNDS : '—'}</td>
+      <td class="total-col">${b10 > 0 ? b10 : '—'}</td>
+      <td class="rounds-col">${rounds > 0 ? rounds + '/' + TOTAL_ROUNDS : '—'}</td>
     </tr>`;
   }).join('');
 
@@ -2299,10 +2266,6 @@ function renderEntry() {
       ? `<span style="color:#2ecc71;font-weight:700;font-family:'Montserrat',sans-serif;font-size:0.85rem">✓ Yes</span>`
       : `<span style="color:rgba(245,240,232,0.3);font-family:'Montserrat',sans-serif;font-size:0.85rem">No</span>`;
     const dateDisplay = p.entryDate || '—';
-    // Eligible rounds = rounds played on/after entryDate
-    const eligibleCount = p.entryPaid && p.entryDate
-      ? p.scores.filter((s, ri) => s > 0 && roundDates[ri] >= p.entryDate).length
-      : (p.entryPaid ? p.scores.filter(s => s > 0).length : '—');
     const rowNum = i + 1;
     const bg = i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent';
     return `<tr style="background:${bg}">
@@ -2310,7 +2273,6 @@ function renderEntry() {
       <td><div class="player-cell">${avatarHtml(p.name)}<span style="color:var(--vgc-cream);font-family:'Crimson Pro',Georgia,serif;font-size:1rem">${p.name}</span></div></td>
       <td style="text-align:center">${paidBadge}</td>
       <td style="text-align:center;font-family:'Montserrat',sans-serif;font-size:0.85rem;color:rgba(245,240,232,0.7)">${dateDisplay}</td>
-      <td style="text-align:center;font-family:'Montserrat',sans-serif;font-size:0.85rem;color:rgba(245,240,232,0.7)">${eligibleCount}</td>
     </tr>`;
   }).join('');
 }
