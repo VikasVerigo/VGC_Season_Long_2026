@@ -1488,6 +1488,7 @@
       <div class="tab-nav">
         <button class="tab-btn active" onclick="showTab('weekly')">Current Week Results</button>
         <button class="tab-btn" onclick="showTab('standings')">Season Standings</button>
+        <button class="tab-btn" onclick="showTab('payments')">Payments</button>
       </div>
 
       <!-- Season Standings Tab -->
@@ -1500,6 +1501,24 @@
               </tr>
             </thead>
             <tbody id="standings-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Payments Tab -->
+      <div id="tab-payments" class="tab-panel">
+        <div class="table-wrapper">
+          <table id="payments-table">
+            <thead>
+              <tr>
+                <th style="width:50px; text-align:left; padding-left:1.5rem">Rank</th>
+                <th style="text-align:left; padding-left:1.5rem">Player</th>
+                <th>Entry Fee</th>
+                <th>Payment Date</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="payments-body"></tbody>
           </table>
         </div>
       </div>
@@ -2250,10 +2269,95 @@ setInterval(() => {
   document.getElementById('statLastRound').textContent = roundDates[roundDates.length - 1];
 })();
 
+// ── PAYMENTS DATA ──
+// Set paymentDate to a string like "Apr 15" or null if unpaid
+const paymentData = {
+  "Tom Kenny":            null,
+  "Giovanni Guzzo":       null,
+  "Claude Nobauer":       null,
+  "Jamie Jung":           null,
+  "Mike Marino":          null,
+  "Randy Smith":          null,
+  "Tom Englemier":        null,
+  "Jason Macaulay":       null,
+  "Brian Graham":         null,
+  "Anthony Mauro":        null,
+  "Johnny Nardi":         null,
+  "Lindsay Brooks":       null,
+  "Alessandro Carnovale": null,
+  "Paul Aucoin":          null,
+  "Dean Collier":         null,
+  "Mandeep Ghag":         null,
+  "Russ Davidson":        null,
+  "Paul Dusanj":          null,
+  "Martin Cordeiro":      null,
+  "Mark Halverson":       null,
+  "Vikas Patel":          null,
+  "Joe Guzzo":            null,
+  "Ken Atkinson":         null,
+  "Wayne Davidson":       null,
+  "Don Peterson":         null,
+  "Karim Esmail":         null,
+  "Jim Hopkins":          null,
+  "David Aikens":         null,
+  "Edwin Margawang":      null,
+  "Sam Mann":             null,
+  "Mike Cordoba":         null,
+  "Fady Hayek":           null,
+  "Robert Lee":           null,
+  "Raj Kalhon":           null,
+  "Ernie Ma":             null,
+  "Mike Kirilenko":       null,
+  "Lyle Pidzarko":        null,
+  "Frank Bruno":          null,
+  "Enrique Quiroga":      null,
+  "Ken Ghag":             null,
+};
+
+function renderPayments() {
+  const tbody = document.getElementById('payments-body');
+  if (!tbody) return;
+  const sorted = [...players].sort((a,b) => a.name.localeCompare(b.name));
+  tbody.innerHTML = sorted.map((p, i) => {
+    const paid = paymentData[p.name];
+    const statusHtml = paid
+      ? `<span style="color:#4caf82;font-weight:600">✓ Paid</span>`
+      : `<span style="color:#e07070;font-weight:600">Unpaid</span>`;
+    const dateHtml = paid
+      ? `<span style="color:rgba(245,240,232,0.75)">${paid}</span>`
+      : `<span style="color:rgba(245,240,232,0.3)">—</span>`;
+    return `<tr>
+      <td style="text-align:left;padding-left:1.5rem;color:rgba(245,240,232,0.45);font-size:0.85rem">${i+1}</td>
+      <td style="text-align:left;padding-left:1.5rem">
+        <div class="player-cell">${avatarHtml(p.name)}<span>${p.name}</span></div>
+      </td>
+      <td style="color:var(--vgc-gold)">$100</td>
+      <td>${dateHtml}</td>
+      <td>${statusHtml}</td>
+    </tr>`;
+  }).join('');
+
+  // Summary row
+  const paidCount = Object.values(paymentData).filter(Boolean).length;
+  const total = players.length;
+  const collected = paidCount * 100;
+  const tfoot = document.createElement('tfoot');
+  tfoot.innerHTML = `<tr style="border-top:1px solid rgba(201,168,76,0.3)">
+    <td colspan="2" style="text-align:left;padding-left:1.5rem;font-family:'Montserrat',sans-serif;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,240,232,0.45);padding-top:1rem">
+      ${paidCount} of ${total} paid
+    </td>
+    <td colspan="3" style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--vgc-gold);padding-top:1rem">
+      $${collected.toLocaleString()} collected
+    </td>
+  </tr>`;
+  document.getElementById('payments-table').appendChild(tfoot);
+}
+
 renderPodium();
 renderStandings();
 renderWeekly();
 renderGallery();
+renderPayments();
 
 </script>
 </body>
