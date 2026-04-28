@@ -1348,7 +1348,7 @@
           <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">5.</span><span>Leaderboard is <strong>automatically updated</strong> from hole-by-hole scores via Golf Genius.</span></li>
           <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">6.</span><span>Entry fee: <strong>$100</strong> (essentially $10 per round).</span></li>
           <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">7.</span><span>The <strong>top 25% of players</strong> get paid at season end.</span></li>
-          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">8.</span><span>The current leaderboard uses <strong>test data from Apr 15</strong> and <strong>actual scores from Apr 22</strong>. The official competition begins April 29.</span></li>
+          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">8.</span><span>The leaderboard reflects <strong>actual scores from Apr 8</strong> and <strong>Apr 22</strong>. The official competition continues April 29.</span></li>
         </ul>
       </div>
     </section>
@@ -1399,15 +1399,15 @@
           <div class="news-ticker-track" id="tickerTrack">
             <div class="news-ticker-item">
               <div class="news-ticker-headline">🏆 Vikas Patel Leads Season Standings After Round 2</div>
-              <div class="news-ticker-desc"><strong>Vikas Patel</strong> carded <strong>37 Stableford points</strong> in Round 2, extending his season lead to <strong>70 cumulative points</strong> — 4 clear of Robert Lee and Jim Hopkins who are tied at 66.</div>
+              <div class="news-ticker-desc"><strong>Vikas Patel</strong> carded <strong>37 Stableford points</strong> in Round 2, building a season total of <strong>70 points</strong> — 4 clear of Robert Lee and Jim Hopkins tied at 66.</div>
             </div>
             <div class="news-ticker-item">
-              <div class="news-ticker-headline">⚡ Brian Graham &amp; Russ Davidson Enter the Picture</div>
-              <div class="news-ticker-desc"><strong>Brian Graham</strong> (34 pts) and <strong>Russ Davidson</strong> (32 pts) make their season debuts in Round 2, immediately slotting into 5th and 8th on the leaderboard.</div>
+              <div class="news-ticker-headline">⚡ Kirilenko &amp; Davidson Make Their Move</div>
+              <div class="news-ticker-desc"><strong>Mike Kirilenko</strong> (64 pts) and <strong>Russ Davidson</strong> (63 pts) sit 4th and 5th after two rounds, with Davidson now confirmed playing Apr 8 as well — tightening the race behind the leaders.</div>
             </div>
             <div class="news-ticker-item">
               <div class="news-ticker-headline">📊 Tight Race Behind Patel</div>
-              <div class="news-ticker-desc">Seven players are separated by just <strong>11 points</strong> from 2nd to 8th place — Robert Lee, Jim Hopkins, Karim Esmail, Brian Graham, Fady Hayek, Lyle Pidzarko, and Russ Davidson all within striking distance.</div>
+              <div class="news-ticker-desc">Seven players are separated by just <strong>13 points</strong> from 2nd to 8th place — Robert Lee, Jim Hopkins, Kirilenko, Davidson, Brian Graham, Frank Bruno, and Karim Esmail all in striking distance heading into Apr 29.</div>
             </div>
           </div>
         </div>
@@ -1595,31 +1595,38 @@ const playerPhotos = {};
 
 // holeScores: array of arrays — one per round, 18 holes each. Empty array = absent.
 const players = [
-  {name:"Claude Nobauer",       hcp:3,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[null,3],  scores:[0,31],  gross:[0,80],  holeScores:[[],[4,4,5,4,5,6,4,3,4,6,4,4,5,5,5,4,4,4]]},
-  {name:"Mike Marino",          hcp:4,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[null,null], scores:[0,0],  gross:[0,0],   holeScores:[[],[]]},
-  {name:"Anthony Mauro",        hcp:6,  entryPaid:true,  entryDate:"Apr 22", weekHcp:[5,null],  scores:[29,0],  gross:[85,0],  holeScores:[[4,5,6,4,6,6,3,5,4,5,4,4,6,4,6,4,4,5],[]]},
-  {name:"Peter Bogdanich",      hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,null], scores:[0,0],  gross:[0,0],   holeScores:[[],[]]},
-  {name:"Mark Halverson",       hcp:10, entryPaid:true,  entryDate:"Apr 25", weekHcp:[null,null], scores:[0,0],  gross:[0,0],   holeScores:[[],[]]},
-  {name:"Vikas Patel",          hcp:10, entryPaid:true,  entryDate:"Apr 22", weekHcp:[10,10],   scores:[33,37], gross:[85,81], holeScores:[[5,5,5,5,5,6,4,5,4,5,6,3,5,4,4,5,4,5],[5,5,3,5,5,5,3,5,3,6,4,4,5,5,5,3,4,6]]},
-  {name:"Karim Esmail",         hcp:12, entryPaid:true,  entryDate:"Apr 24", weekHcp:[10,10],   scores:[27,30], gross:[92,88], holeScores:[[4,5,3,5,4,6,4,6,6,6,4,6,6,6,6,5,5,5],[6,4,5,5,5,7,4,5,4,6,5,3,5,5,4,5,5,5]]},
-  {name:"David Akins",          hcp:12, entryPaid:true,  entryDate:"Apr 22", weekHcp:[null,11],  scores:[0,26],  gross:[0,93],  holeScores:[[],[6,6,4,5,5,6,6,4,6,6,5,4,5,4,5,6,5,5]]},
-  {name:"Robert Lee",           hcp:13, entryPaid:true,  entryDate:"Apr 26", weekHcp:[12,12],   scores:[32,34], gross:[88,86], holeScores:[[4,4,3,5,4,6,4,5,5,8,6,3,6,5,5,5,5,5],[4,5,4,5,4,6,4,5,5,5,4,5,5,4,5,5,5,6]]},
-  {name:"Raj Kalhon",           hcp:14, entryPaid:true,  entryDate:"Apr 24", weekHcp:[null,null], scores:[0,0],  gross:[0,0],   holeScores:[[],[]]},
-  {name:"Lyle Pidzarko",        hcp:16, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,15],  scores:[0,33],  gross:[0,91],  holeScores:[[],[5,5,5,5,5,5,5,5,5,7,4,4,5,7,4,5,5,5]]},
-  {name:"Brian Graham",         hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,6],   scores:[0,34],  gross:[0,80],  holeScores:[[],[5,3,2,5,4,6,4,4,4,6,5,4,5,4,5,5,4,5]]},
-  {name:"Russ Davidson",        hcp:9,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,9],   scores:[0,32],  gross:[0,85],  holeScores:[[],[5,6,3,5,5,6,4,6,5,5,4,4,5,5,5,4,3,5]]},
-  {name:"Frank Bruno",          hcp:16, entryPaid:true,  entryDate:"Apr 27", weekHcp:[null,16],  scores:[0,28],  gross:[0,96],  holeScores:[[],[7,6,4,5,5,5,4,5,5,7,6,5,6,5,6,6,4,5]]},
-  {name:"Jim Hopkins",          hcp:11, entryPaid:true,  entryDate:"Apr 26", weekHcp:[10,11],   scores:[34,32], gross:[84,87], holeScores:[[5,4,4,5,4,6,4,5,5,5,5,4,5,4,5,5,5,4],[6,4,4,5,4,6,6,4,5,5,5,5,5,4,4,5,5,5]]},
-  {name:"Fady Hayek",           hcp:13, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,13], scores:[0,34],  gross:[0,87],  holeScores:[[],[6,6,3,5,4,5,4,5,5,6,5,3,6,5,7,4,4,4]]},
-  {name:"Mike Kirilenko",       hcp:16, entryPaid:true,  entryDate:"Apr 27", weekHcp:[null,16], scores:[0,32],  gross:[0,92],  holeScores:[[],[7,4,3,4,6,5,5,6,4,6,5,3,7,6,5,5,6,5]]},
+  {name:"Claude Nobauer",       hcp:3,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[null,3],   scores:[0,31],  gross:[0,80],  holeScores:[[],[4,4,5,4,5,6,4,3,4,6,4,4,5,5,5,4,4,4]]},
+  {name:"Mike Marino",          hcp:4,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[null,null], scores:[0,0],   gross:[0,0],   holeScores:[[],[]]},
+  {name:"Anthony Mauro",        hcp:5,  entryPaid:true,  entryDate:"Apr 22", weekHcp:[5,null],   scores:[29,0],  gross:[85,0],  holeScores:[[4,5,6,4,6,6,3,5,4,5,4,4,6,4,6,4,4,5],[]]},
+  {name:"Peter Bogdanich",      hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,null], scores:[0,0],   gross:[0,0],   holeScores:[[],[]]},
+  {name:"Mark Halverson",       hcp:10, entryPaid:true,  entryDate:"Apr 25", weekHcp:[null,null], scores:[0,0],   gross:[0,0],   holeScores:[[],[]]},
+  {name:"Vikas Patel",          hcp:10, entryPaid:true,  entryDate:"Apr 22", weekHcp:[10,10],    scores:[33,37], gross:[85,81], holeScores:[[5,5,5,5,5,6,4,5,4,5,6,3,5,4,4,5,4,5],[5,5,3,5,5,5,3,5,3,6,4,4,5,5,5,3,4,6]]},
+  {name:"Karim Esmail",         hcp:10, entryPaid:true,  entryDate:"Apr 24", weekHcp:[10,10],    scores:[27,30], gross:[92,88], holeScores:[[4,5,3,5,4,6,4,6,6,6,4,6,6,6,6,5,5,5],[6,4,5,5,5,7,4,5,4,6,5,3,5,5,4,5,5,5]]},
+  {name:"David Akins",          hcp:11, entryPaid:true,  entryDate:"Apr 22", weekHcp:[null,11],  scores:[0,26],  gross:[0,93],  holeScores:[[],[6,6,4,5,5,6,6,4,6,6,5,4,5,4,5,6,5,5]]},
+  {name:"Robert Lee",           hcp:12, entryPaid:true,  entryDate:"Apr 26", weekHcp:[12,12],    scores:[32,34], gross:[88,86], holeScores:[[4,4,3,5,4,6,4,5,5,8,6,3,6,5,5,5,5,5],[4,5,4,5,4,6,4,5,5,5,4,5,5,4,5,5,5,6]]},
+  {name:"Raj Kahlon",           hcp:14, entryPaid:true,  entryDate:"Apr 24", weekHcp:[null,null], scores:[0,0],   gross:[0,0],   holeScores:[[],[]]},
+  {name:"Lyle Pidzarko",        hcp:15, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,15],  scores:[0,33],  gross:[0,91],  holeScores:[[],[5,5,5,5,5,5,5,5,5,7,4,4,5,7,4,5,5,5]]},
+  {name:"Brian Graham",         hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[4,6],      scores:[28,34], gross:[84,80], holeScores:[[5,5,3,4,5,6,4,5,5,6,4,3,6,4,6,4,5,4],[5,3,2,5,4,6,4,4,4,6,5,4,5,4,5,5,4,5]]},
+  {name:"Russ Davidson",        hcp:9,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[7,9],      scores:[31,32], gross:[84,85], holeScores:[[5,5,4,4,4,6,4,4,3,7,4,3,6,4,7,5,4,5],[5,6,3,5,5,6,4,6,5,5,4,4,5,5,5,4,3,5]]},
+  {name:"Frank Bruno",          hcp:16, entryPaid:true,  entryDate:"Apr 27", weekHcp:[16,16],    scores:[30,28], gross:[94,96], holeScores:[[6,5,4,5,5,5,5,5,5,5,6,5,6,6,5,6,6,4],[7,6,4,5,5,5,4,5,5,7,6,5,6,5,6,6,4,5]]},
+  {name:"Jim Hopkins",          hcp:11, entryPaid:true,  entryDate:"Apr 26", weekHcp:[10,11],    scores:[34,32], gross:[84,87], holeScores:[[5,4,4,5,4,6,4,5,5,5,5,4,5,4,5,5,5,4],[6,4,4,5,4,6,6,4,5,5,5,5,5,4,4,5,5,5]]},
+  {name:"Fady Hayek",           hcp:13, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,13],  scores:[0,34],  gross:[0,87],  holeScores:[[],[6,6,3,5,4,5,4,5,5,6,5,3,6,5,7,4,4,4]]},
+  {name:"Mike Kirilenko",       hcp:16, entryPaid:true,  entryDate:"Apr 27", weekHcp:[14,16],    scores:[32,32], gross:[91,92], holeScores:[[5,4,6,6,7,6,4,5,5,4,5,4,5,5,6,4,5,5],[7,4,3,4,6,5,5,6,4,6,5,3,7,6,5,5,6,5]]},
+  {name:"Alessandro Carnovale", hcp:7,  entryPaid:true,  entryDate:"Apr 27", weekHcp:[7,null],   scores:[32,0],  gross:[83,0],  holeScores:[[5,5,4,4,5,6,3,5,4,6,4,5,5,4,4,5,4,5],[]]},
 ];
 
-// Previous week rankings for movement arrows
+// Previous week rankings for movement arrows (after Apr 8)
 const prevRankings = {
-  "Mike Marino": 7, "Anthony Mauro": 12, "Vikas Patel": 13,
-  "Robert Lee": 15, "Claude Nobauer": 16, "Mark Halverson": 27,
-  "Raj Kalhon": 29, "David Akins": 31, "Karim Esmail": 32,
-  "Lyle Pidzarko": 37,
+  "Jim Hopkins": 1,
+  "Vikas Patel": 2,
+  "Robert Lee": 3,
+  "Mike Kirilenko": 3,
+  "Alessandro Carnovale": 3,
+  "Russ Davidson": 6,
+  "Frank Bruno": 7,
+  "Anthony Mauro": 8,
+  "Brian Graham": 9,
+  "Karim Esmail": 10,
 };
 
 // Gallery photos — add objects {src, caption} to populate gallery
