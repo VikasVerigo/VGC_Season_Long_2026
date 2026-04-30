@@ -833,6 +833,21 @@
     border-color: var(--vgc-gold);
   }
 
+  /* ── SANDBAG AVATAR (rank 1) ── */
+  .sandbag-avatar {
+    width: 72px; height: 80px;
+    margin: 0 auto 0.7rem;
+    display: block;
+  }
+  .sandbag-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.7);
+    margin-bottom: 0.15rem;
+  }
+
 
   /* ── PLAYER NAME CLICKABLE ── */
   .player-link {
@@ -1718,8 +1733,54 @@ function movementHtml(name, currentRank) {
 }
 
 // ── PODIUM AVATAR ──
-function podiumAvatarHtml(name) {
+function sandbagSvg(initials) {
+  return `<svg class="sandbag-avatar" viewBox="0 0 72 80" xmlns="http://www.w3.org/2000/svg">
+    <!-- burlap texture base -->
+    <defs>
+      <pattern id="burlap" x="0" y="0" width="6" height="6" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="0" x2="6" y2="6" stroke="rgba(139,110,60,0.25)" stroke-width="0.8"/>
+        <line x1="6" y1="0" x2="0" y2="6" stroke="rgba(139,110,60,0.25)" stroke-width="0.8"/>
+      </pattern>
+      <linearGradient id="bagGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#b8924a;stop-opacity:1"/>
+        <stop offset="50%" style="stop-color:#9a7535;stop-opacity:1"/>
+        <stop offset="100%" style="stop-color:#7a5c22;stop-opacity:1"/>
+      </linearGradient>
+      <linearGradient id="ropeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#c9a850"/>
+        <stop offset="100%" style="stop-color:#8a6a1a"/>
+      </linearGradient>
+    </defs>
+    <!-- bag body — rounded rectangle, tied at top -->
+    <rect x="8" y="18" width="56" height="54" rx="10" ry="14"
+          fill="url(#bagGrad)" stroke="rgba(90,60,10,0.6)" stroke-width="1.2"/>
+    <!-- burlap texture overlay -->
+    <rect x="8" y="18" width="56" height="54" rx="10" ry="14"
+          fill="url(#burlap)" opacity="0.6"/>
+    <!-- highlight sheen -->
+    <ellipse cx="28" cy="30" rx="14" ry="7" fill="rgba(255,220,120,0.12)"/>
+    <!-- tie / rope at top -->
+    <path d="M28 18 Q36 8 44 18" fill="none" stroke="url(#ropeGrad)" stroke-width="3.5" stroke-linecap="round"/>
+    <ellipse cx="36" cy="10" rx="5" ry="4" fill="url(#ropeGrad)" stroke="rgba(90,60,10,0.5)" stroke-width="0.8"/>
+    <!-- seam lines (stitching) -->
+    <line x1="36" y1="22" x2="36" y2="68" stroke="rgba(90,60,10,0.35)" stroke-width="1" stroke-dasharray="3,3"/>
+    <line x1="14" y1="40" x2="58" y2="40" stroke="rgba(90,60,10,0.25)" stroke-width="1" stroke-dasharray="3,3"/>
+    <!-- initials on bag -->
+    <text x="36" y="56" text-anchor="middle" dominant-baseline="middle"
+          font-family="Playfair Display, serif" font-size="13" font-weight="700"
+          fill="rgba(255,235,170,0.9)" letter-spacing="1">${initials}</text>
+    <!-- small "SAND" label -->
+    <text x="36" y="68" text-anchor="middle" dominant-baseline="middle"
+          font-family="Montserrat, sans-serif" font-size="6" font-weight="600"
+          fill="rgba(255,220,100,0.7)" letter-spacing="2">SAND</text>
+  </svg>`;
+}
+
+function podiumAvatarHtml(name, rank) {
   const initials = name.split(' ').map(w=>w[0]).slice(0,2).join('');
+  if (rank === 1) {
+    return sandbagSvg(initials);
+  }
   if (playerPhotos[name]) {
     return `<img src="${playerPhotos[name]}" class="podium-photo" alt="${name}">`;
   }
@@ -1739,7 +1800,7 @@ function renderPodium() {
     const b10 = best10(p);
     const played = p.scores.filter(s => s > 0).length;
     return `<div class="podium-card rank-${rank}" onclick="openModal('${p.name}')" style="cursor:pointer">
-      ${podiumAvatarHtml(p.name)}
+      ${podiumAvatarHtml(p.name, rank)}
       <div class="podium-rank">${rank}</div>
       <div class="podium-name">${p.name}</div>
       <div class="podium-points">${b10}</div>
