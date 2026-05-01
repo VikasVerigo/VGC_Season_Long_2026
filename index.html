@@ -1,4 +1,88 @@
 <!DOCTYPE html>
+<!--
+================================================================================
+  VGC Men's Night 2026 — PROJECT NOTES (mirror of ProjectNotes sheet in xlsx)
+  Last updated: April 30, 2026
+================================================================================
+
+  1. WHAT THIS IS
+     Single-file static website for a season-long Stableford competition at
+     Vancouver Golf Club (Apr 29 – Aug 26, 2026, 18 Wednesday rounds).
+     Best 10 of 18 count toward season standings. $100 entry; top 25% paid.
+
+  2. WEEKLY UPDATE WORKFLOW
+     For each new round, give Claude:
+       · The Excel file (with a new <Date> sheet cleaned to <Date>_Clean)
+       · This index.html
+       · "Update with this week's round using <Date>_Clean. Follow ProjectNotes."
+     Claude's standard sequence:
+       1. Read EntryPaid — only paid players are processed
+       2. Read <Date>_Clean
+       3. Add new paid players to players[]
+       4. Append weekHcp / scores / gross / holeScores entries for every player
+          (null/0/0/[] for absentees, to keep array lengths in sync)
+       5. Append new date to roundDates
+       6. Update news ticker
+       7. Independently recompute Stableford to verify
+
+  3. COURSE CONSTANTS (Vancouver Golf Club, par 72)
+       Hole pars:    4, 4, 3, 4, 4, 5, 3, 4, 4, 5, 4, 3, 5, 4, 4, 4, 4, 4
+       Stroke index: 7,13,17, 3, 9, 1,11, 5,15, 8,12,18, 2,16, 4,10,14, 6
+
+  4. STABLEFORD FORMULA (per hole)
+       Regular hcp (≥0):  strokes = (1 if SI ≤ hcp) + (1 if SI ≤ hcp − 18)
+       Plus hcp (<0):     strokes = −(1 if SI ≤ |hcp|)         [gives back]
+       Points = max(0, par − (gross − strokes) + 2)
+       Pickup ('X') or absent → 0 for that hole.
+
+  5. PLAYER ARRAY CONVENTIONS
+       Array: players[] (top of <script> block).
+       Length must equal EntryPaid count exactly.
+       Object shape: {name, hcp, entryPaid, entryDate,
+                      weekHcp[], scores[], gross[], holeScores[]}
+       weekHcp/scores/gross/holeScores lengths === roundDates.length.
+       Plus handicaps stored as negative integers (+2 → −2).
+       Absent for a round: weekHcp=null, scores=0, gross=0, holeScores=[].
+
+  6. TIE-HANDLING (PGA Tour style)
+       Primary rank: cumulative best 10-of-18 Stableford (desc).
+       Tiebreak: countback to next-best NON-counting round, then next, etc.
+       If still tied: T# notation; combined money for those rank slots is
+       split equally among the tied players.
+       Countback only kicks in once a player has rounds beyond their counting 10.
+
+  7. PAYOUT STRUCTURE (top 9 paid)
+       Total pool = (entries) × $100. With 36 entries: $3,600.
+         1: $850   2: $700   3: $550   4: $450   5: $350
+         6: $250   7: $200   8: $150   9: $100
+
+  8. PLAYER PHOTOS
+       Stored as base64 data URIs in playerPhotos object.
+       To add: crop to ~400×400 square focused on face, JPEG quality ~82,
+               base64-encode, set playerPhotos["Player Name"] = "data:image/jpeg;base64,...".
+       Hero "Week 1 Leader" image is wired via id="heroLeaderPhoto" + inline
+       script that reads from playerPhotos (avoids file:// path issues).
+       AVOID raw <img src="file.jpg"> — fails on local file:// loads in some browsers.
+
+  9. NEWS TICKER
+       Two items at the top of <main>. Update both when leader changes:
+         · Headline 1: leader, gap, competitors-who-played count
+         · Headline 2: field size, notable ties
+
+  10. KNOWN PITFALLS
+       · Raw <Date>_Clean sheets may contain NON-paid players — exclude them.
+       · Cross-check: every EntryPaid name appears in players[] exactly once.
+       · "Total entries" (paid) ≠ "players who teed it up that week" — separate counts.
+       · Prize pool string in the Season Opener banner must be updated when
+         entries grow.
+
+  11. KEY FILES
+       · VGC_Weekly_Scores.xlsx — source data
+       · index.html             — this file (all data + JS inline)
+       · JimHPic.jpeg, etc.     — original photos before base64 embedding
+       · index_working.html, Index_1202.html — earlier dev versions, do not edit
+================================================================================
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -1343,7 +1427,7 @@
 
     <!-- Week 1 Leader callout -->
     <div style="margin-top:2.5rem; display:inline-flex; align-items:center; gap:1.1rem; padding:0.85rem 1.6rem 0.85rem 0.85rem; background:rgba(13,31,22,0.55); border:1px solid rgba(201,168,76,0.55); border-radius:999px; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); box-shadow:0 6px 24px rgba(0,0,0,0.35);">
-      <img src="JimHPic.jpeg" alt="Jim Hopkins" style="width:68px; height:68px; border-radius:50%; object-fit:cover; object-position:50% 14%; border:2px solid var(--vgc-gold); flex-shrink:0;">
+      <img id="heroLeaderPhoto" alt="Jim Hopkins" style="width:68px; height:68px; border-radius:50%; object-fit:cover; object-position:50% 14%; border:2px solid var(--vgc-gold); flex-shrink:0;">
       <div style="text-align:left;">
         <div style="font-family:Montserrat,sans-serif; font-size:0.6rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--vgc-gold);">&#x1F3C6; Week 1 Leader</div>
         <div style="font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:700; color:var(--vgc-white); line-height:1.15; margin-top:0.15rem;">Jim Hopkins</div>
@@ -1399,6 +1483,7 @@
           <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">7.</span><span>The <strong>top 25% of players</strong> get paid at season end.</span></li>
           <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">8.</span><span>If you <strong>pick up on a hole</strong>, you receive <strong>0 Stableford points</strong> for that hole — your round still counts.</span></li>
           <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">9.</span><span>The leaderboard reflects <strong>official Week 1 scores from Apr 29</strong>. The season runs for <strong>18 weeks</strong> — best 10 rounds count toward final standings.</span></li>
+          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">10.</span><span><strong>Ties</strong> are broken <strong>PGA Tour style</strong> — countback to the next-best non-counting round (then the one after that, and so on). If players remain truly tied, they <strong>share equally</strong> the combined prize money for the positions involved.</span></li>
         </ul>
       </div>
     </section>
@@ -2522,6 +2607,12 @@ renderWeekly();
 renderGallery();
 renderEntry();
 renderPayouts();
+
+// Wire the hero "Week 1 Leader" photo to playerPhotos so it works regardless of file path
+(function() {
+  const img = document.getElementById('heroLeaderPhoto');
+  if (img && playerPhotos['Jim Hopkins']) img.src = playerPhotos['Jim Hopkins'];
+})();
 
 </script>
 </body>
