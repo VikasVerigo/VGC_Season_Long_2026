@@ -1504,6 +1504,7 @@
       <div class="tab-nav">
         <button class="tab-btn active" onclick="showTab('weekly')">Current Week Results</button>
         <button class="tab-btn" onclick="showTab('standings')">Season Standings</button>
+        <button class="tab-btn" onclick="showTab('payouts')">Payouts</button>
         <button class="tab-btn" onclick="showTab('entry')">Entry Paid</button>
       </div>
 
@@ -1519,6 +1520,45 @@
             <tbody id="standings-body"></tbody>
           </table>
         </div>
+      </div>
+
+      <!-- Payouts Tab -->
+      <div id="tab-payouts" class="tab-panel">
+        <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; margin:0 0 1.5rem; padding:1.2rem 1.5rem; background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.18); border-radius:0.8rem;">
+          <div style="text-align:center;">
+            <div style="font-family:Playfair Display,serif; font-size:1.6rem; font-weight:700; color:var(--vgc-gold); line-height:1;">$3,600</div>
+            <div style="font-family:Montserrat,sans-serif; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(245,240,232,0.5); margin-top:0.25rem;">Total Pool</div>
+          </div>
+          <div style="width:1px; background:rgba(201,168,76,0.2);"></div>
+          <div style="text-align:center;">
+            <div style="font-family:Playfair Display,serif; font-size:1.6rem; font-weight:700; color:var(--vgc-gold); line-height:1;">9</div>
+            <div style="font-family:Montserrat,sans-serif; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(245,240,232,0.5); margin-top:0.25rem;">Places Paid</div>
+          </div>
+          <div style="width:1px; background:rgba(201,168,76,0.2);"></div>
+          <div style="text-align:center;">
+            <div style="font-family:Playfair Display,serif; font-size:1.6rem; font-weight:700; color:var(--vgc-gold); line-height:1;">25%</div>
+            <div style="font-family:Montserrat,sans-serif; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(245,240,232,0.5); margin-top:0.25rem;">Of Field</div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table id="payouts-table">
+            <thead>
+              <tr>
+                <th style="width:60px; text-align:center">Place</th>
+                <th style="text-align:left; padding-left:1.5rem">Player</th>
+                <th style="text-align:center">Best 10</th>
+                <th style="text-align:center">Rounds</th>
+                <th style="text-align:center; padding-right:1.5rem">Payout</th>
+              </tr>
+            </thead>
+            <tbody id="payouts-body"></tbody>
+          </table>
+        </div>
+
+        <p style="text-align:center; margin-top:1.2rem; font-family:'Crimson Pro',Georgia,serif; font-style:italic; color:rgba(245,240,232,0.55); font-size:0.9rem; max-width:720px; margin-left:auto; margin-right:auto; line-height:1.6">
+          Ranks based on best 10 of 18 cumulative Stableford points. Ties are broken by countback to the next-best non-counting round (PGA Tour style). If still tied, players share equally combined prize money for the affected positions.
+        </p>
       </div>
 
       <!-- Entry Paid Tab -->
@@ -2023,6 +2063,7 @@ function showTab(tab) {
   event.target.classList.add('active');
   if (tab === 'standings') applyHeatmap();
   if (tab === 'entry') renderEntry();
+  if (tab === 'payouts') renderPayouts();
 }
 
 // ── HEATMAP ──
@@ -2367,11 +2408,120 @@ function renderEntry() {
   }).join('');
 }
 
+// ── PAYOUTS ──
+const payoutStructure = [
+  { place: 1, amount: 850 },
+  { place: 2, amount: 700 },
+  { place: 3, amount: 550 },
+  { place: 4, amount: 450 },
+  { place: 5, amount: 350 },
+  { place: 6, amount: 250 },
+  { place: 7, amount: 200 },
+  { place: 8, amount: 150 },
+  { place: 9, amount: 100 },
+];
+const TOTAL_PRIZE_POOL = 3600;
+
+// Rank all paid players using best-10-of-18 with PGA-style countback for ties.
+// Returns a sorted array of objects with: p, total, sortedScores, roundsPlayed, rank, tied, payout.
+function rankPlayers() {
+  const data = players.filter(p => p.entryPaid).map(p => ({
+    p,
+    total: best10(p),
+    sortedScores: [...p.scores].sort((a,b) => b-a),
+    roundsPlayed: p.scores.filter(s => s > 0).length,
+  }));
+
+  // Sort: primary by total desc, then countback (next-best non-counting rounds)
+  data.sort((a, b) => {
+    if (a.total !== b.total) return b.total - a.total;
+    const aCB = a.sortedScores.slice(BEST_N);
+    const bCB = b.sortedScores.slice(BEST_N);
+    const len = Math.max(aCB.length, bCB.length);
+    for (let i = 0; i < len; i++) {
+      const av = aCB[i] || 0;
+      const bv = bCB[i] || 0;
+      if (av !== bv) return bv - av;
+    }
+    return 0;
+  });
+
+  // Two players are TRULY tied if total + entire countback chain matches.
+  function trulyTied(a, b) {
+    if (a.total !== b.total) return false;
+    const aCB = a.sortedScores.slice(BEST_N);
+    const bCB = b.sortedScores.slice(BEST_N);
+    const len = Math.max(aCB.length, bCB.length);
+    for (let i = 0; i < len; i++) {
+      if ((aCB[i] || 0) !== (bCB[i] || 0)) return false;
+    }
+    return true;
+  }
+
+  // Group consecutive truly-tied players
+  const groups = [];
+  if (data.length > 0) {
+    let cur = [data[0]];
+    for (let i = 1; i < data.length; i++) {
+      if (trulyTied(cur[cur.length-1], data[i])) cur.push(data[i]);
+      else { groups.push(cur); cur = [data[i]]; }
+    }
+    groups.push(cur);
+  }
+
+  // Assign ranks and split payouts for tied groups
+  let pos = 1;
+  groups.forEach(g => {
+    const start = pos;
+    const end = pos + g.length - 1;
+    let total = 0;
+    for (let p = start; p <= end; p++) {
+      const e = payoutStructure.find(x => x.place === p);
+      if (e) total += e.amount;
+    }
+    const each = g.length > 0 ? total / g.length : 0;
+    g.forEach(d => {
+      d.rank = start;
+      d.tied = g.length > 1;
+      d.payout = each;
+    });
+    pos += g.length;
+  });
+
+  return data;
+}
+
+function renderPayouts() {
+  const data = rankPlayers();
+  const tbody = document.getElementById('payouts-body');
+  tbody.innerHTML = data.map((d, i) => {
+    const rankDisplay = d.tied ? `T${d.rank}` : d.rank;
+    const isPaid = d.payout > 0;
+    const payoutDisplay = isPaid
+      ? `$${Math.round(d.payout).toLocaleString()}`
+      : `<span style="color:rgba(245,240,232,0.25)">—</span>`;
+    const totalDisplay = d.total > 0
+      ? d.total
+      : `<span style="color:rgba(245,240,232,0.25)">—</span>`;
+    const bg = i % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent';
+    const rankColor = isPaid ? 'var(--vgc-gold)' : 'rgba(245,240,232,0.4)';
+    const payoutColor = isPaid ? 'var(--vgc-gold)' : 'rgba(245,240,232,0.3)';
+    return `<tr style="background:${bg}">
+      <td style="text-align:center; color:${rankColor}; font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.9rem">${rankDisplay}</td>
+      <td><div class="player-cell">${avatarHtml(d.p.name)}<span style="color:var(--vgc-cream); font-family:'Crimson Pro',Georgia,serif; font-size:1rem">${d.p.name}</span></div></td>
+      <td style="text-align:center; font-family:'Montserrat',sans-serif; font-size:0.95rem; font-weight:600; color:${d.total > 0 ? 'var(--vgc-cream)' : 'rgba(245,240,232,0.3)'}">${totalDisplay}</td>
+      <td style="text-align:center; font-family:'Montserrat',sans-serif; font-size:0.85rem; color:rgba(245,240,232,0.6)">${d.roundsPlayed}</td>
+      <td style="text-align:center; padding-right:1.5rem; font-family:'Montserrat',sans-serif; font-size:0.95rem; font-weight:700; color:${payoutColor}">${payoutDisplay}</td>
+    </tr>`;
+  }).join('');
+}
+
 renderPodium();
 renderStandings();
 renderWeekly();
 renderGallery();
 renderEntry();
+renderPayouts();
 
 </script>
 </body>
