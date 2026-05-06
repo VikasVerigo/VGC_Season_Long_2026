@@ -53,7 +53,7 @@
 
   7. PAYOUT STRUCTURE (top 9 paid)
        Total pool = (entries) × $100. With 38 entries: $3,800.
-         1: $900   2: $750   3: $550   4: $450   5: $350
+         1: $950   2: $775   3: $575   4: $450   5: $350
          6: $250   7: $200   8: $150   9: $100
 
   8. PLAYER PHOTOS
@@ -1339,31 +1339,32 @@
 
   /* ── WEEKLY NEWS TICKER ── */
   .news-ticker-section {
-    padding: 2rem 0 1rem;
+    padding: 2rem 0 1.5rem;
   }
   .news-ticker-box {
-    background: linear-gradient(135deg, rgba(45,90,61,0.3) 0%, rgba(13,31,22,0.75) 100%);
-    border: 1px solid rgba(201,168,76,0.25);
-    border-left: 3px solid var(--vgc-gold);
-    border-radius: 4px;
+    background: linear-gradient(135deg, rgba(45,90,61,0.4) 0%, rgba(13,31,22,0.88) 100%);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-left: 5px solid var(--vgc-gold);
+    border-radius: 6px;
     padding: 0;
     overflow: hidden;
     position: relative;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35);
   }
   .news-ticker-label {
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--vgc-gold);
-    padding: 0.7rem 1.5rem 0;
+    padding: 1rem 2rem 0.25rem;
     display: block;
   }
   .news-ticker-viewport {
-    height: 5.5rem;
+    height: 8rem;
     overflow: hidden;
     position: relative;
-    padding: 0.4rem 1.5rem 0.8rem;
+    padding: 0.5rem 2rem 0.75rem;
   }
   .news-ticker-track {
     display: flex;
@@ -1371,35 +1372,35 @@
     transition: transform 0.6s ease;
   }
   .news-ticker-item {
-    min-height: 4.5rem;
+    min-height: 7.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.4rem;
     padding-bottom: 1rem;
   }
   .news-ticker-headline {
     font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
+    font-size: 1.25rem;
     font-weight: 600;
     color: var(--vgc-white);
     line-height: 1.3;
   }
   .news-ticker-desc {
     font-family: 'Crimson Pro', serif;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: rgba(245,240,232,0.75);
+    font-size: 1.1rem;
+    line-height: 1.55;
+    color: rgba(245,240,232,0.82);
     font-style: italic;
   }
   .news-ticker-desc strong { color: var(--vgc-gold-light); font-style: normal; font-weight: 600; }
   .news-ticker-dots {
     display: flex;
-    gap: 0.4rem;
-    padding: 0.5rem 1.5rem 0.8rem;
+    gap: 0.5rem;
+    padding: 0.4rem 2rem 1rem;
     justify-content: center;
   }
   .news-ticker-dot {
-    width: 6px; height: 6px;
+    width: 8px; height: 8px;
     border-radius: 50%;
     background: rgba(201,168,76,0.25);
     cursor: pointer;
@@ -1529,20 +1530,20 @@
     <!-- ── WEEKLY NEWS TICKER ── -->
     <div class="news-ticker-section">
       <div class="news-ticker-box">
-        <span class="news-ticker-label">April 22, 2026 · Latest Headlines</span>
+        <span class="news-ticker-label">May 6, 2026 · Week 2 Headlines</span>
         <div class="news-ticker-viewport">
           <div class="news-ticker-track" id="tickerTrack">
             <div class="news-ticker-item">
-              <div class="news-ticker-headline">🏆 Week 1 Official — Jim Hopkins Leads the Pack</div>
-              <div class="news-ticker-desc"><strong>Jim Hopkins</strong> tops the Week 1 leaderboard with <strong>39 Stableford points</strong>, just ahead of Joe Guzzo (38) and Mike Kirilenko (37). Johnny Nardi sits 4th at 36 pts. The 18-week season is officially underway with 33 competitors.</div>
+              <div class="news-ticker-headline">🏌️ Welcome to Week 2 of the Season-long Honeypot</div>
+              <div class="news-ticker-desc"><strong>Jim Hopkins</strong> heads the leaderboard with <strong>39 points</strong>, but it's still early days. Six players look to log their first round tonight — welcome to <strong>Stephen Nielsen, Dave Terry, Claude Nobauer, Lyle Pidzarko, Peter Bogdanich,</strong> and <strong>Fady Hayek</strong>.</div>
             </div>
             <div class="news-ticker-item">
-              <div class="news-ticker-headline">⚡ 33 Players Tee It Up for Opening Night</div>
-              <div class="news-ticker-desc">A massive field of <strong>33 paid members</strong> competed in Week 1 at Vancouver Golf Club. Seven players — Margawang, Ohlmann, Collier, Mauro, Aucoin, Cordeiro, and Atkinson — are tied at 35 pts behind the top four.</div>
+              <div class="news-ticker-headline">🏆 Week 1 Recap — Hopkins Leads a Packed Top 10</div>
+              <div class="news-ticker-desc"><strong>Jim Hopkins</strong> (39 pts) edges <strong>Joe Guzzo</strong> (38) and <strong>Mike Kirilenko</strong> (37) after the season opener. Seven players sit tied at 35 pts — the field is tightly bunched heading into Week 2.</div>
             </div>
             <div class="news-ticker-item">
               <div class="news-ticker-headline">📊 Tight at the Top After Week 1</div>
-              <div class="news-ticker-desc">Only <strong>14 points</strong> separate 1st from 26th place after Week 1. With 17 rounds remaining, there is plenty of season left — but Hopkins and Kirilenko have drawn first blood.</div>
+              <div class="news-ticker-desc">Only <strong>14 points</strong> separate 1st from 26th place after one round. With 17 rounds remaining, there is plenty of season left — but Hopkins has drawn first blood.</div>
             </div>
           </div>
         </div>
@@ -1812,8 +1813,20 @@ const players = [
   {name:"Dave Terry",           hcp:3,  entryPaid:true,  entryDate:"May 5",  weekHcp:[null],  scores:[0],  gross:[0],   holeScores:[[]]},
 ];
 
-// Previous week rankings — empty for Week 1 (all players show as NEW)
-const prevRankings = {};
+// Previous week rankings — Round 1 final standings
+const prevRankings = {
+  "Jim Hopkins": 1,           "Joe Guzzo": 2,              "Mike Kirilenko": 3,
+  "Johnny Nardi": 4,          "Martin Cordeiro": 5,        "Ken Atkinson": 5,
+  "Edwin Margawang": 5,       "Michael Ohlmann": 5,        "Dean Collier": 5,
+  "Anthony Mauro": 5,         "Paul Aucoin": 5,            "Mike Marino": 12,
+  "Navraj Kahlon": 12,        "Vadym Lupulyak": 12,        "Stefano Ruscitti": 12,
+  "Alessandro Carnovale": 12, "Giovanni Guzzo": 17,        "Vikas Patel": 17,
+  "Ken Ghag": 17,             "Tom Kenny": 20,             "Brian Graham": 20,
+  "Robert Lee": 20,           "Lindsay Brooks": 20,        "Mike Cordoba": 20,
+  "Russ Davidson": 20,        "Mark Halverson": 20,        "Enrique Quiroga": 27,
+  "Rick Ripoli": 27,          "Wayne Davidson": 29,        "Frank Bruno": 29,
+  "Karim Esmail": 31,         "David Akins": 32
+};
 
 // Gallery photos — add objects {src, caption} to populate gallery
 const galleryPhotos = [];
@@ -2497,9 +2510,9 @@ function renderEntry() {
 
 // ── PAYOUTS ──
 const payoutStructure = [
-  { place: 1, amount: 850 },
-  { place: 2, amount: 700 },
-  { place: 3, amount: 550 },
+  { place: 1, amount: 950 },
+  { place: 2, amount: 775 },
+  { place: 3, amount: 575 },
   { place: 4, amount: 450 },
   { place: 5, amount: 350 },
   { place: 6, amount: 250 },
@@ -2507,7 +2520,7 @@ const payoutStructure = [
   { place: 8, amount: 150 },
   { place: 9, amount: 100 },
 ];
-const TOTAL_PRIZE_POOL = 3600;
+const TOTAL_PRIZE_POOL = 3800;
 
 // Rank all paid players using best-10-of-18 with PGA-style countback for ties.
 // Returns a sorted array of objects with: p, total, sortedScores, roundsPlayed, rank, tied, payout.
