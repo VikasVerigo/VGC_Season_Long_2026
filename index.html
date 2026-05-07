@@ -51,10 +51,10 @@
        split equally among the tied players.
        Countback only kicks in once a player has rounds beyond their counting 10.
 
-  7. PAYOUT STRUCTURE (top 9 paid)
-       Total pool = (entries) × $100. With 38 entries: $3,800.
+  7. PAYOUT STRUCTURE (top 10 paid)
+       Total pool = (entries) × $100. With 39 entries: $3,900.
          1: $950   2: $775   3: $575   4: $450   5: $350
-         6: $250   7: $200   8: $150   9: $100
+         6: $250   7: $200   8: $150   9: $100  10: $100
 
   8. PLAYER PHOTOS
        Stored as base64 data URIs in playerPhotos object.
@@ -1428,11 +1428,11 @@
 
     <!-- Week 1 Leader callout -->
     <div style="margin-top:2.5rem; display:inline-flex; align-items:center; gap:1.1rem; padding:0.85rem 1.6rem 0.85rem 0.85rem; background:rgba(13,31,22,0.55); border:1px solid rgba(201,168,76,0.55); border-radius:999px; backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); box-shadow:0 6px 24px rgba(0,0,0,0.35);">
-      <img id="heroLeaderPhoto" alt="Jim Hopkins" style="width:68px; height:68px; border-radius:50%; object-fit:cover; object-position:50% 14%; border:2px solid var(--vgc-gold); flex-shrink:0;">
+      <img id="heroLeaderPhoto" alt="" style="width:68px; height:68px; border-radius:50%; object-fit:cover; object-position:50% 14%; border:2px solid var(--vgc-gold); flex-shrink:0;">
       <div style="text-align:left;">
-        <div style="font-family:Montserrat,sans-serif; font-size:0.6rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--vgc-gold);">&#x1F3C6; Week 2 Leader</div>
-        <div style="font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:700; color:var(--vgc-white); line-height:1.15; margin-top:0.15rem;">Jim Hopkins</div>
-        <div style="font-family:'Crimson Pro',Georgia,serif; font-size:0.95rem; color:rgba(245,240,232,0.75); font-style:italic;">39 Stableford points</div>
+        <div id="heroLeaderLabel" style="font-family:Montserrat,sans-serif; font-size:0.6rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--vgc-gold);">&#x1F3C6; Week — Leader</div>
+        <div id="heroLeaderName" style="font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:700; color:var(--vgc-white); line-height:1.15; margin-top:0.15rem;">—</div>
+        <div id="heroLeaderPoints" style="font-family:'Crimson Pro',Georgia,serif; font-size:0.95rem; color:rgba(245,240,232,0.75); font-style:italic;">— pts</div>
       </div>
     </div>
   </div>
@@ -1448,10 +1448,10 @@
       <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 70%);pointer-events:none;"></div>
       <div style="font-family:Montserrat,sans-serif; font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--vgc-gold); margin-bottom:0.6rem;">&#x26F3; Week 2 &middot; May 6, 2026</div>
       <h2 style="font-family:Playfair Display,serif; font-size:clamp(1.6rem,4vw,2.4rem); font-weight:700; color:var(--vgc-white); margin:0 0 0.5rem; line-height:1.2;">Welcome to Week 2 of the 2026 Season Long Honeypot!</h2>
-      <p style="font-family:Crimson Pro,Georgia,serif; font-size:1.15rem; color:rgba(245,240,232,0.82); font-style:italic; margin:0 0 1.2rem; max-width:600px; margin-left:auto; margin-right:auto;">38 competitors in the field at Vancouver Golf Club &mdash; let the best 10 rounds decide the champion.</p>
+      <p style="font-family:Crimson Pro,Georgia,serif; font-size:1.15rem; color:rgba(245,240,232,0.82); font-style:italic; margin:0 0 1.2rem; max-width:600px; margin-left:auto; margin-right:auto;"><span id="bannerCompetitorText">— competitors</span> in the field at Vancouver Golf Club &mdash; let the best 10 rounds decide the champion.</p>
       <div style="display:flex; justify-content:center; gap:2.5rem; flex-wrap:wrap;">
         <div style="text-align:center;">
-          <div style="font-family:Playfair Display,serif; font-size:2rem; font-weight:700; color:var(--vgc-gold); line-height:1;">38</div>
+          <div id="bannerCompetitorCount" style="font-family:Playfair Display,serif; font-size:2rem; font-weight:700; color:var(--vgc-gold); line-height:1;">—</div>
           <div style="font-family:Montserrat,sans-serif; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(245,240,232,0.5); margin-top:0.2rem;">Competitors</div>
         </div>
         <div style="width:1px; background:rgba(201,168,76,0.25);"></div>
@@ -1461,7 +1461,7 @@
         </div>
         <div style="width:1px; background:rgba(201,168,76,0.25);"></div>
         <div style="text-align:center;">
-          <div style="font-family:Playfair Display,serif; font-size:2rem; font-weight:700; color:var(--vgc-gold); line-height:1;">$3,800</div>
+          <div style="font-family:Playfair Display,serif; font-size:2rem; font-weight:700; color:var(--vgc-gold); line-height:1;">$3,900</div>
           <div style="font-family:Montserrat,sans-serif; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(245,240,232,0.5); margin-top:0.2rem;">Prize Pool</div>
         </div>
       </div>
@@ -1511,27 +1511,23 @@
     <!-- ── WEEKLY NEWS TICKER ── -->
     <div class="news-ticker-section">
       <div class="news-ticker-box">
-        <span class="news-ticker-label">May 6, 2026 · Week 2 Headlines</span>
+        <span class="news-ticker-label">May 6, 2026 · Week 2 Results</span>
         <div class="news-ticker-viewport">
           <div class="news-ticker-track" id="tickerTrack">
             <div class="news-ticker-item">
-              <div class="news-ticker-headline">🏌️ Welcome to Week 2 of the Season-long Honeypot</div>
-              <div class="news-ticker-desc"><strong>Jim Hopkins</strong> heads the leaderboard with <strong>39 points</strong>, but it's still early days. Six players look to log their first round tonight — welcome to <strong>Stephen Nielsen, Dave Terry, Claude Nobauer, Lyle Pidzarko, Peter Bogdanich,</strong> and <strong>Fady Hayek</strong>.</div>
+              <div class="news-ticker-headline">🏆 Week 2 Leader — Jim Hopkins Extends His Lead</div>
+              <div class="news-ticker-desc"><strong>Jim Hopkins</strong> fires a brilliant <strong>41 points</strong> to lead Week 2 and extend his overall advantage. Mark Halvorsen, Mike Kirilenko, and Stefano Ruscitti all posted 39 to round out the top group. 33 paid players competed on May 6.</div>
             </div>
             <div class="news-ticker-item">
-              <div class="news-ticker-headline">🏆 Week 1 Recap — Hopkins Leads a Packed Top 10</div>
-              <div class="news-ticker-desc"><strong>Jim Hopkins</strong> (39 pts) edges <strong>Joe Guzzo</strong> (38) and <strong>Mike Kirilenko</strong> (37) after the season opener. Seven players sit tied at 35 pts — the field is tightly bunched heading into Week 2.</div>
+              <div class="news-ticker-headline">📈 Season Standings After 2 Rounds</div>
+              <div class="news-ticker-desc"><strong>Jim Hopkins</strong> leads with <strong>80 pts</strong> (39+41) after 2 rounds. Tom Englmaier makes a strong debut with 38 pts. Stephen Nielsen, Dave Terry, and Fady Hayek all log their first rounds. One paid player — <strong>Peter Bogdanich</strong> — has yet to tee it up.</div>
             </div>
-            <div class="news-ticker-item">
-              <div class="news-ticker-headline">📊 Tight at the Top After Week 1</div>
-              <div class="news-ticker-desc">Only <strong>14 points</strong> separate 1st from 26th place after one round. With 17 rounds remaining, there is plenty of season left — but Hopkins has drawn first blood.</div>
-            </div>
+
           </div>
         </div>
         <div class="news-ticker-dots" id="tickerDots">
           <div class="news-ticker-dot active" onclick="goToTickerSlide(0)"></div>
           <div class="news-ticker-dot" onclick="goToTickerSlide(1)"></div>
-          <div class="news-ticker-dot" onclick="goToTickerSlide(2)"></div>
         </div>
       </div>
     </div>
@@ -1594,7 +1590,7 @@
       <div id="tab-payouts" class="tab-panel">
         <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:2rem; margin:0 0 1.5rem; padding:1.2rem 1.5rem; background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.18); border-radius:0.8rem;">
           <div style="text-align:center;">
-            <div style="font-family:Playfair Display,serif; font-size:1.6rem; font-weight:700; color:var(--vgc-gold); line-height:1;">$3,800</div>
+            <div style="font-family:Playfair Display,serif; font-size:1.6rem; font-weight:700; color:var(--vgc-gold); line-height:1;">$3,900</div>
             <div style="font-family:Montserrat,sans-serif; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(245,240,232,0.5); margin-top:0.25rem;">Total Pool</div>
           </div>
           <div style="width:1px; background:rgba(201,168,76,0.2);"></div>
@@ -1774,44 +1770,45 @@ const playerPhotos = {
 
 // holeScores: array of arrays — one per round, 18 holes each. Empty array = absent.
 const players = [
-  {name:"Jim Hopkins",          hcp:11, entryPaid:true,  entryDate:"Apr 26", weekHcp:[11],    scores:[39], gross:[80],  holeScores:[[4,4,3,6,5,5,4,4,4,5,3,4,5,4,5,5,5,5]]},
-  {name:"Mike Kirilenko",       hcp:17, entryPaid:true,  entryDate:"Apr 27", weekHcp:[17],    scores:[37], gross:[88],  holeScores:[[5,5,4,4,4,7,4,6,6,6,4,4,5,4,4,5,5,6]]},
-  {name:"Edwin Margawang",      hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9],     scores:[35], gross:[82],  holeScores:[[4,5,3,3,5,6,3,5,4,5,4,5,6,6,4,4,5,5]]},
-  {name:"Michael Ohlmann",      hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9],     scores:[35], gross:[82],  holeScores:[[4,5,3,6,4,5,3,4,5,5,5,3,5,6,4,4,5,6]]},
-  {name:"Dean Collier",         hcp:7,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[7],     scores:[35], gross:[80],  holeScores:[[6,5,3,4,4,5,3,6,5,6,4,4,3,5,4,5,4,4]]},
-  {name:"Anthony Mauro",        hcp:5,  entryPaid:true,  entryDate:"Apr 22", weekHcp:[5],     scores:[35], gross:[78],  holeScores:[[5,4,5,4,4,6,3,4,4,4,4,4,5,4,5,4,4,5]]},
-  {name:"Paul Aucoin",          hcp:7,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[7],     scores:[35], gross:[80],  holeScores:[[4,5,3,4,4,5,3,4,4,5,4,4,5,5,6,5,5,5]]},
-  {name:"Vadym Lupulyak",       hcp:12, entryPaid:true,  entryDate:"Apr 29", weekHcp:[12],    scores:[34], gross:[86],  holeScores:[[5,6,4,5,5,5,4,5,5,7,5,3,4,4,6,5,4,4]]},
-  {name:"Stefano Ruscitti",     hcp:8,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[8],     scores:[34], gross:[82],  holeScores:[[5,5,4,5,4,5,3,5,5,5,4,4,5,5,4,4,5,5]]},
-  {name:"Alessandro Carnovale", hcp:8,  entryPaid:true,  entryDate:"Apr 27", weekHcp:[8],     scores:[34], gross:[82],  holeScores:[[4,5,4,5,5,5,4,5,4,5,4,3,7,4,4,4,5,5]]},
-  {name:"Vikas Patel",          hcp:7,  entryPaid:true,  entryDate:"Apr 22", weekHcp:[7],     scores:[33], gross:[82],  holeScores:[[4,6,4,5,4,6,3,4,4,6,5,3,5,4,5,5,4,5]]},
-  {name:"Giovanni Guzzo",       hcp:-1, entryPaid:true,  entryDate:"Apr 29", weekHcp:[-1],    scores:[33], gross:[75],  holeScores:[[5,4,3,4,4,7,2,4,3,5,4,3,5,4,6,4,4,4]]},
-  {name:"Brian Graham",         hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[6],     scores:[32], gross:[82],  holeScores:[[4,5,3,5,5,5,5,4,4,7,4,3,5,4,5,4,5,5]]},
-  {name:"Robert Lee",           hcp:11, entryPaid:true,  entryDate:"Apr 26", weekHcp:[11],    scores:[32], gross:[88],  holeScores:[[4,5,2,5,4,6,4,5,5,5,6,6,5,6,5,6,5,4]]},
-  {name:"Lindsay Brooks",       hcp:7,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[7],     scores:[32], gross:[83],  holeScores:[[4,5,4,4,4,5,3,5,5,5,5,3,6,6,5,5,4,5]]},
-  {name:"Mike Cordoba",         hcp:12, entryPaid:true,  entryDate:"Apr 29", weekHcp:[12],    scores:[32], gross:[88],  holeScores:[[6,4,5,5,4,5,4,4,5,5,5,3,6,5,5,6,4,7]]},
-  {name:"Russ Davidson",        hcp:9,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[9],     scores:[32], gross:[85],  holeScores:[[5,5,3,5,4,6,4,4,4,6,4,4,7,6,4,6,4,4]]},
-  {name:"Mark Halverson",       hcp:9,  entryPaid:true,  entryDate:"Apr 25", weekHcp:[9],     scores:[32], gross:[85],  holeScores:[[5,5,3,4,5,8,4,5,5,4,5,3,7,5,3,5,5,4]]},
-  {name:"Tom Kenny",            hcp:-1, entryPaid:true,  entryDate:"Apr 29", weekHcp:[-1],    scores:[32], gross:[75],  holeScores:[[4,4,3,4,4,5,4,4,4,4,4,3,5,4,6,5,4,4]]},
-  {name:"Martin Cordeiro",      hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9],     scores:[35], gross:[82],  holeScores:[[5,3,4,4,5,6,4,5,4,5,5,4,5,4,5,4,5,5]]},
-  {name:"Ken Atkinson",         hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9],     scores:[35], gross:[82],  holeScores:[[6,4,3,5,4,6,3,5,4,5,4,4,5,5,4,5,5,5]]},
-  {name:"Enrique Quiroga",      hcp:17, entryPaid:true,  entryDate:"Apr 29", weekHcp:[17],    scores:[30], gross:[95],  holeScores:[[6,6,4,5,6,7,4,5,5,7,4,5,6,5,5,5,5,5]]},
-  {name:"Rick Ripoli",          hcp:10, entryPaid:true,  entryDate:"Apr 29", weekHcp:[10],    scores:[30], gross:[88],  holeScores:[[5,5,3,5,6,6,3,5,4,6,5,4,6,5,5,5,5,5]]},
-  {name:"Wayne Davidson",       hcp:10, entryPaid:true,  entryDate:"Apr 29", weekHcp:[10],    scores:[28], gross:[90],  holeScores:[[6,5,4,4,4,6,3,7,5,5,5,4,5,6,4,5,6,6]]},
-  {name:"Frank Bruno",          hcp:16, entryPaid:true,  entryDate:"Apr 27", weekHcp:[16],    scores:[28], gross:[96],  holeScores:[[6,5,4,6,6,8,5,5,5,5,5,3,7,5,5,6,5,5]]},
-  {name:"Karim Esmail",         hcp:11, entryPaid:true,  entryDate:"Apr 24", weekHcp:[11],    scores:[25], gross:[94],  holeScores:[[5,5,5,5,7,5,5,4,6,6,6,4,6,6,4,4,6,5]]},
-  {name:"David Akins",          hcp:11, entryPaid:true,  entryDate:"Apr 22", weekHcp:[11],    scores:[13], gross:[47],  holeScores:[[5,4,3,6,5,7,4,7,5,8,0,0,0,0,0,0,0,0]]},
-  {name:"Claude Nobauer",       hcp:3,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[null],  scores:[0],  gross:[0],   holeScores:[[]]},
-  {name:"Lyle Pidzarko",        hcp:15, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null],  scores:[0],  gross:[0],   holeScores:[[]]},
-  {name:"Mike Marino",          hcp:4,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[4],     scores:[34], gross:[78],  holeScores:[[5,4,4,4,4,6,4,4,4,5,4,3,5,4,5,4,4,5]]},
-  {name:"Peter Bogdanich",      hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[null],  scores:[0],  gross:[0],   holeScores:[[]]},
-  {name:"Navraj Kahlon",         hcp:13, entryPaid:true,  entryDate:"Apr 24", weekHcp:[13],    scores:[34], gross:[87],  holeScores:[[4,7,4,4,6,6,5,4,4,5,4,4,6,4,4,5,5,6]]},
-  {name:"Fady Hayek",           hcp:13, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null],  scores:[0],  gross:[0],   holeScores:[[]]},
-  {name:"Joe Guzzo",            hcp:10, entryPaid:true,  entryDate:"Apr 28", weekHcp:[10],    scores:[38], gross:[80],  holeScores:[[4,4,3,4,4,5,5,6,4,5,4,5,7,4,4,4,4,4]]},
-  {name:"Ken Ghag",             hcp:19, entryPaid:true,  entryDate:"Apr 28", weekHcp:[19],    scores:[33], gross:[94],  holeScores:[[5,4,4,7,5,6,4,5,5,6,5,3,7,6,6,5,5,6]]},
-  {name:"Johnny Nardi",         hcp:5,  entryPaid:true,  entryDate:"Apr 28", weekHcp:[5],     scores:[36], gross:[77],  holeScores:[[6,4,5,4,3,5,4,4,4,6,5,4,5,3,4,4,3,4]]},
-  {name:"Stephen Nielsen",      hcp:4,  entryPaid:true,  entryDate:"May 4",  weekHcp:[null],  scores:[0],  gross:[0],   holeScores:[[]]},
-  {name:"Dave Terry",           hcp:3,  entryPaid:true,  entryDate:"May 5",  weekHcp:[null],  scores:[0],  gross:[0],   holeScores:[[]]},
+  {name:"Jim Hopkins", hcp:12, entryPaid:true,  entryDate:"Apr 26", weekHcp:[11,12], scores:[39,41], gross:[80,79], holeScores:[[4,4,3,6,5,5,4,4,4,5,3,4,5,4,5,5,5,5],[5,5,3,5,5,6,3,4,4,5,4,4,5,4,4,4,4,5]]},
+  {name:"Mike Kirilenko", hcp:17, entryPaid:true,  entryDate:"Apr 27", weekHcp:[17,17], scores:[37,39], gross:[88,86], holeScores:[[5,5,4,4,4,7,4,6,6,6,4,4,5,4,4,5,5,6],[5,4,4,4,4,8,3,5,5,6,4,3,5,5,6,5,5,5]]},
+  {name:"Edwin Margawang", hcp:10,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9,10], scores:[35,29], gross:[82,89], holeScores:[[4,5,3,3,5,6,3,5,4,5,4,5,6,6,4,4,5,5],[6,6,4,5,5,5,3,4,5,6,5,4,6,5,5,5,5,5]]},
+  {name:"Michael Ohlmann", hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9,9], scores:[35,34], gross:[82,83], holeScores:[[4,5,3,6,4,5,3,4,5,5,5,3,5,6,4,4,5,6],[5,4,3,5,5,6,5,5,4,5,5,4,5,5,4,5,4,4]]},
+  {name:"Dean Collier", hcp:8,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[7,8], scores:[35,29], gross:[80,87], holeScores:[[6,5,3,4,4,5,3,6,5,6,4,4,3,5,4,5,4,4],[4,5,3,4,5,5,3,5,5,7,4,4,6,5,5,6,5,6]]},
+  {name:"Anthony Mauro", hcp:6,  entryPaid:true,  entryDate:"Apr 22", weekHcp:[5,6], scores:[35,29], gross:[78,85], holeScores:[[5,4,5,4,4,6,3,4,4,4,4,4,5,4,5,4,4,5],[4,5,5,4,5,5,3,4,4,7,4,4,6,6,4,4,5,6]]},
+  {name:"Paul Aucoin", hcp:8,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[7,8], scores:[35,27], gross:[80,89], holeScores:[[4,5,3,4,4,5,3,4,4,5,4,4,5,5,6,5,5,5],[4,4,4,5,5,7,4,5,4,7,4,4,4,5,7,5,5,6]]},
+  {name:"Vadym Lupulyak", hcp:12, entryPaid:true,  entryDate:"Apr 29", weekHcp:[12,null], scores:[34,0], gross:[86,0], holeScores:[[5,6,4,5,5,5,4,5,5,7,5,3,4,4,6,5,4,4],[]]},
+  {name:"Stefano Ruscitti", hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[8,9], scores:[34,39], gross:[82,78], holeScores:[[5,5,4,5,4,5,3,5,5,5,4,4,5,5,4,4,5,5],[3,4,4,5,6,5,4,4,5,5,4,2,6,4,3,4,5,5]]},
+  {name:"Alessandro Carnovale", hcp:7,  entryPaid:true,  entryDate:"Apr 27", weekHcp:[8,7], scores:[34,34], gross:[82,81], holeScores:[[4,5,4,5,5,5,4,5,4,5,4,3,7,4,4,4,5,5],[5,5,3,6,4,5,4,5,3,7,5,2,7,4,4,4,4,4]]},
+  {name:"Vikas Patel", hcp:7,  entryPaid:true,  entryDate:"Apr 22", weekHcp:[7,7], scores:[33,35], gross:[82,80], holeScores:[[4,6,4,5,4,6,3,4,4,6,5,3,5,4,5,5,4,5],[4,6,3,4,6,6,3,4,5,5,5,3,4,5,4,4,4,5]]},
+  {name:"Giovanni Guzzo", hcp:-1, entryPaid:true,  entryDate:"Apr 29", weekHcp:[-1,null], scores:[33,0], gross:[75,0], holeScores:[[5,4,3,4,4,7,2,4,3,5,4,3,5,4,6,4,4,4],[]]},
+  {name:"Brian Graham", hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[6,6], scores:[32,34], gross:[82,80], holeScores:[[4,5,3,5,5,5,5,4,4,7,4,3,5,4,5,4,5,5],[4,4,3,5,5,6,4,4,4,5,5,4,5,4,5,4,4,5]]},
+  {name:"Robert Lee", hcp:12, entryPaid:true,  entryDate:"Apr 26", weekHcp:[11,12], scores:[32,32], gross:[88,88], holeScores:[[4,5,2,5,4,6,4,5,5,5,6,6,5,6,5,6,5,4],[5,4,4,5,5,5,3,5,6,5,4,4,6,5,5,6,5,6]]},
+  {name:"Lindsay Brooks", hcp:8,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[7,8], scores:[32,34], gross:[83,82], holeScores:[[4,5,4,4,4,5,3,5,5,5,5,3,6,6,5,5,4,5],[6,4,4,5,4,5,3,5,5,5,4,4,6,5,4,4,5,4]]},
+  {name:"Mike Cordoba", hcp:12, entryPaid:true,  entryDate:"Apr 29", weekHcp:[12,null], scores:[32,0], gross:[88,0], holeScores:[[6,4,5,5,4,5,4,4,5,5,5,3,6,5,5,6,4,7],[]]},
+  {name:"Russ Davidson", hcp:9,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[9,9], scores:[32,34], gross:[85,83], holeScores:[[5,5,3,5,4,6,4,4,4,6,4,4,7,6,4,6,4,4],[4,4,3,4,5,5,4,4,4,7,5,4,5,5,4,6,5,5]]},
+  {name:"Mark Halvorsen", hcp:10,  entryPaid:true,  entryDate:"Apr 25", weekHcp:[9,10], scores:[32,39], gross:[85,79], holeScores:[[5,5,3,4,5,8,4,5,5,4,5,3,7,5,3,5,5,4],[5,4,3,4,5,6,3,4,4,6,4,3,5,4,5,5,4,5]]},
+  {name:"Tom Kenny", hcp:-1, entryPaid:true,  entryDate:"Apr 29", weekHcp:[-1,-1], scores:[32,30], gross:[75,77], holeScores:[[4,4,3,4,4,5,4,4,4,4,4,3,5,4,6,5,4,4],[4,4,4,5,6,6,3,4,4,6,4,3,4,4,3,4,5,4]]},
+  {name:"Martin Cordeiro", hcp:10,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9,10], scores:[35,34], gross:[82,84], holeScores:[[5,3,4,4,5,6,4,5,4,5,5,4,5,4,5,4,5,5],[5,5,5,5,5,5,4,4,4,5,4,3,4,5,6,5,6,4]]},
+  {name:"Ken Atkinson", hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9,9], scores:[35,32], gross:[82,86], holeScores:[[6,4,3,5,4,6,3,5,4,5,4,4,5,5,4,5,5,5],[5,4,6,4,5,7,3,4,4,6,6,3,5,5,5,4,5,5]]},
+  {name:"Enrique Quiroga", hcp:16, entryPaid:true,  entryDate:"Apr 29", weekHcp:[17,16], scores:[30,33], gross:[95,91], holeScores:[[6,6,4,5,6,7,4,5,5,7,4,5,6,5,5,5,5,5],[5,4,4,6,5,8,5,4,4,6,5,4,6,5,5,4,6,5]]},
+  {name:"Rick Ripoli", hcp:11, entryPaid:true,  entryDate:"Apr 29", weekHcp:[10,11], scores:[30,33], gross:[88,86], holeScores:[[5,5,3,5,6,6,3,5,4,6,5,4,6,5,5,5,5,5],[4,6,3,4,4,5,5,6,5,8,5,3,6,5,4,5,4,4]]},
+  {name:"Wayne Davidson", hcp:11, entryPaid:true,  entryDate:"Apr 29", weekHcp:[10,11], scores:[28,34], gross:[90,86], holeScores:[[6,5,4,4,4,6,3,7,5,5,5,4,5,6,4,5,6,6],[6,5,4,5,5,5,3,4,7,6,5,3,5,4,5,5,4,5]]},
+  {name:"Frank Bruno", hcp:17, entryPaid:true,  entryDate:"Apr 27", weekHcp:[16,17], scores:[28,34], gross:[96,91], holeScores:[[6,5,4,6,6,8,5,5,5,5,5,3,7,5,5,6,5,5],[5,4,4,5,4,6,3,5,5,7,6,4,6,6,6,6,4,5]]},
+  {name:"Karim Esmail", hcp:11, entryPaid:true,  entryDate:"Apr 24", weekHcp:[11,11], scores:[25,34], gross:[94,85], holeScores:[[5,5,5,5,7,5,5,4,6,6,6,4,6,6,4,4,6,5],[6,4,5,6,4,5,3,5,4,5,6,5,6,4,4,4,5,4]]},
+  {name:"David Akins", hcp:11, entryPaid:true,  entryDate:"Apr 22", weekHcp:[11,11], scores:[13,34], gross:[47,85], holeScores:[[5,4,3,6,5,7,4,7,5,8,0,0,0,0,0,0,0,0],[4,4,5,5,5,7,3,4,4,5,4,3,5,6,5,5,6,5]]},
+  {name:"Claude Nobauer", hcp:3,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[null,3], scores:[0,29], gross:[0,82], holeScores:[[],[4,4,5,5,5,5,4,4,4,6,4,3,7,4,5,5,4,4]]},
+  {name:"Lyle Pidzarko", hcp:16, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,16], scores:[0,30], gross:[0,94], holeScores:[[],[5,5,5,7,5,8,4,5,6,6,4,2,5,5,4,5,7,6]]},
+  {name:"Mike Marino", hcp:4,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[4,4], scores:[34,31], gross:[78,81], holeScores:[[5,4,4,4,4,6,4,4,4,5,4,3,5,4,5,4,4,5],[5,4,3,5,5,6,4,5,5,5,4,3,4,6,4,5,4,4]]},
+  {name:"Peter Bogdanich", hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,null], scores:[0,0], gross:[0,0], holeScores:[[],[]]},
+  {name:"Navraj Kahlon", hcp:14, entryPaid:true,  entryDate:"Apr 24", weekHcp:[13,14], scores:[34,36], gross:[87,86], holeScores:[[4,7,4,4,6,6,5,4,4,5,4,4,6,4,4,5,5,6],[5,3,4,4,4,6,3,5,6,6,5,4,6,6,4,4,5,6]]},
+  {name:"Fady Hayek", hcp:14, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,14], scores:[0,30], gross:[0,92], holeScores:[[],[5,5,3,6,5,6,4,5,6,6,3,4,7,6,4,7,4,6]]},
+  {name:"Joe Guzzo", hcp:10, entryPaid:true,  entryDate:"Apr 28", weekHcp:[10,null], scores:[38,0], gross:[80,0], holeScores:[[4,4,3,4,4,5,5,6,4,5,4,5,7,4,4,4,4,4],[]]},
+  {name:"Ken Ghag", hcp:19, entryPaid:true,  entryDate:"Apr 28", weekHcp:[19,null], scores:[33,0], gross:[94,0], holeScores:[[5,4,4,7,5,6,4,5,5,6,5,3,7,6,6,5,5,6],[]]},
+  {name:"Johnny Nardi", hcp:5,  entryPaid:true,  entryDate:"Apr 28", weekHcp:[5,5], scores:[36,31], gross:[77,82], holeScores:[[6,4,5,4,3,5,4,4,4,6,5,4,5,3,4,4,3,4],[5,4,5,4,4,5,5,3,4,5,4,3,6,5,5,4,5,6]]},
+  {name:"Stephen Nielsen", hcp:4,  entryPaid:true,  entryDate:"May 4",  weekHcp:[null,4], scores:[0,33], gross:[0,79], holeScores:[[],[4,5,3,4,5,5,4,3,4,5,3,3,5,5,6,6,4,5]]},
+  {name:"Tom Englmaier",       hcp:6, entryPaid:true,  entryDate:"May 5",  weekHcp:[null,6], scores:[0,38], gross:[0,76], holeScores:[[],[4,5,3,5,3,5,4,4,4,5,4,2,5,5,4,5,4,5]]},
+  {name:"Dave Terry", hcp:3,  entryPaid:true,  entryDate:"May 5",  weekHcp:[null,3], scores:[0,35], gross:[0,76], holeScores:[[],[4,4,4,4,5,5,4,4,5,5,4,4,5,4,4,4,4,3]]},
 ];
 
 // Previous week rankings — Round 1 final standings
@@ -1824,7 +1821,7 @@ const prevRankings = {
   "Alessandro Carnovale": 12, "Giovanni Guzzo": 17,        "Vikas Patel": 17,
   "Ken Ghag": 17,             "Tom Kenny": 20,             "Brian Graham": 20,
   "Robert Lee": 20,           "Lindsay Brooks": 20,        "Mike Cordoba": 20,
-  "Russ Davidson": 20,        "Mark Halverson": 20,        "Enrique Quiroga": 27,
+  "Russ Davidson": 20,        "Mark Halvorsen": 20,        "Enrique Quiroga": 27,
   "Rick Ripoli": 27,          "Wayne Davidson": 29,        "Frank Bruno": 29,
   "Karim Esmail": 31,         "David Akins": 32
 };
@@ -1832,7 +1829,7 @@ const prevRankings = {
 // Gallery photos — add objects {src, caption} to populate gallery
 const galleryPhotos = [];
 
-const roundDates = ["Apr 29"];
+const roundDates = ["Apr 29", "May 6"];
 const BEST_N = 10;
 const TOTAL_ROUNDS = 18;
 
@@ -1859,6 +1856,8 @@ function eligibleScores(p) {
   if (p.entryPaid) return p.scores;
   return [];
 }
+
+function formatHcp(h) { return h < 0 ? "+"+Math.abs(h) : String(h); }
 
 function best10(p) {
   const eligible = eligibleScores(p).filter(s => s > 0);
@@ -2055,7 +2054,7 @@ function renderStandingsBody() {
     return `<tr>
       <td class="rank-col" style="padding-left:1.5rem">${p.entryPaid ? rankMap[p.name] : '—'}</td>
       <td><div class="player-cell">${avatarHtml(p.name)}<span class="player-link" onclick="openModal('${p.name}')">${p.name}</span>${move}${enteredBadge}</div></td>
-      <td style="color:rgba(245,240,232,0.5);font-family:'Montserrat',sans-serif;font-size:0.8rem">${p.hcp}</td>
+      <td style="color:rgba(245,240,232,0.5);font-family:'Montserrat',sans-serif;font-size:0.8rem">${formatHcp(p.hcp)}</td>
       ${scoreCells}
       <td class="total-col">${b10 > 0 ? b10 : '—'}</td>
       <td class="rounds-col">${rounds > 0 ? rounds + '/' + TOTAL_ROUNDS : '—'}</td>
@@ -2127,7 +2126,7 @@ function renderWeekly() {
     return `<tr>
       <td class="rank-col">${rankDisplay}</td>
       <td><div class="player-cell">${avatarHtml(p.name)}<span class="player-link" onclick="openModal('${p.name}')">${p.name}</span></div></td>
-      <td style="color:rgba(245,240,232,0.5);font-family:'Montserrat',sans-serif;font-size:0.8rem">${p.hcp}</td>
+      <td style="color:rgba(245,240,232,0.5);font-family:'Montserrat',sans-serif;font-size:0.8rem">${formatHcp(p.hcp)}</td>
       <td class="score-cell">${grossDisplay}</td>
       <td class="score-cell">${netDisplay}</td>
       <td class="total-col">${pts > 0 ? pts : '—'}</td>
@@ -2343,7 +2342,7 @@ function renderModalRounds(p) {
         const roundHcp = (p.weekHcp && p.weekHcp[i] !== undefined) ? p.weekHcp[i] : p.hcp;
         return `<div class="round-row" ${clickAttr}>
           <div class="round-date">${date}${badge}</div>
-          <div class="round-hcp-cell" style="font-family:'Montserrat',sans-serif;font-size:0.75rem;color:rgba(245,240,232,0.5);padding:0 0.5rem;min-width:3rem">HCP ${roundHcp}</div>
+          <div class="round-hcp-cell" style="font-family:'Montserrat',sans-serif;font-size:0.75rem;color:rgba(245,240,232,0.5);padding:0 0.5rem;min-width:3rem">HCP ${formatHcp(roundHcp)}</div>
           <div class="round-gross">${grossDisplay}</div>
           <div class="round-net">${netDisplay}</div>
           <div class="round-pts ${ptsClass}" style="display:flex;align-items:center">${pts > 0 ? pts+' pts' : '0'}${viewLink}</div>
@@ -2368,7 +2367,7 @@ function openModal(playerName) {
 
   document.getElementById('modalPhotoEl').innerHTML = avatarHtml(p.name, 'lg');
   document.getElementById('modalName').textContent = p.name;
-  document.getElementById('modalHcp').textContent = `Current Handicap: ${p.hcp}`;
+  document.getElementById('modalHcp').textContent = `Current Handicap: ${formatHcp(p.hcp)}`;
   document.getElementById('modalBest10').textContent = b10;
   document.getElementById('modalBest').textContent = bestRound || '—';
   document.getElementById('modalAvg').textContent = avg;
@@ -2386,7 +2385,7 @@ function openScorecard(playerName, roundIndex) {
   const date = roundDates[roundIndex];
 
   document.getElementById('scTitle').textContent = `${p.name} — ${date}`;
-  document.getElementById('scSubtitle').textContent = `Course HCP: ${p.hcp}  ·  Gross: ${p.gross[roundIndex]}  ·  Stableford: ${p.scores[roundIndex]}`;
+  document.getElementById('scSubtitle').textContent = `Course HCP: ${formatHcp(p.hcp)}  ·  Gross: ${p.gross[roundIndex]}  ·  Stableford: ${p.scores[roundIndex]}`;
 
   function holeCell(idx) {
     const gross = holes[idx];
@@ -2520,8 +2519,9 @@ const payoutStructure = [
   { place: 7, amount: 200 },
   { place: 8, amount: 150 },
   { place: 9, amount: 100 },
+  { place: 10, amount: 100 },
 ];
-const TOTAL_PRIZE_POOL = 3800;
+const TOTAL_PRIZE_POOL = players.length * 100;
 
 // Rank all paid players using best-10-of-18 with PGA-style countback for ties.
 // Returns a sorted array of objects with: p, total, sortedScores, roundsPlayed, rank, tied, payout.
@@ -2624,10 +2624,30 @@ renderGallery();
 renderEntry();
 renderPayouts();
 
-// Wire the hero "Week 1 Leader" photo to playerPhotos so it works regardless of file path
+// Wire hero leader callout dynamically from standings
 (function() {
+  const ranked = rankPlayers();
+  if (!ranked.length) return;
+  const leader = ranked[0];
+  const weekNum = roundDates.length;
+  const weekLabel = weekNum === 1 ? '1st' : weekNum === 2 ? '2nd' : weekNum === 3 ? '3rd' : weekNum + 'th';
+
+  // Competitor count
+  const n = players.filter(p => p.entryPaid).length;
+  const bannerText = document.getElementById('bannerCompetitorText');
+  if (bannerText) bannerText.textContent = n + ' competitor' + (n !== 1 ? 's' : '');
+  const bannerCount = document.getElementById('bannerCompetitorCount');
+  if (bannerCount) bannerCount.textContent = n;
+
+  // Hero leader callout
+  document.getElementById('heroLeaderLabel').textContent = '🏆 Week ' + weekNum + ' Leader';
+  document.getElementById('heroLeaderName').textContent = leader.p.name;
+  document.getElementById('heroLeaderPoints').textContent = leader.total + ' Stableford pts';
   const img = document.getElementById('heroLeaderPhoto');
-  if (img && playerPhotos['Jim Hopkins']) img.src = playerPhotos['Jim Hopkins'];
+  if (img) {
+    img.alt = leader.p.name;
+    if (playerPhotos[leader.p.name]) img.src = playerPhotos[leader.p.name];
+  }
 })();
 
 </script>
