@@ -1446,8 +1446,8 @@
     <!-- ── SEASON OPENER BANNER ── -->
     <div style="background: linear-gradient(135deg, rgba(201,168,76,0.18) 0%, rgba(45,90,61,0.35) 50%, rgba(201,168,76,0.18) 100%); border: 1.5px solid rgba(201,168,76,0.5); border-radius: 1rem; padding: 2rem 2.5rem; margin: 2rem 0; text-align: center; position: relative; overflow: hidden;">
       <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 70%);pointer-events:none;"></div>
-      <div style="font-family:Montserrat,sans-serif; font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--vgc-gold); margin-bottom:0.6rem;">&#x26F3; Week 2 &middot; May 6, 2026</div>
-      <h2 style="font-family:Playfair Display,serif; font-size:clamp(1.6rem,4vw,2.4rem); font-weight:700; color:var(--vgc-white); margin:0 0 0.5rem; line-height:1.2;">Welcome to Week 2 of the 2026 Season Long Honeypot!</h2>
+      <div id="heroBadge" style="font-family:Montserrat,sans-serif; font-size:0.65rem; letter-spacing:0.35em; text-transform:uppercase; color:var(--vgc-gold); margin-bottom:0.6rem;">&#x26F3; Week 2 &middot; May 6, 2026</div>
+      <h2 id="heroHeadline" style="font-family:Playfair Display,serif; font-size:clamp(1.6rem,4vw,2.4rem); font-weight:700; color:var(--vgc-white); margin:0 0 0.5rem; line-height:1.2;">Welcome to Week 2 of the 2026 Season Long Honeypot!</h2>
       <p style="font-family:Crimson Pro,Georgia,serif; font-size:1.15rem; color:rgba(245,240,232,0.82); font-style:italic; margin:0 0 1.2rem; max-width:600px; margin-left:auto; margin-right:auto;"><span id="bannerCompetitorText">— competitors</span> in the field at Vancouver Golf Club &mdash; let the best 10 rounds decide the champion.</p>
       <div style="display:flex; justify-content:center; gap:2.5rem; flex-wrap:wrap;">
         <div style="text-align:center;">
@@ -2575,6 +2575,13 @@ renderGallery();
   const leader = ranked[0];
   const weekNum = roundDates.length;
   const weekLabel = weekNum === 1 ? '1st' : weekNum === 2 ? '2nd' : weekNum === 3 ? '3rd' : weekNum + 'th';
+
+  // Hero badge + headline (auto-updates with roundDates — no manual edit needed)
+  const lastDate = roundDates[roundDates.length - 1]; // e.g. "May 13"
+  const badgeEl = document.getElementById('heroBadge');
+  if (badgeEl) badgeEl.innerHTML = '&#x26F3; Week ' + weekNum + ' &middot; ' + lastDate + ', 2026';
+  const headlineEl = document.getElementById('heroHeadline');
+  if (headlineEl) headlineEl.textContent = 'Welcome to Week ' + weekNum + ' of the 2026 Season Long Honeypot!';
 
   // Competitor count
   const n = players.filter(p => p.entryPaid).length;
