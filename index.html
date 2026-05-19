@@ -1786,19 +1786,22 @@ const players = [
   {name:"Kyle Ullinder", hcp:-1, entryPaid:true,  entryDate:"May 12", weekHcp:[null,null,-1], scores:[0,0,39], gross:[0,0,68], holeScores:[[],[],[3,4,3,3,3,5,3,4,4,4,4,3,5,3,4,4,4,5]]},
 ];
 
-// Previous week rankings — Round 1 final standings
+// Previous week rankings — Week 2 (May 6) final standings
 const prevRankings = {
-  "Jim Hopkins": 1,           "Joe Guzzo": 2,              "Mike Kirilenko": 3,
-  "Johnny Nardi": 4,          "Martin Cordeiro": 5,        "Ken Atkinson": 5,
-  "Edwin Margawang": 5,       "Michael Ohlmann": 5,        "Dean Collier": 5,
-  "Anthony Mauro": 5,         "Paul Aucoin": 5,            "Mike Marino": 12,
-  "Navraj Kahlon": 12,        "Vadym Lupulyak": 12,        "Stefano Ruscitti": 12,
-  "Alessandro Carnovale": 12, "Giovanni Guzzo": 17,        "Vikas Patel": 17,
-  "Ken Ghag": 17,             "Tom Kenny": 20,             "Brian Graham": 20,
-  "Robert Lee": 20,           "Lindsay Brooks": 20,        "Mike Cordoba": 20,
-  "Russ Davidson": 20,        "Mark Halvorsen": 20,        "Enrique Quiroga": 27,
-  "Rick Ripoli": 27,          "Wayne Davidson": 29,        "Frank Bruno": 29,
-  "Karim Esmail": 31,         "David Akins": 32
+  "Jim Hopkins": 1,            "Mike Kirilenko": 2,         "Stefano Ruscitti": 3,
+  "Mark Halvorsen": 4,         "Navraj Kahlon": 4,          "Michael Ohlmann": 6,
+  "Martin Cordeiro": 6,        "Alessandro Carnovale": 8,   "Vikas Patel": 8,
+  "Ken Atkinson": 10,          "Johnny Nardi": 10,          "Brian Graham": 12,
+  "Lindsay Brooks": 12,        "Russ Davidson": 12,         "Mike Marino": 15,
+  "Edwin Margawang": 16,       "Dean Collier": 16,          "Anthony Mauro": 16,
+  "Robert Lee": 16,            "Enrique Quiroga": 20,       "Rick Ripoli": 20,
+  "Paul Aucoin": 22,           "Tom Kenny": 22,             "Wayne Davidson": 22,
+  "Frank Bruno": 22,           "Karim Esmail": 26,          "David Akins": 27,
+  "Joe Guzzo": 28,             "Tom Englmaier": 29,         "Dave Terry": 30,
+  "Vadym Lupulyak": 31,        "Giovanni Guzzo": 32,        "Ken Ghag": 32,
+  "Stephen Nielsen": 32,       "Mike Cordoba": 35,          "Lyle Pidzarko": 36,
+  "Fady Hayek": 36,            "Claude Nobauer": 38,        "Peter Bogdanich": 39,
+  "Kyle Ullinder": 39
 };
 
 // Gallery photos — add objects {src, caption} to populate gallery
@@ -1869,9 +1872,10 @@ function avatarHtml(name, size='sm') {
 
 // ── MOVEMENT ARROW ──
 function movementHtml(name, currentRank) {
-  if (!prevRankings[name]) return '<span class="move-new">NEW</span>';
+  if (prevRankings[name] === undefined) return '';
   const prev = prevRankings[name];
-  const diff = prev - currentRank;
+  const curr = parseInt(String(currentRank).replace('T', ''), 10);
+  const diff = prev - curr;
   if (diff > 0) return `<span class="move-up">▲${diff}</span>`;
   if (diff < 0) return `<span class="move-down">▼${Math.abs(diff)}</span>`;
   return '';
