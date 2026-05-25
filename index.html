@@ -52,9 +52,9 @@
        Countback only kicks in once a player has rounds beyond their counting 10.
 
   7. PAYOUT STRUCTURE (top 10 paid)
-       Total pool = (entries) × $100. With 40 entries: $4,000.
-         1: $950   2: $775   3: $575   4: $450   5: $350
-         6: $250   7: $200   8: $150   9: $100  10: $100
+       Total pool = (entries) × $100. With 41 entries: $4,100.
+         1: $950   2: $775   3: $625   4: $500   5: $375
+         6: $275   7: $225   8: $150   9: $125  10: $100
 
   8. PLAYER PHOTOS
        Stored as base64 data URIs in playerPhotos object.
@@ -1461,7 +1461,7 @@
         </div>
         <div style="width:1px; background:rgba(201,168,76,0.25);"></div>
         <div style="text-align:center;">
-          <div style="font-family:Playfair Display,serif; font-size:2rem; font-weight:700; color:var(--vgc-gold); line-height:1;">$4,000</div>
+          <div style="font-family:Playfair Display,serif; font-size:2rem; font-weight:700; color:var(--vgc-gold); line-height:1;">$4,100</div>
           <div style="font-family:Montserrat,sans-serif; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(245,240,232,0.5); margin-top:0.2rem;">Prize Pool</div>
         </div>
       </div>
@@ -1542,7 +1542,7 @@
         </div>
         <div class="news-ticker-item">
           <div class="news-ticker-headline">📈 Season Standings After 4 Rounds</div>
-          <div class="news-ticker-desc"><strong>Jim Hopkins</strong> leads the season with <strong>153 pts</strong> after 4 rounds, 4 pts ahead of Mike Kirilenko (149). 40 players entered — prize pool $4,000.</div>
+          <div class="news-ticker-desc"><strong>Jim Hopkins</strong> leads the season with <strong>153 pts</strong> after 4 rounds, 4 pts ahead of Mike Kirilenko (149). 41 players entered — prize pool $4,100.</div>
         </div>
       </div>
     </div>
@@ -1816,25 +1816,26 @@ const players = [
   {name:"Stephen Nielsen", hcp:4,  entryPaid:true,  entryDate:"May 4",  weekHcp:[null,4,4,3], scores:[0,33,35,29], gross:[0,79,77,82], holeScores:[[],[4,5,3,4,5,5,4,3,4,5,3,3,5,5,6,6,4,5],[4,4,3,4,5,6,2,4,4,5,5,3,5,5,5,4,5,4],[5,4,3,4,5,5,4,4,6,6,5,3,6,4,5,4,5,4]]},
   {name:"Tom Englmaier",       hcp:6, entryPaid:true,  entryDate:"May 5",  weekHcp:[null,6,5,5], scores:[0,37,29,24], gross:[0,77,84,89], holeScores:[[],[4,5,3,5,3,6,4,4,4,5,4,2,5,5,4,5,4,5],[4,4,4,5,4,5,4,5,5,5,6,3,5,5,6,5,4,5],[6,5,5,4,4,7,3,4,6,6,4,4,5,6,4,6,5,5]]},
   {name:"Dave Terry", hcp:3,  entryPaid:true,  entryDate:"May 5",  weekHcp:[null,3,3,2], scores:[0,35,32,36], gross:[0,76,79,74], holeScores:[[],[4,4,4,4,5,5,4,4,5,5,4,4,5,4,4,4,4,3],[5,4,5,4,5,5,5,4,4,4,3,3,5,5,4,6,4,4],[3,4,5,4,4,6,3,4,4,4,3,3,5,4,4,5,4,5]]},
-  {name:"Kyle Ullinder", hcp:-1, entryPaid:true,  entryDate:"May 12", weekHcp:[null,null,-1,-1,-1], scores:[0,0,39,30,30], gross:[0,0,68,77,77], holeScores:[[],[],[3,4,3,3,3,5,3,4,4,4,4,3,5,3,4,4,4,5],[4,5,3,5,4,5,3,5,4,6,4,3,5,4,4,4,4,5],[4,5,3,5,4,5,3,5,4,6,4,3,5,4,4,4,4,5]]},
+  {name:"Kyle Ullinder", hcp:-1, entryPaid:true,  entryDate:"May 12", weekHcp:[null,null,-1,-1], scores:[0,0,39,30], gross:[0,0,68,77], holeScores:[[],[],[3,4,3,3,3,5,3,4,4,4,4,3,5,3,4,4,4,5],[4,5,3,5,4,5,3,5,4,6,4,3,5,4,4,4,4,5]]},
+  {name:"Ryan Shmyr",    hcp:17, entryPaid:true,  entryDate:"May 19", weekHcp:[null,null,null,17], scores:[0,0,0,38], gross:[0,0,0,87], holeScores:[[],[],[],[5,4,3,4,4,5,4,7,6,5,5,4,5,3,5,5,6,7]]},
 ];
 
-// Previous week rankings — Week 2 (May 6) final standings
+// Previous week rankings — Week 4 (May 20) final standings
 const prevRankings = {
-  "Jim Hopkins": 1,  "Mike Kirilenko": 2,  "Stefano Ruscitti": 3,
-  "Mark Halvorsen": 4,  "Russ Davidson": 4,  "Martin Cordeiro": 6,
-  "Michael Ohlmann": 6,  "Johnny Nardi": 8,  "Lindsay Brooks": 8,
-  "Vikas Patel": 8,  "Dean Collier": 11,  "Navraj Kahlon": 11,
-  "Mike Marino": 13,  "Alessandro Carnovale": 14,  "Anthony Mauro": 14,
-  "Tom Kenny": 14,  "Brian Graham": 17,  "Frank Bruno": 18,
-  "Edwin Margawang": 19,  "Paul Aucoin": 19,  "Wayne Davidson": 21,
-  "Karim Esmail": 22,  "David Akins": 23,  "Joe Guzzo": 24,
-  "Giovanni Guzzo": 25,  "Stephen Nielsen": 25,  "Dave Terry": 27,
-  "Ken Atkinson": 27,  "Tom Englmaier": 29,  "Robert Lee": 30,
-  "Enrique Quiroga": 31,  "Fady Hayek": 31,  "Rick Ripoli": 31,
-  "Claude Nobauer": 34,  "Kyle Ullinder": 35,  "Vadym Lupulyak": 36,
-  "Ken Ghag": 37,  "Peter Bogdanich": 37,  "Mike Cordoba": 39,
-  "Lyle Pidzarko": 40
+  "Jim Hopkins": 1,  "Mike Kirilenko": 2,  "Russ Davidson": 3,
+  "Stefano Ruscitti": 4,  "Vikas Patel": 5,  "Michael Ohlmann": 6,
+  "Dean Collier": 7,  "Lindsay Brooks": 7,  "Mark Halvorsen": 7,
+  "Johnny Nardi": 10,  "Martin Cordeiro": 11,  "Tom Kenny": 12,
+  "Paul Aucoin": 13,  "Mike Marino": 13,  "Edwin Margawang": 15,
+  "Frank Bruno": 16,  "Navraj Kahlon": 16,  "Brian Graham": 18,
+  "Wayne Davidson": 19,  "Alessandro Carnovale": 20,  "Karim Esmail": 21,
+  "Joe Guzzo": 22,  "Dave Terry": 23,  "David Akins": 23,
+  "Ken Atkinson": 25,  "Anthony Mauro": 26,  "Stephen Nielsen": 26,
+  "Giovanni Guzzo": 28,  "Claude Nobauer": 29,  "Fady Hayek": 30,
+  "Tom Englmaier": 31,  "Peter Bogdanich": 32,  "Kyle Ullinder": 33,
+  "Mike Cordoba": 34,  "Vadym Lupulyak": 35,  "Robert Lee": 35,
+  "Enrique Quiroga": 37,  "Rick Ripoli": 37,  "Ken Ghag": 37,
+  "Lyle Pidzarko": 40,  "Ryan Shmyr": 41
 };
 
 // Gallery photos — add objects {src, caption} to populate gallery
@@ -1845,18 +1846,18 @@ const BEST_N = 10;
 const TOTAL_ROUNDS = 18;
 
 // ── PRIZE POOL ──
-const TOTAL_PRIZE_POOL = 4000;
+const TOTAL_PRIZE_POOL = 4100;
 const payoutStructure = [
-  {place:1,  amount: 950},
-  {place:2,  amount: 750},
-  {place:3,  amount: 600},
-  {place:4,  amount: 475},
-  {place:5,  amount: 375},
-  {place:6,  amount: 275},
-  {place:7,  amount: 200},
-  {place:8,  amount: 150},
-  {place:9,  amount: 125},
-  {place:10, amount: 100},
+  {place:1,  amount:  950},
+  {place:2,  amount:  775},
+  {place:3,  amount:  625},
+  {place:4,  amount:  500},
+  {place:5,  amount:  375},
+  {place:6,  amount:  275},
+  {place:7,  amount:  225},
+  {place:8,  amount:  150},
+  {place:9,  amount:  125},
+  {place:10, amount:  100},
 ];
 
 // ── COURSE DATA (VGC) ──
