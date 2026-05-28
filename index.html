@@ -1511,16 +1511,16 @@
     <!-- ── WEEKLY NEWS TICKER ── -->
     <div class="news-ticker-section">
   <div class="news-ticker-box">
-    <span class="news-ticker-label">May 20, 2026 · Week 4 Results</span>
+    <span class="news-ticker-label">May 27, 2026 · Week 5 Results</span>
     <div class="news-ticker-viewport">
       <div class="news-ticker-track" id="tickerTrack">
         <div class="news-ticker-item">
-          <div class="news-ticker-headline">🏆 Week 4 Leader — Russ Davidson Tops the May 20 Field</div>
-          <div class="news-ticker-desc"><strong>Russ Davidson</strong> fires <strong>40 points</strong> to win the May 20 round. Jim Hopkins is 2nd with 39 pts, Peter Bogdanich 3rd with 39 pts. 36 paid players competed on May 20.</div>
+          <div class="news-ticker-headline">🏆 Week 5 Leader — Fady Hayek Tops the May 27 Field</div>
+          <div class="news-ticker-desc"><strong>Fady Hayek</strong> fires <strong>40 points</strong> to win the May 27 round. Vikas Patel is 2nd with 39 pts, Stefano Ruscitti 3rd with 38 pts. 32 paid players competed on May 27.</div>
         </div>
         <div class="news-ticker-item">
-          <div class="news-ticker-headline">📈 Season Standings After 4 Rounds</div>
-          <div class="news-ticker-desc"><strong>Jim Hopkins</strong> leads the season with <strong>153 pts</strong> after 4 rounds, 4 pts ahead of Mike Kirilenko (149). 41 players entered — prize pool $4,100.</div>
+          <div class="news-ticker-headline">📈 Season Standings After 5 Rounds</div>
+          <div class="news-ticker-desc"><strong>Jim Hopkins</strong> leads the season with <strong>186 pts</strong> after 5 rounds, 5 pts ahead of Stefano Ruscitti (181). 41 players entered — prize pool $4,100.</div>
         </div>
       </div>
     </div>
@@ -1610,7 +1610,7 @@
           <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">6.</span><span>Entry fee: <strong>$100</strong> (essentially $10 per round).</span></li>
           <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">7.</span><span>The <strong>top 25% of players</strong> get paid at season end.</span></li>
           <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">8.</span><span>If you <strong>pick up on a hole</strong>, you receive <strong>0 Stableford points</strong> for that hole — your round still counts.</span></li>
-          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">9.</span><span>The leaderboard reflects <strong>official scores through Week 3</strong>. The season runs for <strong>18 weeks</strong> — best 10 rounds count toward final standings.</span></li>
+          <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">9.</span><span>The leaderboard reflects <strong>official scores through Week 5</strong>. The season runs for <strong>18 weeks</strong> — best 10 rounds count toward final standings.</span></li>
           <li style="display:flex;gap:0.9rem;align-items:flex-start;"><span style="color:var(--vgc-gold);font-weight:700;min-width:1.6rem;">10.</span><span><strong>Ties</strong> are broken <strong>PGA Tour style</strong> — countback to the next-best non-counting round (then the one after that, and so on). If players remain truly tied, they <strong>share equally</strong> the combined prize money for the positions involved.</span></li>
         </ul>
 
@@ -1755,47 +1755,47 @@ const playerPhotos = {
 
 // holeScores: array of arrays — one per round, 18 holes each. Empty array = absent.
 const players = [
-  {name:"Jim Hopkins", hcp:12, entryPaid:true,  entryDate:"Apr 26", weekHcp:[11,12,11,10], scores:[39,41,34,39], gross:[80,79,86,79], holeScores:[[4,4,3,6,5,5,4,4,4,5,3,4,5,4,5,5,5,5],[5,5,3,5,5,6,3,4,4,5,4,4,5,4,4,4,4,5],[5,4,4,4,5,5,4,4,4,6,6,4,5,7,5,5,4,5],[4,5,3,6,4,5,4,4,4,6,5,3,5,3,4,5,5,4]]},
-  {name:"Mike Kirilenko", hcp:17, entryPaid:true,  entryDate:"Apr 27", weekHcp:[17,17,17,16], scores:[37,39,35,38], gross:[88,86,90,86], holeScores:[[5,5,4,4,4,7,4,6,6,6,4,4,5,4,4,5,5,6],[5,4,4,4,4,8,3,5,5,6,4,3,5,5,6,5,5,5],[6,6,3,6,4,6,4,4,4,6,5,3,8,4,5,6,5,5],[5,4,4,5,5,6,4,5,5,6,5,3,5,4,4,6,5,5]]},
-  {name:"Edwin Margawang", hcp:10,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9,10,10,10], scores:[35,29,29,34], gross:[82,89,90,85], holeScores:[[4,5,3,3,5,6,3,5,4,5,4,5,6,6,4,4,5,5],[6,6,4,5,5,5,3,4,5,6,5,4,6,5,5,5,5,5],[5,4,6,6,5,5,3,4,5,7,5,4,6,5,5,5,5,5],[5,4,3,4,8,5,3,5,4,4,4,4,5,6,7,6,4,4]]},
-  {name:"Michael Ohlmann", hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9,9,9,9], scores:[35,34,34,34], gross:[82,83,83,83], holeScores:[[4,5,3,6,4,5,3,4,5,5,5,3,5,6,4,4,5,6],[5,4,3,5,5,6,5,5,4,5,5,4,5,5,4,5,4,4],[4,4,5,4,6,5,3,4,6,6,4,4,6,4,3,6,4,5],[4,4,3,6,4,6,4,5,4,7,5,3,5,5,5,4,4,5]]},
-  {name:"Dean Collier", hcp:8,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[7,8,8,7], scores:[35,29,36,36], gross:[80,87,80,79], holeScores:[[6,5,3,4,4,5,3,6,5,6,4,4,3,5,4,5,4,4],[4,5,3,4,5,5,3,5,5,7,4,4,6,5,5,6,5,6],[5,5,4,5,5,7,3,4,5,4,4,4,6,4,3,4,3,5],[4,4,3,4,4,6,5,4,4,5,5,3,5,6,4,5,4,4]]},
-  {name:"Anthony Mauro", hcp:6,  entryPaid:true,  entryDate:"Apr 22", weekHcp:[5,6,6,null], scores:[35,29,33,0], gross:[78,85,81,0], holeScores:[[5,4,5,4,4,6,3,4,4,4,4,4,5,4,5,4,4,5],[4,5,5,4,5,5,3,4,4,7,4,4,6,6,4,4,5,6],[4,6,3,5,5,5,3,4,5,6,4,3,5,4,4,5,4,6],[]]},
-  {name:"Paul Aucoin", hcp:8,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[7,8,9,9], scores:[35,27,31,37], gross:[80,89,86,80], holeScores:[[4,5,3,4,4,5,3,4,4,5,4,4,5,5,6,5,5,5],[4,4,4,5,5,7,4,5,4,7,4,4,4,5,7,5,5,6],[5,5,3,5,4,5,3,6,4,5,4,5,6,4,5,6,5,6],[7,5,3,4,6,5,4,3,5,4,4,5,5,2,3,4,5,6]]},
-  {name:"Vadym Lupulyak", hcp:12, entryPaid:true,  entryDate:"Apr 29", weekHcp:[12,null,null,12], scores:[34,0,0,30], gross:[86,0,0,90], holeScores:[[5,6,4,5,5,5,4,5,5,7,5,3,4,4,6,5,4,4],[],[],[4,4,3,6,5,6,4,5,5,5,6,4,6,5,5,6,5,6]]},
-  {name:"Stefano Ruscitti", hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[8,9,9,9], scores:[34,39,33,37], gross:[82,78,84,80], holeScores:[[5,5,4,5,4,5,3,5,5,5,4,4,5,5,4,4,5,5],[3,4,4,5,6,5,4,4,5,5,4,2,6,4,3,4,5,5],[4,5,3,4,5,4,4,5,5,6,4,4,5,6,5,5,5,5],[4,4,5,6,5,6,4,4,4,5,4,3,5,4,4,5,4,4]]},
-  {name:"Alessandro Carnovale", hcp:7,  entryPaid:true,  entryDate:"Apr 27", weekHcp:[8,7,6,5], scores:[34,34,29,21], gross:[82,81,85,92], holeScores:[[4,5,4,5,5,5,4,5,4,5,4,3,7,4,4,4,5,5],[5,5,3,6,4,5,4,5,3,7,5,2,7,4,4,4,4,4],[6,5,4,6,3,5,4,4,4,5,4,4,6,4,6,4,6,5],[5,6,4,5,6,5,5,5,5,6,4,4,6,5,6,5,5,5]]},
-  {name:"Vikas Patel", hcp:7,  entryPaid:true,  entryDate:"Apr 22", weekHcp:[7,7,7,6], scores:[33,35,34,38], gross:[82,80,82,76], holeScores:[[4,6,4,5,4,6,3,4,4,6,5,3,5,4,5,5,4,5],[4,6,3,4,6,6,3,4,5,5,5,3,4,5,4,4,4,5],[4,5,6,4,4,6,3,4,5,5,4,4,4,5,5,4,5,5],[5,5,5,4,4,5,3,3,4,4,4,2,5,5,5,5,4,4]]},
-  {name:"Giovanni Guzzo", hcp:-1, entryPaid:true,  entryDate:"Apr 29", weekHcp:[-1,null,-1,-1], scores:[33,0,35,28], gross:[75,0,72,79], holeScores:[[5,4,3,4,4,7,2,4,3,5,4,3,5,4,6,4,4,4],[],[5,4,3,4,4,5,4,3,4,5,3,3,4,4,4,4,4,5],[4,4,3,5,5,5,4,5,4,5,5,3,4,5,5,4,4,5]]},
-  {name:"Brian Graham", hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[6,6,7,5], scores:[32,34,29,26], gross:[82,80,86,87], holeScores:[[4,5,3,5,5,5,5,4,4,7,4,3,5,4,5,4,5,5],[4,4,3,5,5,6,4,4,4,5,5,4,5,4,5,4,4,5],[5,5,3,6,4,5,4,4,4,6,5,3,7,4,5,5,6,5],[5,4,5,5,5,5,3,4,5,6,5,5,5,5,4,5,5,6]]},
-  {name:"Robert Lee", hcp:12, entryPaid:true,  entryDate:"Apr 26", weekHcp:[11,12,null,null], scores:[32,32,0,0], gross:[88,88,0,0], holeScores:[[4,5,2,5,4,6,4,5,5,5,6,6,5,6,5,6,5,4],[5,4,4,5,5,5,3,5,6,5,4,4,6,5,5,6,5,6],[],[]]},
-  {name:"Lindsay Brooks", hcp:8,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[7,8,9,8], scores:[32,34,36,34], gross:[83,82,81,82], holeScores:[[4,5,4,4,4,5,3,5,5,5,5,3,6,6,5,5,4,5],[6,4,4,5,4,5,3,5,5,5,4,4,6,5,4,4,5,4],[5,4,5,5,3,5,4,3,5,6,5,3,5,3,5,5,5,5],[4,4,3,5,6,6,3,6,4,6,4,4,6,4,4,4,5,4]]},
-  {name:"Mike Cordoba", hcp:12, entryPaid:true,  entryDate:"Apr 29", weekHcp:[12,null,null,12], scores:[32,0,0,33], gross:[88,0,0,87], holeScores:[[6,4,5,5,4,5,4,4,5,5,5,3,6,5,5,6,4,7],[],[],[5,5,4,6,4,6,4,4,3,5,4,5,6,4,5,5,6,6]]},
-  {name:"Russ Davidson", hcp:9,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[9,9,9,8], scores:[32,34,38,40], gross:[85,83,79,76], holeScores:[[5,5,3,5,4,6,4,4,4,6,4,4,7,6,4,6,4,4],[4,4,3,4,5,5,4,4,4,7,5,4,5,5,4,6,5,5],[5,5,2,4,5,5,5,5,4,5,4,4,5,5,4,4,4,4],[4,4,2,4,5,6,4,5,4,5,4,2,5,4,5,4,3,6]]},
-  {name:"Mark Halvorsen", hcp:10,  entryPaid:true,  entryDate:"Apr 25", weekHcp:[9,10,9,9], scores:[32,38,34,32], gross:[85,80,83,85], holeScores:[[5,5,3,4,5,8,4,5,5,4,5,3,7,5,3,5,5,4],[5,4,3,4,5,6,3,4,4,6,4,3,5,4,6,5,4,5],[5,4,4,5,5,5,3,4,5,5,4,4,5,5,6,6,4,4],[5,6,3,5,5,5,4,4,5,5,4,4,6,4,5,4,5,6]]},
-  {name:"Tom Kenny", hcp:-1, entryPaid:true,  entryDate:"Apr 29", weekHcp:[-1,-1,-1,-1], scores:[32,30,35,35], gross:[75,77,72,72], holeScores:[[4,4,3,4,4,5,4,4,4,4,4,3,5,4,6,5,4,4],[4,4,4,5,6,6,3,4,4,6,4,3,4,4,3,4,5,4],[5,4,3,4,4,6,2,4,3,4,4,3,5,6,3,4,3,5],[5,4,3,3,4,5,3,5,3,4,4,3,4,4,5,4,4,5]]},
-  {name:"Martin Cordeiro", hcp:10,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9,10,9,8], scores:[35,34,34,30], gross:[82,84,83,86], holeScores:[[5,3,4,4,5,6,4,5,4,5,5,4,5,4,5,4,5,5],[5,5,5,5,5,5,4,4,4,5,4,3,4,5,6,5,6,4],[5,6,5,4,5,5,4,4,6,5,4,4,5,4,4,5,4,4],[4,4,5,5,4,6,4,4,5,6,5,4,5,5,5,5,5,5]]},
-  {name:"Ken Atkinson", hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9,9,null,8], scores:[35,32,0,33], gross:[82,86,0,84], holeScores:[[6,4,3,5,4,6,3,5,4,5,4,4,5,5,4,5,5,5],[5,4,6,4,5,7,3,4,4,6,6,3,5,5,5,4,5,5],[],[4,3,6,4,3,5,3,5,5,6,5,4,6,4,5,5,5,6]]},
-  {name:"Enrique Quiroga", hcp:16, entryPaid:true,  entryDate:"Apr 29", weekHcp:[17,16,null,null], scores:[30,33,0,0], gross:[95,91,0,0], holeScores:[[6,6,4,5,6,7,4,5,5,7,4,5,6,5,5,5,5,5],[5,4,4,6,5,8,5,4,4,6,5,4,6,5,5,4,6,5],[],[]]},
-  {name:"Rick Ripoli", hcp:11, entryPaid:true,  entryDate:"Apr 29", weekHcp:[10,11,null,null], scores:[30,33,0,0], gross:[88,86,0,0], holeScores:[[5,5,3,5,6,6,3,5,4,6,5,4,6,5,5,5,5,5],[4,6,3,4,4,5,5,6,5,8,5,3,6,5,4,5,4,4],[],[]]},
-  {name:"Wayne Davidson", hcp:11, entryPaid:true,  entryDate:"Apr 29", weekHcp:[10,11,11,12], scores:[28,34,26,32], gross:[90,86,93,88], holeScores:[[6,5,4,4,4,6,3,7,5,5,5,4,5,6,4,5,6,6],[6,5,4,5,5,5,3,4,7,6,5,3,5,4,5,5,4,5],[5,4,5,5,5,7,3,7,4,6,5,5,6,6,5,6,4,5],[5,5,3,6,6,6,2,4,6,5,5,5,5,5,6,5,4,5]]},
-  {name:"Frank Bruno", hcp:17, entryPaid:true,  entryDate:"Apr 27", weekHcp:[16,17,16,16], scores:[28,34,32,30], gross:[96,91,92,94], holeScores:[[6,5,4,6,6,8,5,5,5,5,5,3,7,5,5,6,5,5],[5,4,4,5,4,6,3,5,5,7,6,4,6,6,6,6,4,5],[5,5,3,6,6,7,2,5,5,6,4,5,6,3,7,6,5,6],[5,5,5,5,4,7,4,5,5,5,4,5,7,6,6,6,5,5]]},
-  {name:"Karim Esmail", hcp:11, entryPaid:true,  entryDate:"Apr 24", weekHcp:[11,11,11,11], scores:[25,34,25,28], gross:[94,85,95,91], holeScores:[[5,5,5,5,7,5,5,4,6,6,6,4,6,6,4,4,6,5],[6,4,5,6,4,5,3,5,4,5,6,5,6,4,4,4,5,4],[5,6,5,5,4,6,4,4,6,7,5,4,6,7,4,5,6,6],[5,5,3,4,5,6,6,5,5,8,5,4,4,4,6,6,4,6]]},
-  {name:"David Akins", hcp:11, entryPaid:true,  entryDate:"Apr 22", weekHcp:[11,11,11,11], scores:[13,34,30,26], gross:[47,85,90,93], holeScores:[[5,4,3,6,5,7,4,7,5,8,0,0,0,0,0,0,0,0],[4,4,5,5,5,7,3,4,4,5,4,3,5,6,5,5,6,5],[5,5,5,5,5,6,4,4,3,5,5,6,6,5,5,5,5,6],[6,6,3,6,5,7,3,4,5,6,4,5,5,5,6,6,4,7]]},
-  {name:"Claude Nobauer", hcp:3,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[null,3,3,3], scores:[0,29,33,33], gross:[0,82,78,78], holeScores:[[],[4,4,5,5,5,5,4,4,4,6,4,3,7,4,5,5,4,4],[4,5,3,4,5,6,3,4,4,5,4,3,5,5,4,5,4,5],[4,4,3,5,5,5,4,4,4,4,5,4,5,4,4,5,4,5]]},
-  {name:"Lyle Pidzarko", hcp:16, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,16,null,15], scores:[0,30,0,25], gross:[0,94,0,98], holeScores:[[],[5,5,5,7,5,8,4,5,6,6,4,2,5,5,4,5,7,6],[],[4,6,3,6,7,6,5,5,5,7,6,4,7,4,6,5,6,6]]},
-  {name:"Mike Marino", hcp:4,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[4,4,4,4], scores:[34,31,33,32], gross:[78,81,79,80], holeScores:[[5,4,4,4,4,6,4,4,4,5,4,3,5,4,5,4,4,5],[5,4,3,5,5,6,4,5,5,5,4,3,4,6,4,5,4,4],[5,3,3,4,5,5,3,4,5,5,5,4,5,5,5,4,4,5],[5,4,3,5,4,6,3,4,4,6,4,4,6,4,5,3,5,5]]},
-  {name:"Peter Bogdanich", hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,null,6,6], scores:[0,0,33,39], gross:[0,0,81,75], holeScores:[[],[],[6,4,3,5,4,6,4,4,4,5,4,3,5,5,4,5,5,5],[4,4,3,4,5,6,3,6,3,5,4,3,5,4,5,3,3,5]]},
-  {name:"Navraj Kahlon", hcp:14, entryPaid:true,  entryDate:"Apr 24", weekHcp:[13,14,14,13], scores:[34,36,30,24], gross:[87,86,92,97], holeScores:[[4,7,4,4,6,6,5,4,4,5,4,4,6,4,4,5,5,6],[5,3,4,4,4,6,3,5,6,6,5,4,6,6,4,4,5,6],[6,4,4,5,5,7,2,6,5,6,7,3,5,4,6,5,7,5],[6,5,4,6,6,8,6,3,5,7,4,4,7,5,6,6,5,4]]},
-  {name:"Fady Hayek", hcp:14, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,14,13,12], scores:[0,30,33,31], gross:[0,92,88,90], holeScores:[[],[5,5,3,6,5,6,4,5,6,6,3,4,7,6,4,7,4,6],[5,6,5,4,4,7,3,5,5,5,4,3,7,6,4,6,5,4],[4,4,4,5,5,5,4,4,5,6,6,3,7,7,5,6,4,6]]},
-  {name:"Joe Guzzo", hcp:10, entryPaid:true,  entryDate:"Apr 28", weekHcp:[10,null,10,9], scores:[38,0,31,37], gross:[80,0,87,81], holeScores:[[4,4,3,4,4,5,5,6,4,5,4,5,7,4,4,4,4,4],[],[7,4,5,4,4,5,4,4,4,8,5,4,5,6,4,5,5,4],[4,5,3,4,4,5,6,4,4,5,5,3,5,6,5,4,5,4]]},
-  {name:"Ken Ghag", hcp:19, entryPaid:true,  entryDate:"Apr 28", weekHcp:[19,null,null,19], scores:[33,0,0,30], gross:[94,0,0,97], holeScores:[[5,4,4,7,5,6,4,5,5,6,5,3,7,6,6,5,5,6],[],[],[7,5,4,5,5,6,5,6,6,5,5,4,6,6,4,6,5,7]]},
-  {name:"Johnny Nardi", hcp:5,  entryPaid:true,  entryDate:"Apr 28", weekHcp:[5,5,5,5], scores:[36,31,35,32], gross:[77,82,78,81], holeScores:[[6,4,5,4,3,5,4,4,4,6,5,4,5,3,4,4,3,4],[5,4,5,4,4,5,5,3,4,5,4,3,6,5,5,4,5,6],[4,4,3,5,4,5,3,5,5,5,3,3,7,4,4,4,4,6],[5,5,3,4,4,6,3,4,5,4,6,3,5,3,6,6,5,4]]},
-  {name:"Stephen Nielsen", hcp:4,  entryPaid:true,  entryDate:"May 4",  weekHcp:[null,4,4,3], scores:[0,33,35,29], gross:[0,79,77,82], holeScores:[[],[4,5,3,4,5,5,4,3,4,5,3,3,5,5,6,6,4,5],[4,4,3,4,5,6,2,4,4,5,5,3,5,5,5,4,5,4],[5,4,3,4,5,5,4,4,6,6,5,3,6,4,5,4,5,4]]},
-  {name:"Tom Englmaier",       hcp:6, entryPaid:true,  entryDate:"May 5",  weekHcp:[null,6,5,5], scores:[0,37,29,24], gross:[0,77,84,89], holeScores:[[],[4,5,3,5,3,6,4,4,4,5,4,2,5,5,4,5,4,5],[4,4,4,5,4,5,4,5,5,5,6,3,5,5,6,5,4,5],[6,5,5,4,4,7,3,4,6,6,4,4,5,6,4,6,5,5]]},
-  {name:"Dave Terry", hcp:3,  entryPaid:true,  entryDate:"May 5",  weekHcp:[null,3,3,2], scores:[0,35,32,36], gross:[0,76,79,74], holeScores:[[],[4,4,4,4,5,5,4,4,5,5,4,4,5,4,4,4,4,3],[5,4,5,4,5,5,5,4,4,4,3,3,5,5,4,6,4,4],[3,4,5,4,4,6,3,4,4,4,3,3,5,4,4,5,4,5]]},
-  {name:"Kyle Ullinder", hcp:-1, entryPaid:true,  entryDate:"May 12", weekHcp:[null,null,-1,-1], scores:[0,0,39,30], gross:[0,0,68,77], holeScores:[[],[],[3,4,3,3,3,5,3,4,4,4,4,3,5,3,4,4,4,5],[4,5,3,5,4,5,3,5,4,6,4,3,5,4,4,4,4,5]]},
-  {name:"Ryan Shmyr",    hcp:17, entryPaid:true,  entryDate:"May 19", weekHcp:[null,null,null,17], scores:[0,0,0,38], gross:[0,0,0,87], holeScores:[[],[],[],[5,4,3,4,4,5,4,7,6,5,5,4,5,3,5,5,6,7]]},
+  {name:"Jim Hopkins", hcp:12, entryPaid:true,  entryDate:"Apr 26", weekHcp:[11,12,11,10,9], scores:[39,41,34,39,33], gross:[80,79,86,79,84], holeScores:[[4,4,3,6,5,5,4,4,4,5,3,4,5,4,5,5,5,5],[5,5,3,5,5,6,3,4,4,5,4,4,5,4,4,4,4,5],[5,4,4,4,5,5,4,4,4,6,6,4,5,7,5,5,4,5],[4,5,3,6,4,5,4,4,4,6,5,3,5,3,4,5,5,4],[5,4,4,5,5,6,4,5,4,5,4,5,6,5,5,4,4,4]]},
+  {name:"Mike Kirilenko", hcp:17, entryPaid:true,  entryDate:"Apr 27", weekHcp:[17,17,17,16,16], scores:[37,39,35,38,28], gross:[88,86,90,86,96], holeScores:[[5,5,4,4,4,7,4,6,6,6,4,4,5,4,4,5,5,6],[5,4,4,4,4,8,3,5,5,6,4,3,5,5,6,5,5,5],[6,6,3,6,4,6,4,4,4,6,5,3,8,4,5,6,5,5],[5,4,4,5,5,6,4,5,5,6,5,3,5,4,4,6,5,5],[5,5,4,6,6,6,3,4,4,5,7,5,8,5,6,6,6,5]]},
+  {name:"Edwin Margawang", hcp:10,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9,10,10,10,12], scores:[35,29,29,34,36], gross:[82,89,90,85,84], holeScores:[[4,5,3,3,5,6,3,5,4,5,4,5,6,6,4,4,5,5],[6,6,4,5,5,5,3,4,5,6,5,4,6,5,5,5,5,5],[5,4,6,6,5,5,3,4,5,7,5,4,6,5,5,5,5,5],[5,4,3,4,8,5,3,5,4,4,4,4,5,6,7,6,4,4],[5,6,5,5,4,5,4,4,3,5,4,3,6,4,5,6,5,5]]},
+  {name:"Michael Ohlmann", hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9,9,9,9,9], scores:[35,34,34,34,33], gross:[82,83,83,83,84], holeScores:[[4,5,3,6,4,5,3,4,5,5,5,3,5,6,4,4,5,6],[5,4,3,5,5,6,5,5,4,5,5,4,5,5,4,5,4,4],[4,4,5,4,6,5,3,4,6,6,4,4,6,4,3,6,4,5],[4,4,3,6,4,6,4,5,4,7,5,3,5,5,5,4,4,5],[5,5,3,6,6,6,4,4,4,6,5,4,4,5,4,5,4,4]]},
+  {name:"Dean Collier", hcp:8,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[7,8,8,7,7], scores:[35,29,36,36,26], gross:[80,87,80,79,89], holeScores:[[6,5,3,4,4,5,3,6,5,6,4,4,3,5,4,5,4,4],[4,5,3,4,5,5,3,5,5,7,4,4,6,5,5,6,5,6],[5,5,4,5,5,7,3,4,5,4,4,4,6,4,3,4,3,5],[4,4,3,4,4,6,5,4,4,5,5,3,5,6,4,5,4,4],[7,4,3,4,5,6,4,5,4,5,5,5,5,4,5,6,5,7]]},
+  {name:"Anthony Mauro", hcp:6,  entryPaid:true,  entryDate:"Apr 22", weekHcp:[5,6,6,null,5], scores:[35,29,33,0,35], gross:[78,85,81,0,78], holeScores:[[5,4,5,4,4,6,3,4,4,4,4,4,5,4,5,4,4,5],[4,5,5,4,5,5,3,4,4,7,4,4,6,6,4,4,5,6],[4,6,3,5,5,5,3,4,5,6,4,3,5,4,4,5,4,6],[],[5,6,5,4,4,4,3,4,3,5,4,3,5,4,4,5,5,5]]},
+  {name:"Paul Aucoin", hcp:8,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[7,8,9,9,null], scores:[35,27,31,37,0], gross:[80,89,86,80,0], holeScores:[[4,5,3,4,4,5,3,4,4,5,4,4,5,5,6,5,5,5],[4,4,4,5,5,7,4,5,4,7,4,4,4,5,7,5,5,6],[5,5,3,5,4,5,3,6,4,5,4,5,6,4,5,6,5,6],[7,5,3,4,6,5,4,3,5,4,4,5,5,2,3,4,5,6],[]]},
+  {name:"Vadym Lupulyak", hcp:12, entryPaid:true,  entryDate:"Apr 29", weekHcp:[12,null,null,12,12], scores:[34,0,0,30,28], gross:[86,0,0,90,92], holeScores:[[5,6,4,5,5,5,4,5,5,7,5,3,4,4,6,5,4,4],[],[],[4,4,3,6,5,6,4,5,5,5,6,4,6,5,5,6,5,6],[6,5,4,4,4,6,5,7,4,6,4,4,6,4,7,4,6,6]]},
+  {name:"Stefano Ruscitti", hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[8,9,9,9,8], scores:[34,39,33,37,38], gross:[82,78,84,80,78], holeScores:[[5,5,4,5,4,5,3,5,5,5,4,4,5,5,4,4,5,5],[3,4,4,5,6,5,4,4,5,5,4,2,6,4,3,4,5,5],[4,5,3,4,5,4,4,5,5,6,4,4,5,6,5,5,5,5],[4,4,5,6,5,6,4,4,4,5,4,3,5,4,4,5,4,4],[4,4,3,4,5,6,4,5,5,5,5,2,6,4,4,4,5,3]]},
+  {name:"Alessandro Carnovale", hcp:7,  entryPaid:true,  entryDate:"Apr 27", weekHcp:[8,7,6,5,6], scores:[34,34,29,21,32], gross:[82,81,85,92,85], holeScores:[[4,5,4,5,5,5,4,5,4,5,4,3,7,4,4,4,5,5],[5,5,3,6,4,5,4,5,3,7,5,2,7,4,4,4,4,4],[6,5,4,6,3,5,4,4,4,5,4,4,6,4,6,4,6,5],[5,6,4,5,6,5,5,5,5,6,4,4,6,5,6,5,5,5],[6,4,8,4,4,6,3,4,4,5,4,4,5,4,4,5,5,6]]},
+  {name:"Vikas Patel", hcp:7,  entryPaid:true,  entryDate:"Apr 22", weekHcp:[7,7,7,6,6], scores:[33,35,34,38,39], gross:[82,80,82,76,75], holeScores:[[4,6,4,5,4,6,3,4,4,6,5,3,5,4,5,5,4,5],[4,6,3,4,6,6,3,4,5,5,5,3,4,5,4,4,4,5],[4,5,6,4,4,6,3,4,5,5,4,4,4,5,5,4,5,5],[5,5,5,4,4,5,3,3,4,4,4,2,5,5,5,5,4,4],[3,4,3,4,4,6,4,4,5,5,5,4,5,3,4,4,4,4]]},
+  {name:"Giovanni Guzzo", hcp:-1, entryPaid:true,  entryDate:"Apr 29", weekHcp:[-1,null,-1,-1,-1], scores:[33,0,35,28,29], gross:[75,0,72,79,78], holeScores:[[5,4,3,4,4,7,2,4,3,5,4,3,5,4,6,4,4,4],[],[5,4,3,4,4,5,4,3,4,5,3,3,4,4,4,4,4,5],[4,4,3,5,5,5,4,5,4,5,5,3,4,5,5,4,4,5],[5,4,4,4,4,6,4,5,4,4,4,3,5,4,4,4,5,5]]},
+  {name:"Brian Graham", hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[6,6,7,5,5], scores:[32,34,29,26,32], gross:[82,80,86,87,81], holeScores:[[4,5,3,5,5,5,5,4,4,7,4,3,5,4,5,4,5,5],[4,4,3,5,5,6,4,4,4,5,5,4,5,4,5,4,4,5],[5,5,3,6,4,5,4,4,4,6,5,3,7,4,5,5,6,5],[5,4,5,5,5,5,3,4,5,6,5,5,5,5,4,5,5,6],[5,4,3,5,5,5,2,4,4,6,3,4,6,6,5,5,4,5]]},
+  {name:"Robert Lee", hcp:12, entryPaid:true,  entryDate:"Apr 26", weekHcp:[11,12,null,null,12], scores:[32,32,0,0,37], gross:[88,88,0,0,83], holeScores:[[4,5,2,5,4,6,4,5,5,5,6,6,5,6,5,6,5,4],[5,4,4,5,5,5,3,5,6,5,4,4,6,5,5,6,5,6],[],[],[5,5,3,4,5,6,5,5,5,5,4,3,5,5,3,5,5,5]]},
+  {name:"Lindsay Brooks", hcp:8,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[7,8,9,8,8], scores:[32,34,36,34,32], gross:[83,82,81,82,84], holeScores:[[4,5,4,4,4,5,3,5,5,5,5,3,6,6,5,5,4,5],[6,4,4,5,4,5,3,5,5,5,4,4,6,5,4,4,5,4],[5,4,5,5,3,5,4,3,5,6,5,3,5,3,5,5,5,5],[4,4,3,5,6,6,3,6,4,6,4,4,6,4,4,4,5,4],[4,6,5,4,4,5,3,6,5,5,4,4,6,4,5,5,4,5]]},
+  {name:"Mike Cordoba", hcp:12, entryPaid:true,  entryDate:"Apr 29", weekHcp:[12,null,null,12,11], scores:[32,0,0,33,29], gross:[88,0,0,87,90], holeScores:[[6,4,5,5,4,5,4,4,5,5,5,3,6,5,5,6,4,7],[],[],[5,5,4,6,4,6,4,4,3,5,4,5,6,4,5,5,6,6],[6,6,4,5,5,6,5,5,4,6,4,4,6,5,4,5,5,5]]},
+  {name:"Russ Davidson", hcp:9,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[9,9,9,8,7], scores:[32,34,38,40,32], gross:[85,83,79,76,83], holeScores:[[5,5,3,5,4,6,4,4,4,6,4,4,7,6,4,6,4,4],[4,4,3,4,5,5,4,4,4,7,5,4,5,5,4,6,5,5],[5,5,2,4,5,5,5,5,4,5,4,4,5,5,4,4,4,4],[4,4,2,4,5,6,4,5,4,5,4,2,5,4,5,4,3,6],[6,4,5,4,5,5,4,5,4,7,5,4,3,4,4,4,5,5]]},
+  {name:"Mark Halvorsen", hcp:10,  entryPaid:true,  entryDate:"Apr 25", weekHcp:[9,10,9,9,10], scores:[32,38,34,32,35], gross:[85,80,83,85,83], holeScores:[[5,5,3,4,5,8,4,5,5,4,5,3,7,5,3,5,5,4],[5,4,3,4,5,6,3,4,4,6,4,3,5,4,6,5,4,5],[5,4,4,5,5,5,3,4,5,5,4,4,5,5,6,6,4,4],[5,6,3,5,5,5,4,4,5,5,4,4,6,4,5,4,5,6],[4,5,3,5,4,5,4,4,5,5,4,4,7,5,4,5,4,6]]},
+  {name:"Tom Kenny", hcp:-1, entryPaid:true,  entryDate:"Apr 29", weekHcp:[-1,-1,-1,-1,null], scores:[32,30,35,35,0], gross:[75,77,72,72,0], holeScores:[[4,4,3,4,4,5,4,4,4,4,4,3,5,4,6,5,4,4],[4,4,4,5,6,6,3,4,4,6,4,3,4,4,3,4,5,4],[5,4,3,4,4,6,2,4,3,4,4,3,5,6,3,4,3,5],[5,4,3,3,4,5,3,5,3,4,4,3,4,4,5,4,4,5],[]]},
+  {name:"Martin Cordeiro", hcp:10,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9,10,9,8,8], scores:[35,34,34,30,36], gross:[82,84,83,86,80], holeScores:[[5,3,4,4,5,6,4,5,4,5,5,4,5,4,5,4,5,5],[5,5,5,5,5,5,4,4,4,5,4,3,4,5,6,5,6,4],[5,6,5,4,5,5,4,4,6,5,4,4,5,4,4,5,4,4],[4,4,5,5,4,6,4,4,5,6,5,4,5,5,5,5,5,5],[4,5,3,4,5,5,3,4,4,6,5,2,7,4,4,5,5,5]]},
+  {name:"Ken Atkinson", hcp:9,  entryPaid:true,  entryDate:"Apr 29", weekHcp:[9,9,null,8,8], scores:[35,32,0,33,28], gross:[82,86,0,84,88], holeScores:[[6,4,3,5,4,6,3,5,4,5,4,4,5,5,4,5,5,5],[5,4,6,4,5,7,3,4,4,6,6,3,5,5,5,4,5,5],[],[4,3,6,4,3,5,3,5,5,6,5,4,6,4,5,5,5,6],[5,5,5,4,5,6,3,4,4,7,5,4,6,6,5,5,4,5]]},
+  {name:"Enrique Quiroga", hcp:16, entryPaid:true,  entryDate:"Apr 29", weekHcp:[17,16,null,null,15], scores:[30,33,0,0,34], gross:[95,91,0,0,89], holeScores:[[6,6,4,5,6,7,4,5,5,7,4,5,6,5,5,5,5,5],[5,4,4,6,5,8,5,4,4,6,5,4,6,5,5,4,6,5],[],[],[4,6,3,4,4,6,5,5,4,8,5,4,4,5,5,5,6,6]]},
+  {name:"Rick Ripoli", hcp:11, entryPaid:true,  entryDate:"Apr 29", weekHcp:[10,11,null,null,null], scores:[30,33,0,0,0], gross:[88,86,0,0,0], holeScores:[[5,5,3,5,6,6,3,5,4,6,5,4,6,5,5,5,5,5],[4,6,3,4,4,5,5,6,5,8,5,3,6,5,4,5,4,4],[],[],[]]},
+  {name:"Wayne Davidson", hcp:11, entryPaid:true,  entryDate:"Apr 29", weekHcp:[10,11,11,12,null], scores:[28,34,26,32,0], gross:[90,86,93,88,0], holeScores:[[6,5,4,4,4,6,3,7,5,5,5,4,5,6,4,5,6,6],[6,5,4,5,5,5,3,4,7,6,5,3,5,4,5,5,4,5],[5,4,5,5,5,7,3,7,4,6,5,5,6,6,5,6,4,5],[5,5,3,6,6,6,2,4,6,5,5,5,5,5,6,5,4,5],[]]},
+  {name:"Frank Bruno", hcp:17, entryPaid:true,  entryDate:"Apr 27", weekHcp:[16,17,16,16,16], scores:[28,34,32,30,31], gross:[96,91,92,94,93], holeScores:[[6,5,4,6,6,8,5,5,5,5,5,3,7,5,5,6,5,5],[5,4,4,5,4,6,3,5,5,7,6,4,6,6,6,6,4,5],[5,5,3,6,6,7,2,5,5,6,4,5,6,3,7,6,5,6],[5,5,5,5,4,7,4,5,5,5,4,5,7,6,6,6,5,5],[5,5,5,6,6,7,3,5,4,6,4,5,7,4,6,5,5,5]]},
+  {name:"Karim Esmail", hcp:11, entryPaid:true,  entryDate:"Apr 24", weekHcp:[11,11,11,11,11], scores:[25,34,25,28,31], gross:[94,85,95,91,88], holeScores:[[5,5,5,5,7,5,5,4,6,6,6,4,6,6,4,4,6,5],[6,4,5,6,4,5,3,5,4,5,6,5,6,4,4,4,5,4],[5,6,5,5,4,6,4,4,6,7,5,4,6,7,4,5,6,6],[5,5,3,4,5,6,6,5,5,8,5,4,4,4,6,6,4,6],[4,5,3,3,4,6,5,5,5,7,5,4,7,4,6,5,5,5]]},
+  {name:"David Akins", hcp:11, entryPaid:true,  entryDate:"Apr 22", weekHcp:[11,11,11,11,11], scores:[13,34,30,26,37], gross:[47,85,90,93,82], holeScores:[[5,4,3,6,5,7,4,7,5,8,0,0,0,0,0,0,0,0],[4,4,5,5,5,7,3,4,4,5,4,3,5,6,5,5,6,5],[5,5,5,5,5,6,4,4,3,5,5,6,6,5,5,5,5,6],[6,6,3,6,5,7,3,4,5,6,4,5,5,5,6,6,4,7],[4,4,3,6,5,8,5,4,4,4,5,4,5,4,4,3,5,5]]},
+  {name:"Claude Nobauer", hcp:3,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[null,3,3,3,null], scores:[0,29,33,33,0], gross:[0,82,78,78,0], holeScores:[[],[4,4,5,5,5,5,4,4,4,6,4,3,7,4,5,5,4,4],[4,5,3,4,5,6,3,4,4,5,4,3,5,5,4,5,4,5],[4,4,3,5,5,5,4,4,4,4,5,4,5,4,4,5,4,5],[]]},
+  {name:"Lyle Pidzarko", hcp:16, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,16,null,15,null], scores:[0,30,0,25,0], gross:[0,94,0,98,0], holeScores:[[],[5,5,5,7,5,8,4,5,6,6,4,2,5,5,4,5,7,6],[],[4,6,3,6,7,6,5,5,5,7,6,4,7,4,6,5,6,6],[]]},
+  {name:"Mike Marino", hcp:4,  entryPaid:true,  entryDate:"Apr 24", weekHcp:[4,4,4,4,4], scores:[34,31,33,32,31], gross:[78,81,79,80,81], holeScores:[[5,4,4,4,4,6,4,4,4,5,4,3,5,4,5,4,4,5],[5,4,3,5,5,6,4,5,5,5,4,3,4,6,4,5,4,4],[5,3,3,4,5,5,3,4,5,5,5,4,5,5,5,4,4,5],[5,4,3,5,4,6,3,4,4,6,4,4,6,4,5,3,5,5],[5,4,3,5,4,5,4,4,5,7,4,5,4,4,4,4,5,5]]},
+  {name:"Peter Bogdanich", hcp:6,  entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,null,6,6,6], scores:[0,0,33,39,30], gross:[0,0,81,75,84], holeScores:[[],[],[6,4,3,5,4,6,4,4,4,5,4,3,5,5,4,5,5,5],[4,4,3,4,5,6,3,6,3,5,4,3,5,4,5,3,3,5],[5,4,3,5,4,6,3,5,4,5,5,3,5,5,5,6,5,6]]},
+  {name:"Navraj Kahlon", hcp:14, entryPaid:true,  entryDate:"Apr 24", weekHcp:[13,14,14,13,null], scores:[34,36,30,24,0], gross:[87,86,92,97,0], holeScores:[[4,7,4,4,6,6,5,4,4,5,4,4,6,4,4,5,5,6],[5,3,4,4,4,6,3,5,6,6,5,4,6,6,4,4,5,6],[6,4,4,5,5,7,2,6,5,6,7,3,5,4,6,5,7,5],[6,5,4,6,6,8,6,3,5,7,4,4,7,5,6,6,5,4],[]]},
+  {name:"Fady Hayek", hcp:14, entryPaid:true,  entryDate:"Apr 26", weekHcp:[null,14,13,12,13], scores:[0,30,33,31,40], gross:[0,92,88,90,81], holeScores:[[],[5,5,3,6,5,6,4,5,6,6,3,4,7,6,4,7,4,6],[5,6,5,4,4,7,3,5,5,5,4,3,7,6,4,6,5,4],[4,4,4,5,5,5,4,4,5,6,6,3,7,7,5,6,4,6],[6,6,3,4,4,5,3,4,5,5,5,3,6,4,4,4,5,5]]},
+  {name:"Joe Guzzo", hcp:10, entryPaid:true,  entryDate:"Apr 28", weekHcp:[10,null,10,9,8], scores:[38,0,31,37,34], gross:[80,0,87,81,82], holeScores:[[4,4,3,4,4,5,5,6,4,5,4,5,7,4,4,4,4,4],[],[7,4,5,4,4,5,4,4,4,8,5,4,5,6,4,5,5,4],[4,5,3,4,4,5,6,4,4,5,5,3,5,6,5,4,5,4],[4,4,4,4,4,5,3,4,5,6,5,4,6,5,4,4,5,6]]},
+  {name:"Ken Ghag", hcp:19, entryPaid:true,  entryDate:"Apr 28", weekHcp:[19,null,null,19,19], scores:[33,0,0,30,34], gross:[94,0,0,97,93], holeScores:[[5,4,4,7,5,6,4,5,5,6,5,3,7,6,6,5,5,6],[],[],[7,5,4,5,5,6,5,6,6,5,5,4,6,6,4,6,5,7],[5,5,5,6,6,6,4,7,5,5,5,4,5,4,5,5,6,5]]},
+  {name:"Johnny Nardi", hcp:5,  entryPaid:true,  entryDate:"Apr 28", weekHcp:[5,5,5,5,5], scores:[36,31,35,32,31], gross:[77,82,78,81,82], holeScores:[[6,4,5,4,3,5,4,4,4,6,5,4,5,3,4,4,3,4],[5,4,5,4,4,5,5,3,4,5,4,3,6,5,5,4,5,6],[4,4,3,5,4,5,3,5,5,5,3,3,7,4,4,4,4,6],[5,5,3,4,4,6,3,4,5,4,6,3,5,3,6,6,5,4],[5,5,3,4,4,5,4,5,4,5,6,4,5,3,5,5,4,6]]},
+  {name:"Stephen Nielsen", hcp:4,  entryPaid:true,  entryDate:"May 4",  weekHcp:[null,4,4,3,null], scores:[0,33,35,29,0], gross:[0,79,77,82,0], holeScores:[[],[4,5,3,4,5,5,4,3,4,5,3,3,5,5,6,6,4,5],[4,4,3,4,5,6,2,4,4,5,5,3,5,5,5,4,5,4],[5,4,3,4,5,5,4,4,6,6,5,3,6,4,5,4,5,4],[]]},
+  {name:"Tom Englmaier",       hcp:6, entryPaid:true,  entryDate:"May 5",  weekHcp:[null,6,5,5,5], scores:[0,37,29,24,32], gross:[0,77,84,89,81], holeScores:[[],[4,5,3,5,3,6,4,4,4,5,4,2,5,5,4,5,4,5],[4,4,4,5,4,5,4,5,5,5,6,3,5,5,6,5,4,5],[6,5,5,4,4,7,3,4,6,6,4,4,5,6,4,6,5,5],[4,5,4,4,5,4,3,3,4,4,6,3,6,6,5,6,4,5]]},
+  {name:"Dave Terry", hcp:3,  entryPaid:true,  entryDate:"May 5",  weekHcp:[null,3,3,2,2], scores:[0,35,32,36,35], gross:[0,76,79,74,75], holeScores:[[],[4,4,4,4,5,5,4,4,5,5,4,4,5,4,4,4,4,3],[5,4,5,4,5,5,5,4,4,4,3,3,5,5,4,6,4,4],[3,4,5,4,4,6,3,4,4,4,3,3,5,4,4,5,4,5],[5,3,3,4,5,5,3,4,4,4,5,3,4,4,4,5,4,6]]},
+  {name:"Kyle Ullinder", hcp:-1, entryPaid:true,  entryDate:"May 12", weekHcp:[null,null,-1,-1,-1], scores:[0,0,39,30,31], gross:[0,0,68,77,76], holeScores:[[],[],[3,4,3,3,3,5,3,4,4,4,4,3,5,3,4,4,4,5],[4,5,3,5,4,5,3,5,4,6,4,3,5,4,4,4,4,5],[5,4,3,5,4,5,3,5,4,5,4,3,4,4,5,4,5,4]]},
+  {name:"Ryan Shmyr",    hcp:17, entryPaid:true,  entryDate:"May 19", weekHcp:[null,null,null,17,17], scores:[0,0,0,38,27], gross:[0,0,0,87,98], holeScores:[[],[],[],[5,4,3,4,4,5,4,7,6,5,5,4,5,3,5,5,6,7],[7,5,5,6,6,6,4,6,5,6,6,5,5,6,5,6,4,5]]},
 ];
 
 // Previous week rankings — Week 4 (May 20) final standings
@@ -1819,7 +1819,7 @@ const prevRankings = {
 // Gallery photos — add objects {src, caption} to populate gallery
 const galleryPhotos = [];
 
-const roundDates = ["Apr 29", "May 6", "May 13", "May 20"];
+const roundDates = ["Apr 29", "May 6", "May 13", "May 20", "May 27"];
 const BEST_N = 10;
 const TOTAL_ROUNDS = 18;
 
@@ -1863,6 +1863,12 @@ function eligibleScores(p) {
 }
 
 function formatHcp(h) { return h < 0 ? "+"+Math.abs(h) : String(h); }
+function currentHcp(p) {
+  for (let i = p.weekHcp.length - 1; i >= 0; i--) {
+    if (p.weekHcp[i] !== null && p.weekHcp[i] !== undefined) return p.weekHcp[i];
+  }
+  return p.hcp;
+}
 
 function best10(p) {
   const eligible = eligibleScores(p).filter(s => s > 0);
@@ -2021,7 +2027,7 @@ function renderStandingsBody() {
     let av, bv;
     const col = standingsSortCol;
     if (col === 'player')     { av = a.p.name; bv = b.p.name; }
-    else if (col === 'hcp')   { av = a.p.hcp;  bv = b.p.hcp; }
+    else if (col === 'hcp')   { av = currentHcp(a.p);  bv = currentHcp(b.p); }
     else if (col === 'best10') { av = a.best10;  bv = b.best10; }
     else if (col === 'avgRnd') { av = a.avgRnd;  bv = b.avgRnd; }
     else if (col === 'rounds') { av = a.rounds;  bv = b.rounds; }
@@ -2066,7 +2072,7 @@ function renderStandingsBody() {
     return `<tr>
       <td class="rank-col" style="padding-left:1.5rem">${p.entryPaid ? rankMap[p.name] : '—'}</td>
       <td><div class="player-cell">${avatarHtml(p.name)}<span class="player-link" onclick="openModal('${p.name}')">${p.name}</span>${move}${enteredBadge}</div></td>
-      <td style="color:rgba(245,240,232,0.5);font-family:'Montserrat',sans-serif;font-size:0.8rem">${formatHcp(p.hcp)}</td>
+      <td style="color:rgba(245,240,232,0.5);font-family:'Montserrat',sans-serif;font-size:0.8rem">${formatHcp(currentHcp(p))}</td>
       ${scoreCells}
       <td class="total-col">${b10 > 0 ? b10 : '—'}</td>
       <td class="total-col">${avgRnd > 0 ? avgRnd.toFixed(1) : '—'}</td>
@@ -2095,7 +2101,7 @@ function renderWeekly() {
   let data = players.map(p => ({
     p,
     name: p.name,
-    hcp: p.hcp,
+    hcp: p.weekHcp[roundIdx] ?? p.hcp,
     pts: p.scores[roundIdx] || 0,
     gross: p.gross[roundIdx] || 0,
   }));
@@ -2133,13 +2139,13 @@ function renderWeekly() {
   });
   data.filter(d => d.gross === 0).forEach(d => d.rankDisplay = '—');
 
-  tbody.innerHTML = data.map(({p, pts, gross, rankDisplay}) => {
-    const netDisplay = gross > 0 ? (gross - p.hcp) : '—';
+  tbody.innerHTML = data.map(({p, hcp, pts, gross, rankDisplay}) => {
+    const netDisplay = gross > 0 ? (gross - hcp) : '—';
     const grossDisplay = gross > 0 ? gross : '—';
     return `<tr>
       <td class="rank-col">${rankDisplay}</td>
       <td><div class="player-cell">${avatarHtml(p.name)}<span class="player-link" onclick="openModal('${p.name}')">${p.name}</span></div></td>
-      <td style="color:rgba(245,240,232,0.5);font-family:'Montserrat',sans-serif;font-size:0.8rem">${formatHcp(p.hcp)}</td>
+      <td style="color:rgba(245,240,232,0.5);font-family:'Montserrat',sans-serif;font-size:0.8rem">${formatHcp(hcp)}</td>
       <td class="score-cell">${grossDisplay}</td>
       <td class="score-cell">${netDisplay}</td>
       <td class="total-col">${pts > 0 ? pts : '—'}</td>
@@ -2311,7 +2317,7 @@ function renderModalRounds(p) {
   let items = roundDates.map((date, i) => {
     const pts = p.scores[i] || 0;
     const gross = p.gross[i] || 0;
-    const net = gross > 0 ? gross - p.hcp : null;
+    const net = gross > 0 ? gross - (p.weekHcp[i] ?? p.hcp) : null;
     let isCounting = false;
     if (pts > 0) {
       const idx = countingScores.indexOf(pts);
@@ -2378,7 +2384,7 @@ function openModal(playerName) {
 
   document.getElementById('modalPhotoEl').innerHTML = avatarHtml(p.name, 'lg');
   document.getElementById('modalName').textContent = p.name;
-  document.getElementById('modalHcp').textContent = `Current Handicap: ${formatHcp(p.hcp)}`;
+  document.getElementById('modalHcp').textContent = `Current Handicap: ${formatHcp(currentHcp(p))}`;
   document.getElementById('modalBest10').textContent = b10;
   document.getElementById('modalBest').textContent = bestRound || '—';
   document.getElementById('modalAvg').textContent = avg;
@@ -2394,15 +2400,16 @@ function openScorecard(playerName, roundIndex) {
   if (!p || !p.holeScores || !p.holeScores[roundIndex]) return;
   const holes = p.holeScores[roundIndex];
   const date = roundDates[roundIndex];
+  const rndHcp = p.weekHcp[roundIndex] ?? p.hcp;
 
   document.getElementById('scTitle').textContent = `${p.name} — ${date}`;
-  document.getElementById('scSubtitle').textContent = `Course HCP: ${formatHcp(p.hcp)}  ·  Gross: ${p.gross[roundIndex]}  ·  Stableford: ${p.scores[roundIndex]}`;
+  document.getElementById('scSubtitle').textContent = `Course HCP: ${formatHcp(rndHcp)}  ·  Gross: ${p.gross[roundIndex]}  ·  Stableford: ${p.scores[roundIndex]}`;
 
   function holeCell(idx) {
     const gross = holes[idx];
     const par = PAR[idx];
     const si = HOLE_INDEX[idx];
-    const strokes = strokesOnHole(p.hcp, si);
+    const strokes = strokesOnHole(rndHcp, si);
     const diff = gross - par;
     let symClass = '';
     if (diff <= -2) symClass = 'sym-eagle';
@@ -2420,8 +2427,8 @@ function openScorecard(playerName, roundIndex) {
   const bGross = back.reduce((s,i)=>s+holes[i],0);
   const fPar   = front.reduce((s,i)=>s+PAR[i],0);
   const bPar   = back.reduce((s,i)=>s+PAR[i],0);
-  const fPts   = front.reduce((s,i)=>s+stablefordPts(holes[i],PAR[i],strokesOnHole(p.hcp,HOLE_INDEX[i])),0);
-  const bPts   = back.reduce((s,i)=>s+stablefordPts(holes[i],PAR[i],strokesOnHole(p.hcp,HOLE_INDEX[i])),0);
+  const fPts   = front.reduce((s,i)=>s+stablefordPts(holes[i],PAR[i],strokesOnHole(rndHcp,HOLE_INDEX[i])),0);
+  const bPts   = back.reduce((s,i)=>s+stablefordPts(holes[i],PAR[i],strokesOnHole(rndHcp,HOLE_INDEX[i])),0);
 
   document.getElementById('scTableWrapper').innerHTML = `
   <table class="scorecard-table">
@@ -2443,16 +2450,16 @@ function openScorecard(playerName, roundIndex) {
       ${back.map(i=>holeCell(i)).join('')}
       <td class="sc-total">${bGross}</td><td class="sc-total">${fGross+bGross}</td></tr>
       <tr><td class="sc-label">Pts</td>
-      ${front.map(i=>`<td class="sc-label">${stablefordPts(holes[i],PAR[i],strokesOnHole(p.hcp,HOLE_INDEX[i]))}</td>`).join('')}
+      ${front.map(i=>`<td class="sc-label">${stablefordPts(holes[i],PAR[i],strokesOnHole(rndHcp,HOLE_INDEX[i]))}</td>`).join('')}
       <td class="sc-label sc-total">${fPts}</td>
-      ${back.map(i=>`<td class="sc-label">${stablefordPts(holes[i],PAR[i],strokesOnHole(p.hcp,HOLE_INDEX[i]))}</td>`).join('')}
+      ${back.map(i=>`<td class="sc-label">${stablefordPts(holes[i],PAR[i],strokesOnHole(rndHcp,HOLE_INDEX[i]))}</td>`).join('')}
       <td class="sc-label sc-total">${bPts}</td><td class="sc-label sc-total">${fPts+bPts}</td></tr>
     </tbody>
   </table>`;
 
   document.getElementById('scSummary').innerHTML = `
     <div class="sc-sum-item"><div class="sc-sum-value">${p.gross[roundIndex]}</div><div class="sc-sum-label">Gross</div></div>
-    <div class="sc-sum-item"><div class="sc-sum-value">${p.gross[roundIndex]-p.hcp}</div><div class="sc-sum-label">Net</div></div>
+    <div class="sc-sum-item"><div class="sc-sum-value">${p.gross[roundIndex]-rndHcp}</div><div class="sc-sum-label">Net</div></div>
     <div class="sc-sum-item"><div class="sc-sum-value">${fPts}</div><div class="sc-sum-label">Front 9 Pts</div></div>
     <div class="sc-sum-item"><div class="sc-sum-value">${bPts}</div><div class="sc-sum-label">Back 9 Pts</div></div>`;
 
