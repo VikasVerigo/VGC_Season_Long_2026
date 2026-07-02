@@ -1799,7 +1799,7 @@
         </div>
         <div class="modal-stat">
           <div class="modal-stat-value" id="modalAvg"></div>
-          <div class="modal-stat-label">Avg (played)</div>
+          <div class="modal-stat-label">Avg/Rnd (best 10)</div>
         </div>
         <div class="modal-stat">
           <div class="modal-stat-value" id="modalRounds"></div>
@@ -2133,8 +2133,8 @@ function renderStandingsBody() {
   // Sort players
   const data = [...players].map(p => {
     const totalPlayed = p.scores.filter(s=>s>0).length;
-    const totalPts    = p.scores.reduce((sum,s)=>sum+s, 0);
-    return { p, best10: best10(p), rounds: eligibleScores(p).filter(s=>s>0).length, totalPlayed, avgRnd: totalPlayed > 0 ? totalPts / totalPlayed : 0 };
+    const b10 = best10(p);
+    return { p, best10: b10, rounds: eligibleScores(p).filter(s=>s>0).length, totalPlayed, avgRnd: totalPlayed > 0 ? b10 / Math.min(totalPlayed, BEST_N) : 0 };
   });
   data.sort((a, b) => {
     let av, bv;
@@ -2499,7 +2499,7 @@ function openModal(playerName) {
   const playedScores = p.scores.filter(s => s > 0);
   const b10 = best10(p);
   const bestRound = playedScores.length ? Math.max(...playedScores) : 0;
-  const avg = playedScores.length ? (playedScores.reduce((a,b)=>a+b,0)/playedScores.length).toFixed(1) : '—';
+  const avg = playedScores.length ? (b10 / Math.min(playedScores.length, BEST_N)).toFixed(1) : '—';
 
   document.getElementById('modalPhotoEl').innerHTML = avatarHtml(p.name, 'lg');
   document.getElementById('modalName').textContent = p.name;
