@@ -51,10 +51,11 @@
        split equally among the tied players.
        Countback only kicks in once a player has rounds beyond their counting 10.
 
-  7. PAYOUT STRUCTURE (top 10 paid)
-       Total pool = (entries) × $100. With 41 entries: $4,100.
-         1: $950   2: $775   3: $625   4: $500   5: $375
-         6: $275   7: $225   8: $150   9: $125  10: $100
+  7. PAYOUT STRUCTURE (top 15 paid)
+       Total pool = (entries) × $100. With 42 entries: $4,200.
+         1: $650   2: $600   3: $550   4: $450   5: $300
+         6: $250   7: $250   8: $200   9: $200  10: $150
+        11: $150  12: $150  13: $100  14: $100  15: $100
 
   8. PLAYER PHOTOS
        Stored as base64 data URIs in playerPhotos object.
@@ -1960,16 +1961,21 @@ const TOTAL_ROUNDS = 18;
 // ── PRIZE POOL ──
 const TOTAL_PRIZE_POOL = 4200;
 const payoutStructure = [
-  {place:1,  amount:  975},
-  {place:2,  amount:  800},
-  {place:3,  amount:  650},
-  {place:4,  amount:  525},
-  {place:5,  amount:  375},
-  {place:6,  amount:  275},
-  {place:7,  amount:  225},
-  {place:8,  amount:  150},
-  {place:9,  amount:  125},
-  {place:10, amount:  100},
+  {place:1,  amount:  650},
+  {place:2,  amount:  600},
+  {place:3,  amount:  550},
+  {place:4,  amount:  450},
+  {place:5,  amount:  300},
+  {place:6,  amount:  250},
+  {place:7,  amount:  250},
+  {place:8,  amount:  200},
+  {place:9,  amount:  200},
+  {place:10, amount:  150},
+  {place:11, amount:  150},
+  {place:12, amount:  150},
+  {place:13, amount:  100},
+  {place:14, amount:  100},
+  {place:15, amount:  100},
 ];
 
 // ── COURSE DATA (VGC) ──
