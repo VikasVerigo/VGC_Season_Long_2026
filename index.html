@@ -1496,8 +1496,112 @@
 
 
 </style>
+
+<style id="splash-styles">
+#edwin-splash {
+  position:fixed; top:0; left:0; width:100%; height:100%; z-index:99999;
+  background: radial-gradient(ellipse at center, #1a0030 0%, #0a0018 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  overflow:hidden; font-family:'Arial Black',sans-serif;
+  transition: opacity 0.8s ease;
+}
+#edwin-splash .sp-disco-string{width:2px;height:50px;background:#888;position:fixed;top:0;left:50%;transform:translateX(-50%);z-index:10;}
+#edwin-splash .sp-disco-ball{width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff 0%,#c0c0c0 30%,#606060 70%,#303030 100%);position:fixed;top:50px;left:50%;transform:translateX(-50%);z-index:10;animation:sp-discoPulse 2s linear infinite;}
+#edwin-splash .sp-disco-ball::before{content:'';position:absolute;inset:0;border-radius:50%;background:repeating-linear-gradient(0deg,transparent,transparent 6px,rgba(255,255,255,0.18) 6px,rgba(255,255,255,0.18) 7px),repeating-linear-gradient(90deg,transparent,transparent 6px,rgba(255,255,255,0.18) 6px,rgba(255,255,255,0.18) 7px);}
+@keyframes sp-discoPulse{0%{box-shadow:0 0 30px rgba(255,100,255,0.8),20px 15px 20px rgba(100,200,255,0.5);}25%{box-shadow:0 0 30px rgba(100,200,255,0.8),-20px 15px 20px rgba(255,220,0,0.5);}50%{box-shadow:0 0 30px rgba(255,220,0,0.8),15px -10px 20px rgba(100,255,100,0.5);}75%{box-shadow:0 0 30px rgba(100,255,100,0.8),-15px -10px 20px rgba(255,100,255,0.5);}to{box-shadow:0 0 30px rgba(255,100,255,0.8),20px 15px 20px rgba(100,200,255,0.5);}}
+#edwin-splash .sp-spotlight,.sp-spotlight2{position:fixed;height:100vh;top:0;transform-origin:top center;pointer-events:none;z-index:1;}
+#edwin-splash .sp-spotlight{width:200px;left:25%;background:linear-gradient(to bottom,rgba(255,255,100,0.07),transparent);animation:sp-sw1 4s ease-in-out infinite;}
+#edwin-splash .sp-spotlight2{width:150px;left:60%;background:linear-gradient(to bottom,rgba(100,200,255,0.07),transparent);animation:sp-sw2 3.5s ease-in-out infinite;}
+@keyframes sp-sw1{0%,100%{transform:rotate(-20deg);}50%{transform:rotate(20deg);}}
+@keyframes sp-sw2{0%,100%{transform:rotate(15deg);}50%{transform:rotate(-25deg);}}
+#edwin-splash .sp-title{color:#FFD700;font-size:clamp(20px,5vw,40px);text-align:center;text-shadow:0 0 20px rgba(255,215,0,0.9);margin-bottom:8px;position:relative;z-index:5;letter-spacing:2px;animation:sp-titlePulse 1.5s ease-in-out infinite alternate;}
+@keyframes sp-titlePulse{from{transform:scale(1);}to{transform:scale(1.04);text-shadow:0 0 50px rgba(255,215,0,1);}}
+#edwin-splash .sp-subtitle{font-size:14px;text-align:center;letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;position:relative;z-index:5;animation:sp-colorCycle 3s linear infinite;}
+@keyframes sp-colorCycle{0%{color:#ff80ff;}33%{color:#80ffff;}66%{color:#ffff80;}100%{color:#ff80ff;}}
+#edwin-splash .sp-dancer-wrap{position:relative;z-index:5;display:flex;flex-direction:column;align-items:center;}
+#edwin-splash .sp-dancer{animation:sp-dance 0.55s ease-in-out infinite alternate;position:relative;}
+@keyframes sp-dance{0%{transform:translateY(0) rotate(-5deg) scaleX(0.97);}25%{transform:translateY(-20px) rotate(0deg) scaleX(1);}75%{transform:translateY(-24px) rotate(0deg) scaleX(1);}100%{transform:translateY(-4px) rotate(5deg) scaleX(0.97);}}
+#edwin-splash .sp-photo-circle{width:300px;height:300px;border-radius:50%;object-fit:contain;background:#0a0018;object-position:center center;border:5px solid #FFD700;display:block;animation:sp-photoBorder 2s linear infinite;}
+@keyframes sp-photoBorder{0%{box-shadow:0 0 0 8px rgba(255,215,0,0.25),0 0 50px rgba(255,215,0,0.7),0 0 90px rgba(255,100,255,0.3);}33%{box-shadow:0 0 0 8px rgba(100,200,255,0.3),0 0 50px rgba(100,200,255,0.7),0 0 90px rgba(255,215,0,0.3);}66%{box-shadow:0 0 0 8px rgba(255,100,255,0.3),0 0 50px rgba(255,100,255,0.7),0 0 90px rgba(100,200,255,0.3);}100%{box-shadow:0 0 0 8px rgba(255,215,0,0.25),0 0 50px rgba(255,215,0,0.7),0 0 90px rgba(255,100,255,0.3);}}
+#edwin-splash .sp-arm-left,.sp-arm-right{position:absolute;top:52%;height:12px;width:65px;border-radius:6px;background:linear-gradient(to right,#3a7a5a,#2a6a4a);}
+#edwin-splash .sp-arm-left{left:-58px;transform-origin:right center;animation:sp-armL 0.55s ease-in-out infinite alternate;}
+#edwin-splash .sp-arm-right{right:-58px;transform-origin:left center;animation:sp-armR 0.55s ease-in-out infinite alternate;}
+@keyframes sp-armL{from{transform:rotate(-35deg);}to{transform:rotate(35deg);}}
+@keyframes sp-armR{from{transform:rotate(35deg);}to{transform:rotate(-35deg);}}
+#edwin-splash .sp-trophy{font-size:46px;text-align:center;margin-top:10px;display:block;filter:drop-shadow(0 0 14px rgba(255,215,0,1));animation:sp-trophyBounce 1s ease-in-out infinite;}
+@keyframes sp-trophyBounce{0%,100%{transform:scale(1) rotate(-5deg);}50%{transform:scale(1.2) rotate(5deg);}}
+#edwin-splash .sp-score-badge{background:linear-gradient(135deg,#FFD700,#FFA500);color:#1a0030;font-size:18px;font-weight:900;padding:8px 22px;border-radius:30px;margin-top:14px;box-shadow:0 4px 20px rgba(255,215,0,0.6);animation:sp-badgePop 0.8s ease-in-out infinite alternate;}
+@keyframes sp-badgePop{from{transform:scale(1);}to{transform:scale(1.06);}}
+#edwin-splash .sp-crown{position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-size:48px;filter:drop-shadow(0 0 10px rgba(255,215,0,0.9));animation:sp-crownBob 1.2s ease-in-out infinite alternate;z-index:10;pointer-events:none;}
+@keyframes sp-crownBob{from{transform:translateX(-50%) rotate(-8deg) scale(1);}to{transform:translateX(-50%) rotate(8deg) scale(1.1);}}
+#edwin-splash .sp-sound-btn{background:rgba(255,255,255,0.12);border:2px solid rgba(255,255,255,0.3);color:#fff;font-size:13px;letter-spacing:1px;padding:7px 18px;border-radius:20px;cursor:pointer;margin-top:10px;transition:background 0.2s;z-index:10;position:relative;}
+#edwin-splash .sp-sound-btn:hover{background:rgba(255,255,255,0.22);}
+#edwin-splash .sp-floor{width:280px;height:10px;border-radius:50%;margin-top:6px;background:linear-gradient(90deg,transparent,rgba(255,215,0,0.4),rgba(255,100,255,0.4),rgba(100,200,255,0.4),transparent);filter:blur(3px);animation:sp-floorPulse 0.55s ease-in-out infinite alternate;}
+@keyframes sp-floorPulse{from{opacity:0.5;width:260px;}to{opacity:1;width:310px;}}
+#edwin-splash .sp-note{position:fixed;font-size:26px;pointer-events:none;z-index:3;opacity:0;animation:sp-floatNote linear infinite;}
+@keyframes sp-floatNote{0%{opacity:0;transform:translateY(0) rotate(0deg);}10%{opacity:1;}85%{opacity:0.7;}100%{opacity:0;transform:translateY(-280px) rotate(360deg);}}
+#sp-confetti{position:fixed;top:0;left:0;width:100%;height:100%;z-index:2;pointer-events:none;}
+#edwin-splash .sp-enter-btn{margin-top:22px;padding:14px 36px;font-size:17px;font-weight:900;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(135deg,#FFD700,#FFA500);color:#1a0030;border:none;border-radius:40px;cursor:pointer;box-shadow:0 6px 30px rgba(255,215,0,0.5);animation:sp-badgePop 1.2s ease-in-out infinite alternate;position:relative;z-index:10;}
+#edwin-splash .sp-enter-btn:hover{background:linear-gradient(135deg,#ffe040,#ffb020);transform:scale(1.05);}
+</style>
 </head>
 <body>
+<div id="edwin-splash">
+  <div class="sp-disco-string"></div>
+  <div class="sp-disco-ball"></div>
+  <div class="sp-spotlight"></div>
+  <div class="sp-spotlight2"></div>
+  <canvas id="sp-confetti"></canvas>
+  <div class="sp-note" style="left:7%;bottom:50%;animation-duration:3.2s;animation-delay:0s;">🎵</div>
+  <div class="sp-note" style="left:14%;bottom:45%;animation-duration:2.8s;animation-delay:0.6s;">🎶</div>
+  <div class="sp-note" style="left:76%;bottom:50%;animation-duration:3.5s;animation-delay:0.2s;">🎵</div>
+  <div class="sp-note" style="left:84%;bottom:42%;animation-duration:2.6s;animation-delay:1.1s;">🎶</div>
+  <div class="sp-note" style="left:23%;bottom:40%;animation-duration:4s;animation-delay:1.6s;">🌟</div>
+  <div class="sp-note" style="left:66%;bottom:48%;animation-duration:3s;animation-delay:0.9s;">🎶</div>
+  <div class="sp-note" style="left:49%;bottom:20%;animation-duration:2.4s;animation-delay:1.3s;">🎵</div>
+  <div class="sp-note" style="left:91%;bottom:55%;animation-duration:2.9s;animation-delay:1.9s;">🎵</div>
+  <div class="sp-note" style="left:3%;bottom:60%;animation-duration:3.3s;animation-delay:2.2s;">🌟</div>
+  <div class="sp-title">🏆 SEASON CHAMPION 🏆</div>
+  <div class="sp-subtitle">VGC Men's Night 2026 · 372 pts</div>
+  <div class="sp-dancer-wrap">
+    <div class="sp-dancer">
+      <div class="sp-crown">👑</div>
+      <div class="sp-arm-left"></div>
+      <div class="sp-arm-right"></div>
+      <video id="sp-vid" class="sp-photo-circle" autoplay loop muted playsinline><source src="edwin_dance.mp4" type="video/mp4"></video>
+    </div>
+    <div class="sp-trophy">🏆</div>
+    <div class="sp-score-badge">Edwin Margawang · 372 pts</div>
+    <button class="sp-sound-btn" id="sp-soundBtn" onclick="spToggleSound()">🔇 Tap for Sound</button>
+    <div class="sp-floor"></div>
+    <button class="sp-enter-btn" onclick="spEnterLeaderboard()">🏌️ View Season Leaderboard</button>
+  </div>
+</div>
+<script>
+(function(){
+  function spToggleSound(){
+    var v=document.getElementById('sp-vid');
+    v.muted=!v.muted;
+    document.getElementById('sp-soundBtn').textContent=v.muted?'🔇 Tap for Sound':'🔊 Sound On';
+  }
+  window.spToggleSound=spToggleSound;
+  function spEnterLeaderboard(){
+    var el=document.getElementById('edwin-splash');
+    el.style.opacity='0';
+    setTimeout(function(){el.style.display='none';},800);
+  }
+  window.spEnterLeaderboard=spEnterLeaderboard;
+  var canvas=document.getElementById('sp-confetti'),ctx=canvas.getContext('2d');
+  function spResize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  spResize();window.addEventListener('resize',spResize);
+  var COLORS=['#FFD700','#FF69B4','#00BFFF','#7FFF00','#FF6347','#DA70D6','#fff','#FFA500'];
+  var pieces=Array.from({length:150},function(){return{x:Math.random()*window.innerWidth,y:Math.random()*window.innerHeight*1.5-window.innerHeight,w:Math.random()*13+4,h:Math.random()*7+3,color:COLORS[Math.floor(Math.random()*COLORS.length)],rot:Math.random()*Math.PI*2,rs:(Math.random()-0.5)*0.13,vy:Math.random()*2+1.2,vx:(Math.random()-0.5)*1.6,shape:Math.random()<0.6?'rect':'circle'};});
+  var spAnimId;
+  function spTick(){if(!document.getElementById('edwin-splash')||document.getElementById('edwin-splash').style.display==='none'){cancelAnimationFrame(spAnimId);return;}ctx.clearRect(0,0,canvas.width,canvas.height);pieces.forEach(function(p){p.x+=p.vx;p.y+=p.vy;p.rot+=p.rs;if(p.y>canvas.height+20){p.y=-20;p.x=Math.random()*canvas.width;}ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.color;if(p.shape==='rect'){ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);}else{ctx.beginPath();ctx.ellipse(0,0,p.w/2,p.h/2,0,0,Math.PI*2);ctx.fill();}ctx.restore();});spAnimId=requestAnimationFrame(spTick);}
+  spTick();
+})();
+</script>
+
 
 <!-- ── HERO ── -->
 <header class="hero">
