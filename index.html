@@ -2254,6 +2254,7 @@ function renderStandingsHeader() {
     { key:'best10',  label:'Top 10' },
     { key:'avgRnd',  label:'Avg/Rnd' },
     { key:'rounds',  label:'Eligible Rounds' },
+    { key:'winnings', label:'Winnings' },
   ];
   tr.innerHTML = cols.map(c => {
     const isActive = standingsSortCol === c.key;
@@ -2304,6 +2305,9 @@ function renderStandingsBody() {
     else                            return av < bv ? 1 : av > bv ? -1 : 0;
   });
 
+  const ranked = rankPlayers();
+  const payoutMap = new Map(ranked.map(d => [d.p.name, d.payout || 0]));
+
   const tbody = document.getElementById('standings-body');
   // Compute T-ranks based on best10 desc
   const byBest10 = [...data].sort((a,b) => b.best10 - a.best10);
@@ -2342,6 +2346,7 @@ function renderStandingsBody() {
       <td class="total-col">${b10 > 0 ? b10 : '—'}</td>
       <td class="total-col">${avgRnd > 0 ? avgRnd.toFixed(1) : '—'}</td>
       <td class="rounds-col" title="${rounds > BEST_N ? `Best ${BEST_N} of ${rounds} rounds count` : `${rounds} of ${TOTAL_ROUNDS} rounds played`}">${rounds > 0 ? (rounds > BEST_N ? `<span style="color:rgba(120,210,150,0.85)">${BEST_N}</span> of ${rounds}` : rounds + '/' + TOTAL_ROUNDS) : '—'}</td>
+      <td class="total-col" style="${payoutMap.get(p.name) > 0 ? 'color:var(--vgc-gold);font-weight:700;letter-spacing:0.03em' : 'color:rgba(245,240,232,0.3)'}">${payoutMap.get(p.name) > 0 ? '$' + payoutMap.get(p.name).toLocaleString('en-CA', {minimumFractionDigits:0, maximumFractionDigits:0}) : '—'}</td>
     </tr>`;
   }).join('');
 
